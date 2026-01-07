@@ -28,10 +28,10 @@ public class ShortGrassOnTop extends ShortGrassBlock {
       return pState.getBlock() instanceof SlabBlock;
     }
 
-    @Override
-    public boolean canSurvive(BlockState pState, LevelReader pLevel, BlockPos pPos) {
-        BlockPos blockpos = pPos.below();
-        return this.mayPlaceOn(pLevel.getBlockState(blockpos), pLevel, blockpos);
-    }
+//    @Override
+//    public boolean canSurvive(BlockState pState, LevelReader pLevel, BlockPos pPos) {
+//        BlockPos blockpos = pPos.below();
+//        return this.mayPlaceOn(pLevel.getBlockState(blockpos), pLevel, blockpos);
+//    }
 
 }
