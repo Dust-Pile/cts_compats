@@ -1,0 +1,6 @@
+{
+  "parent": "terrainslabs:block/ontop/tinted_cross",
+  "textures": {
+    "cross": "projectvibrantjourneys:block/short_grass6"
+  }
+}

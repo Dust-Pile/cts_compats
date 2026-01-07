@@ -1,0 +1,25 @@
+{
+  "variants": {
+    "model=0": {
+      "model": "cts_compats:block/short_grass_on_top0"
+    },
+    "model=1": {
+      "model": "cts_compats:block/short_grass_on_top1"
+    },
+    "model=2": {
+      "model": "cts_compats:block/short_grass_on_top2"
+    },
+    "model=3": {
+      "model": "cts_compats:block/short_grass_on_top3"
+    },
+    "model=4": {
+      "model": "cts_compats:block/short_grass_on_top4"
+    },
+    "model=5": {
+      "model": "cts_compats:block/short_grass_on_top5"
+    },
+    "model=6": {
+      "model": "cts_compats:block/short_grass_on_top6"
+    }
+  }
+}
