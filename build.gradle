@@ -100,10 +100,11 @@ dependencies {
 
     // Core Mods
     implementation fg.deobf("curse.maven:forgified-fabric-api-889079:6885853")
-    implementation fg.deobf("curse.maven:sinytra-connector-890127:7241800")
+    runtimeOnly fg.deobf("curse.maven:sinytra-connector-890127:7241800")
     implementation fg.deobf("curse.maven:countereds-terrain-slabs-1125437:7347714")
 
     // Compats Mods
+    implementation fg.deobf("curse.maven:project-vibrant-journeys-300297:6841170")
 
 }
 
