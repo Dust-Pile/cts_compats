@@ -8,7 +8,6 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 import java.util.Map;
 
-import static com.mojang.text2speech.Narrator.LOGGER;
 import static net.dusty_dusty.cts_compats.core.CompatSlabsMap.compatOnTopVegitationMap;
 
 @Mixin( RegisterCallbacks.class )
