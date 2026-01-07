@@ -94,9 +94,17 @@ repositories {
 }
 
 dependencies {
+    // Critical
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
-
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
+
+    // Core Mods
+    implementation fg.deobf("curse.maven:forgified-fabric-api-889079:6885853")
+    implementation fg.deobf("curse.maven:sinytra-connector-890127:7241800")
+    implementation fg.deobf("curse.maven:countereds-terrain-slabs-1125437:7347714")
+
+    // Compats Mods
+
 }
 
 tasks.named('processResources', ProcessResources).configure {
