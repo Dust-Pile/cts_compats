@@ -2,6 +2,7 @@ package net.dusty_dusty.cts_compats.projectVibrantJourneys;
 
 import dev.orderedchaos.projectvibrantjourneys.core.registry.PVJBlocks;
 import net.countered.terrainslabs.block.ModSlabsMap;
+import net.dusty_dusty.cts_compats.core.AssignUtil;
 import net.dusty_dusty.cts_compats.projectVibrantJourneys.block.ShortGrassOnTop;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -12,6 +13,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+import java.util.Map;
 import java.util.function.Supplier;
 
 import static net.dusty_dusty.cts_compats.CTSCompats.MODID;
@@ -24,6 +26,7 @@ public class PVJRegistry {
     public static final RegistryObject<Block> SHORTER_GRASS_ON_TOP = registerBlock( "shorter_grass_on_top",
             () -> new ShortGrassOnTop( BlockBehaviour.Properties.copy( PVJBlocks.SHORT_GRASS.get() ) ) );
 
+
     private static <T extends Block> RegistryObject<T> registerBlock( String name, Supplier<T> block ) {
         RegistryObject<T> output = COMPAT_BLOCKS.register( name, block );
         registerBlockItem( name, ( RegistryObject<Block> ) output);
@@ -34,14 +37,13 @@ public class PVJRegistry {
         return PVJRegistry.COMPAT_ITEMS.register( name, () -> new BlockItem( block.get(), new Item.Properties() ) );
     }
 
-    public static void assign() {
-        //ModSlabsMap.ON_TOP_VEGETATION_BLOCKS_MAP.put( PVJBlocks.SHORT_GRASS.get(), SHORTER_GRASS_ON_TOP.get() );
-    }
-
     public static void register( IEventBus modEventBus ) {
         COMPAT_BLOCKS.register( modEventBus );
         COMPAT_ITEMS.register( modEventBus );
     }
 
+    public static void assign() {
+        //AssignUtil.putOnTopVegetation( PVJBlocks.SHORT_GRASS.get(), PVJRegistry.SHORTER_GRASS_ON_TOP.get() );
+    }
 
 }
