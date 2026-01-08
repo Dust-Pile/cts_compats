@@ -1,10 +1,11 @@
 package net.dusty_dusty.cts_compats;
 
 import com.mojang.logging.LogUtils;
+import net.dusty_dusty.cts_compats.projectVibrantJourneys.PVJColorRegistry;
 import net.dusty_dusty.cts_compats.projectVibrantJourneys.PVJRegistry;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
@@ -21,6 +22,8 @@ public class CTSCompats
     public static final String MODID = "cts_compats";
     public static final Logger LOGGER = LogUtils.getLogger();
 
+    private static final String PVJ_MODID = "projectvibrantjourneys";
+
     public CTSCompats(FMLJavaModLoadingContext context)
     {
         IEventBus modEventBus = context.getModEventBus();
@@ -29,9 +32,7 @@ public class CTSCompats
 
         MinecraftForge.EVENT_BUS.register(this);
 
-        if ( ModList.get().isLoaded("projectvibrantjourneys") ) {
-            PVJRegistry.register( modEventBus );
-        }
+        runModCompat( PVJ_MODID, () -> PVJRegistry.register( modEventBus ) );
     }
 
     private void commonSetup(final FMLCommonSetupEvent event)
@@ -55,6 +56,22 @@ public class CTSCompats
         public static void onClientSetup(FMLClientSetupEvent event)
         {
 
+        }
+
+        @SubscribeEvent
+        public static void onColorHandlerEventBlock(RegisterColorHandlersEvent.Block event) {
+            runModCompat( PVJ_MODID, () -> PVJColorRegistry.onColorHandlerEventBlock( event ) );
+        }
+
+        @SubscribeEvent
+        public static void onColorHandlerEventItem(RegisterColorHandlersEvent.Item event) {
+            runModCompat( PVJ_MODID, () -> PVJColorRegistry.onColorHandlerEventItem( event ) );
+        }
+    }
+
+    private static void runModCompat( String modid, Runnable initializer ) {
+        if ( ModList.get().isLoaded( modid ) ) {
+            initializer.run();
         }
     }
 }
