@@ -1,10 +1,8 @@
-package net.dusty_dusty.cts_compats.projectVibrantJourneys.blocks;
+package net.dusty_dusty.cts_compats.projectVibrantJourneys.block;
 
 import dev.orderedchaos.projectvibrantjourneys.common.blocks.ShortGrassBlock;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.BlockState;

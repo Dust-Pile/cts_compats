@@ -1,7 +1,7 @@
 {
   "parent": "terrainslabs:block/ontop/tinted_cross",
   "textures": {
-    "cross": "projectvibrantjourneys:block/short_grass5"
+    "cross": "#cross"
   },
   "render_type": "cutout"
 }
