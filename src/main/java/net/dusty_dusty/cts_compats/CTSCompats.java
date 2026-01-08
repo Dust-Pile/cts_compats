@@ -32,14 +32,13 @@ public class CTSCompats
 
         MinecraftForge.EVENT_BUS.register(this);
 
+        // Compats
         runModCompat( PVJ_MODID, () -> PVJRegistry.register( modEventBus ) );
     }
 
     private void commonSetup(final FMLCommonSetupEvent event)
     {
-//        if ( ModList.get().isLoaded("projectvibrantjourneys") ) {
-//
-//        }
+        runModCompat( PVJ_MODID, PVJRegistry::assign );
     }
 
 //    @SubscribeEvent
@@ -52,11 +51,11 @@ public class CTSCompats
     @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents
     {
-        @SubscribeEvent
-        public static void onClientSetup(FMLClientSetupEvent event)
-        {
-
-        }
+//        @SubscribeEvent
+//        public static void onClientSetup(FMLClientSetupEvent event)
+//        {
+//
+//        }
 
         @SubscribeEvent
         public static void onColorHandlerEventBlock(RegisterColorHandlersEvent.Block event) {

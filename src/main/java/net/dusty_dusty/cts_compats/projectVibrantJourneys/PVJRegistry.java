@@ -1,6 +1,7 @@
 package net.dusty_dusty.cts_compats.projectVibrantJourneys;
 
 import dev.orderedchaos.projectvibrantjourneys.core.registry.PVJBlocks;
+import net.countered.terrainslabs.block.ModSlabsMap;
 import net.dusty_dusty.cts_compats.projectVibrantJourneys.block.ShortGrassOnTop;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -33,8 +34,14 @@ public class PVJRegistry {
         return PVJRegistry.COMPAT_ITEMS.register( name, () -> new BlockItem( block.get(), new Item.Properties() ) );
     }
 
+    public static void assign() {
+        //ModSlabsMap.ON_TOP_VEGETATION_BLOCKS_MAP.put( PVJBlocks.SHORT_GRASS.get(), SHORTER_GRASS_ON_TOP.get() );
+    }
+
     public static void register( IEventBus modEventBus ) {
         COMPAT_BLOCKS.register( modEventBus );
         COMPAT_ITEMS.register( modEventBus );
     }
+
+
 }
