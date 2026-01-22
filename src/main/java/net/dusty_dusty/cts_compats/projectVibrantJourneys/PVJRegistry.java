@@ -2,6 +2,7 @@ package net.dusty_dusty.cts_compats.projectVibrantJourneys;
 
 import com.ibm.icu.util.CodePointTrie;
 import dev.orderedchaos.projectvibrantjourneys.core.registry.PVJBlocks;
+import dev.orderedchaos.projectvibrantjourneys.core.registry.PVJItems;
 import net.dusty_dusty.cts_compats.core.AssignUtil;
 import net.dusty_dusty.cts_compats.projectVibrantJourneys.block.ShortGrassOnTop;
 import net.dusty_dusty.cts_compats.projectVibrantJourneys.block.SmallCactusOnTop;
@@ -47,7 +48,10 @@ public class PVJRegistry {
 
     public static void assign() {
         AssignUtil.putOnTopVegetation( PVJBlocks.SHORT_GRASS.get(), PVJRegistry.SHORTER_GRASS_ON_TOP.get() );
+        AssignUtil.putVegetaitonOnTopItem(PVJItems.SHORT_GRASS.get(), PVJRegistry.SHORTER_GRASS_ON_TOP.get() );
+
         AssignUtil.putOnTopVegetation( PVJBlocks.SMALL_CACTUS.get(), PVJRegistry.SMALL_CACTUS_ON_TOP.get() );
+        AssignUtil.putVegetaitonOnTopItem( PVJItems.SHORT_GRASS.get(), PVJRegistry.SMALL_CACTUS_ON_TOP.get() );
     }
 
 }
