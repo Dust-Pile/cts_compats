@@ -1,5 +1,7 @@
 {
   "variants": {
-    "": "cts_compats:block/ontop/small_cactus_on_top"
+    "": {
+      "model": "cts_compats:block/ontop/small_cactus_on_top"
+    }
   }
 }
