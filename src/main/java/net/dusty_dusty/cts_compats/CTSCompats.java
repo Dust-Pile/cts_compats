@@ -39,7 +39,7 @@ public class CTSCompats
 
     private void commonSetup(final FMLCommonSetupEvent event)
     {
-        runModCompat( PVJ_MODID, PVJRegistry::assign );
+        runModCompat( PVJ_MODID, () -> PVJRegistry.assign() );
     }
 
 //    @SubscribeEvent
@@ -71,6 +71,7 @@ public class CTSCompats
 
     private static void runModCompat( String modid, Runnable initializer ) {
         if ( ModList.get().isLoaded( modid ) ) {
+            LOGGER.info( "Loading Runnable for {}.", modid );
             initializer.run();
         }
     }
