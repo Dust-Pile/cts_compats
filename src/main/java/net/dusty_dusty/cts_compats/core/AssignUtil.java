@@ -26,12 +26,12 @@ public class AssignUtil {
         ModSlabsMap.putTopSlabReplacementFromString( keyStrings[0], keyStrings[1], valueStrings[0], valueStrings[1] );
     }
 
-    private static String getBlockModId( Block block ) {
-        return block.getDescriptionId().split("\\.")[1];
-    }
-    private static String getBlockName( Block block ) {
-        return block.getDescriptionId().split("\\.")[2];
-    }
+//    private static String getBlockModId( Block block ) {
+//        return block.getDescriptionId().split("\\.")[1];
+//    }
+//    private static String getBlockName( Block block ) {
+//        return block.getDescriptionId().split("\\.")[2];
+//    }
     private static String[] getBlockIdComponents( Block block ) {
         String[] strs = block.getDescriptionId().split("\\.");
         return new String[] { strs[1], strs[2] };

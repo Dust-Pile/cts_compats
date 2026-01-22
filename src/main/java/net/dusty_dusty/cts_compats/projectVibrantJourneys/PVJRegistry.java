@@ -1,8 +1,10 @@
 package net.dusty_dusty.cts_compats.projectVibrantJourneys;
 
+import com.ibm.icu.util.CodePointTrie;
 import dev.orderedchaos.projectvibrantjourneys.core.registry.PVJBlocks;
 import net.dusty_dusty.cts_compats.core.AssignUtil;
 import net.dusty_dusty.cts_compats.projectVibrantJourneys.block.ShortGrassOnTop;
+import net.dusty_dusty.cts_compats.projectVibrantJourneys.block.SmallCactusOnTop;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -24,6 +26,9 @@ public class PVJRegistry {
     public static final RegistryObject<Block> SHORTER_GRASS_ON_TOP = registerBlock( "shorter_grass_on_top",
             () -> new ShortGrassOnTop( BlockBehaviour.Properties.copy( PVJBlocks.SHORT_GRASS.get() ) ) );
 
+    public static final RegistryObject<Block> SMALL_CACTUS_ON_TOP = registerBlock( "small_cactus_on_top",
+            () -> new SmallCactusOnTop( BlockBehaviour.Properties.copy( PVJBlocks.SMALL_CACTUS.get() ) ) );
+
 
     private static <T extends Block> RegistryObject<T> registerBlock( String name, Supplier<T> block ) {
         RegistryObject<T> output = COMPAT_BLOCKS.register( name, block );
@@ -42,6 +47,7 @@ public class PVJRegistry {
 
     public static void assign() {
         AssignUtil.putOnTopVegetation( PVJBlocks.SHORT_GRASS.get(), PVJRegistry.SHORTER_GRASS_ON_TOP.get() );
+        AssignUtil.putOnTopVegetation( PVJBlocks.SMALL_CACTUS.get(), PVJRegistry.SMALL_CACTUS_ON_TOP.get() );
     }
 
 }
