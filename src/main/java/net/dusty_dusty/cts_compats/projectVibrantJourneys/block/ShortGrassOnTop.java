@@ -14,7 +14,7 @@ public class ShortGrassOnTop extends ShortGrassBlock {
     protected static final VoxelShape SHAPE = Block.box(2.0, -8.0, 2.0, 14.0, 5.0, 14.0);
 
     public ShortGrassOnTop(Properties props) {
-        super(props);
+        super( props );
     }
 
     @Override
