@@ -1,5 +1,5 @@
 {
-  "parent": "cts_compats:block/ontop/cross",
+  "parent": "terrainslabs:block/ontop/cross",
   "textures": {
     "cross": "#cross"
   },
