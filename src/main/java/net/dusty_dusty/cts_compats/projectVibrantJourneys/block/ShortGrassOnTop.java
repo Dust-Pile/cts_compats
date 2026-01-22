@@ -3,6 +3,7 @@ package net.dusty_dusty.cts_compats.projectVibrantJourneys.block;
 import dev.orderedchaos.projectvibrantjourneys.common.blocks.ShortGrassBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -26,10 +27,10 @@ public class ShortGrassOnTop extends ShortGrassBlock {
       return pState.getBlock() instanceof SlabBlock;
     }
 
-//    @Override
-//    public boolean canSurvive(BlockState pState, LevelReader pLevel, BlockPos pPos) {
-//        BlockPos blockpos = pPos.below();
-//        return this.mayPlaceOn(pLevel.getBlockState(blockpos), pLevel, blockpos);
-//    }
+    @Override
+    public boolean canSurvive(BlockState pState, LevelReader pLevel, BlockPos pPos) {
+        BlockPos blockpos = pPos.below();
+        return this.mayPlaceOn(pLevel.getBlockState(blockpos), pLevel, blockpos);
+    }
 
 }
