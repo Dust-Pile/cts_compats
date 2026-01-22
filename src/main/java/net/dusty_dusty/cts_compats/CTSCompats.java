@@ -39,6 +39,7 @@ public class CTSCompats
 
     private void commonSetup(final FMLCommonSetupEvent event)
     {
+        // Must use lambda to avoid class loading
         runModCompat( PVJ_MODID, () -> PVJRegistry.assign() );
     }
 
