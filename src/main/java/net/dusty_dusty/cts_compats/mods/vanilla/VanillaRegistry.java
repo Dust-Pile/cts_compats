@@ -39,7 +39,6 @@ public class VanillaRegistry {
         public static void register( IEventBus modEventBus ) {
             COMPAT_BLOCKS.register( modEventBus );
             COMPAT_ITEMS.register( modEventBus );
-            MinecraftForge.EVENT_BUS.register( PINK_PETALS_ON_TOP );
         }
 
         public static void assign() {
