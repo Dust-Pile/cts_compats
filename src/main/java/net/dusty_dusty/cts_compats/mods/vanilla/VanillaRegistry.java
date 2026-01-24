@@ -8,6 +8,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -38,6 +39,7 @@ public class VanillaRegistry {
         public static void register( IEventBus modEventBus ) {
             COMPAT_BLOCKS.register( modEventBus );
             COMPAT_ITEMS.register( modEventBus );
+            MinecraftForge.EVENT_BUS.register( PINK_PETALS_ON_TOP );
         }
 
         public static void assign() {
