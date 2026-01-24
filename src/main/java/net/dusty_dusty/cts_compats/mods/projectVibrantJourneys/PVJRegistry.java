@@ -37,7 +37,7 @@ public class PVJRegistry {
     }
 
     private static <T extends Block> RegistryObject<Item> registerBlockItem( String name, RegistryObject<Block> block ) {
-        return PVJRegistry.COMPAT_ITEMS.register( name, () -> new BlockItem( block.get(), new Item.Properties() ) );
+        return COMPAT_ITEMS.register( name, () -> new BlockItem( block.get(), new Item.Properties() ) );
     }
 
     public static void register( IEventBus modEventBus ) {
@@ -46,11 +46,11 @@ public class PVJRegistry {
     }
 
     public static void assign() {
-        AssignUtil.putOnTopVegetation( PVJBlocks.SHORT_GRASS.get(), PVJRegistry.SHORTER_GRASS_ON_TOP.get() );
-        AssignUtil.putVegetaitonOnTopItem(PVJItems.SHORT_GRASS.get(), PVJRegistry.SHORTER_GRASS_ON_TOP.get() );
+        AssignUtil.putOnTopVegetation( PVJBlocks.SHORT_GRASS.get(), SHORTER_GRASS_ON_TOP.get() );
+        AssignUtil.putVegetaitonOnTopItem(PVJItems.SHORT_GRASS.get(), SHORTER_GRASS_ON_TOP.get() );
 
-        AssignUtil.putOnTopVegetation( PVJBlocks.SMALL_CACTUS.get(), PVJRegistry.SMALL_CACTUS_ON_TOP.get() );
-        AssignUtil.putVegetaitonOnTopItem( PVJItems.SHORT_GRASS.get(), PVJRegistry.SMALL_CACTUS_ON_TOP.get() );
+        AssignUtil.putOnTopVegetation( PVJBlocks.SMALL_CACTUS.get(), SMALL_CACTUS_ON_TOP.get() );
+        AssignUtil.putVegetaitonOnTopItem( PVJItems.SHORT_GRASS.get(), SMALL_CACTUS_ON_TOP.get() );
     }
 
 }
