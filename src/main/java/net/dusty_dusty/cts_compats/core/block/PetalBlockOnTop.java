@@ -32,6 +32,7 @@ public class PetalBlockOnTop extends PinkPetalsBlock {
         return super.canBeReplaced(state, context) || ( !context.isSecondaryUseActive() && isHandMatch && state.getValue(AMOUNT) < 4 );
     }
 
+    @Override
     public boolean mayPlaceOn(BlockState pState, BlockGetter pLevel, BlockPos pPos) {
         return pState.getBlock() instanceof SlabBlock;
     }
