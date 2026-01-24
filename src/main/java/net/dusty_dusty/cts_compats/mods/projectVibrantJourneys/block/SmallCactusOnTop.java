@@ -1,4 +1,4 @@
-package net.dusty_dusty.cts_compats.projectVibrantJourneys.block;
+package net.dusty_dusty.cts_compats.mods.projectVibrantJourneys.block;
 
 import dev.orderedchaos.projectvibrantjourneys.common.blocks.SmallCactusBlock;
 import net.minecraft.core.BlockPos;

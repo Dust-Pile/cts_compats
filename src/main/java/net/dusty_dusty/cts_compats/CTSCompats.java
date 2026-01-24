@@ -1,8 +1,8 @@
 package net.dusty_dusty.cts_compats;
 
 import com.mojang.logging.LogUtils;
-import net.dusty_dusty.cts_compats.projectVibrantJourneys.PVJColorRegistry;
-import net.dusty_dusty.cts_compats.projectVibrantJourneys.PVJRegistry;
+import net.dusty_dusty.cts_compats.mods.projectVibrantJourneys.PVJColorRegistry;
+import net.dusty_dusty.cts_compats.mods.projectVibrantJourneys.PVJRegistry;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -11,7 +11,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
 
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;

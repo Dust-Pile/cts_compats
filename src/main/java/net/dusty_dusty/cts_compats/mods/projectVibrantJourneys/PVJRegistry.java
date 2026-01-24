@@ -1,11 +1,10 @@
-package net.dusty_dusty.cts_compats.projectVibrantJourneys;
+package net.dusty_dusty.cts_compats.mods.projectVibrantJourneys;
 
-import com.ibm.icu.util.CodePointTrie;
 import dev.orderedchaos.projectvibrantjourneys.core.registry.PVJBlocks;
 import dev.orderedchaos.projectvibrantjourneys.core.registry.PVJItems;
 import net.dusty_dusty.cts_compats.core.AssignUtil;
-import net.dusty_dusty.cts_compats.projectVibrantJourneys.block.ShortGrassOnTop;
-import net.dusty_dusty.cts_compats.projectVibrantJourneys.block.SmallCactusOnTop;
+import net.dusty_dusty.cts_compats.mods.projectVibrantJourneys.block.ShortGrassOnTop;
+import net.dusty_dusty.cts_compats.mods.projectVibrantJourneys.block.SmallCactusOnTop;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;

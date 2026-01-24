@@ -1,4 +1,4 @@
-package net.dusty_dusty.cts_compats.projectVibrantJourneys;
+package net.dusty_dusty.cts_compats.mods.projectVibrantJourneys;
 
 import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.client.color.block.BlockColors;
