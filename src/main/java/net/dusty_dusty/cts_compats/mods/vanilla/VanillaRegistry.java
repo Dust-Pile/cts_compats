@@ -1,9 +1,7 @@
 package net.dusty_dusty.cts_compats.mods.vanilla;
 
-import dev.orderedchaos.projectvibrantjourneys.core.registry.PVJBlocks;
-import dev.orderedchaos.projectvibrantjourneys.core.registry.PVJItems;
-import net.dusty_dusty.cts_compats.core.AssignUtil;
-import net.dusty_dusty.cts_compats.core.block.PetalBlockOnTop;
+import net.dusty_dusty.cts_compats.common.AssignUtil;
+import net.dusty_dusty.cts_compats.common.block.PetalBlockOnTop;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;

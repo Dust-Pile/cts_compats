@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 import java.util.Map;
 
-import static net.dusty_dusty.cts_compats.core.CompatSlabsMap.compatOnTopVegitationMap;
+import static net.dusty_dusty.cts_compats.common.CompatSlabsMap.compatOnTopVegitationMap;
 
 @Mixin( RegisterCallbacks.class )
 public class MixinRegisterCallbacks {

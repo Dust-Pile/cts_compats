@@ -2,7 +2,7 @@ package net.dusty_dusty.cts_compats.mods.projectVibrantJourneys;
 
 import dev.orderedchaos.projectvibrantjourneys.core.registry.PVJBlocks;
 import dev.orderedchaos.projectvibrantjourneys.core.registry.PVJItems;
-import net.dusty_dusty.cts_compats.core.AssignUtil;
+import net.dusty_dusty.cts_compats.common.AssignUtil;
 import net.dusty_dusty.cts_compats.mods.projectVibrantJourneys.block.ShortGrassOnTop;
 import net.dusty_dusty.cts_compats.mods.projectVibrantJourneys.block.SmallCactusOnTop;
 import net.minecraft.world.item.BlockItem;
