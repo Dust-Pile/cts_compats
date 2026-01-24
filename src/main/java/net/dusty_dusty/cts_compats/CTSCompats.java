@@ -3,6 +3,7 @@ package net.dusty_dusty.cts_compats;
 import com.mojang.logging.LogUtils;
 import net.dusty_dusty.cts_compats.mods.projectVibrantJourneys.PVJColorRegistry;
 import net.dusty_dusty.cts_compats.mods.projectVibrantJourneys.PVJRegistry;
+import net.dusty_dusty.cts_compats.mods.vanilla.VanillaRegistry;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -33,12 +34,14 @@ public class CTSCompats
         MinecraftForge.EVENT_BUS.register(this);
 
         // Compats
+        VanillaRegistry.register( modEventBus );
         runModCompat( PVJ_MODID, () -> PVJRegistry.register( modEventBus ) );
     }
 
     private void commonSetup(final FMLCommonSetupEvent event)
     {
         // Must use lambda to avoid class loading
+        VanillaRegistry.assign();
         runModCompat( PVJ_MODID, () -> PVJRegistry.assign() );
     }
 
