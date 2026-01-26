@@ -4,6 +4,7 @@ import net.dusty_dusty.cts_compats.common.AssignUtil;
 import net.dusty_dusty.cts_compats.common.IAssignable;
 import net.dusty_dusty.cts_compats.common.IBlockCopy;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
@@ -15,7 +16,7 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class FlowerBlockOnTop extends FlowerBlock implements IAssignable, IBlockCopy {
+public class FlowerBlockOnTop extends FlowerBlock implements IAssignable {
     private static final VoxelShape SHAPE = Block.box(5.0D, -8.0D, 5.0D, 11.0D, 2.0D, 11.0D);
     private final Block originalBlock;
 
@@ -27,11 +28,6 @@ public class FlowerBlockOnTop extends FlowerBlock implements IAssignable, IBlock
 
     public Block getOriginBlock() {
         return originalBlock;
-    }
-
-    public void assign() {
-        AssignUtil.putOnTopVegetation( originalBlock, this );
-        AssignUtil.putVegetaitonOnTopItem( originalBlock.asItem(), this );
     }
 
     @Override

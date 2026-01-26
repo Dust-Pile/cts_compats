@@ -1,5 +1,6 @@
-package net.dusty_dusty.cts_compats.mods.vanilla.block;
+package net.dusty_dusty.cts_compats.mods.projectVibrantJourneys.block;
 
+import dev.orderedchaos.projectvibrantjourneys.common.blocks.FallenLeavesBlock;
 import net.dusty_dusty.cts_compats.common.AssignUtil;
 import net.dusty_dusty.cts_compats.common.IAssignable;
 import net.dusty_dusty.cts_compats.common.IBlockCopy;
@@ -8,22 +9,19 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.FlowerBlock;
 import net.minecraft.world.level.block.SlabBlock;
-import net.minecraft.world.level.block.WitherRoseBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class WitherRoseOnTop extends WitherRoseBlock implements IAssignable, IBlockCopy {
-    private static final VoxelShape SHAPE = Block.box(5.0D, -8.0D, 5.0D, 11.0D, 2.0D, 11.0D);
+public class FallenLeavesOnTop extends FallenLeavesBlock implements IAssignable, IBlockCopy {
+    private final VoxelShape SHAPE = Block.box(0.01, (double)-8.0F, (double)0.0F, (double)16.0F, -6.01, (double)16.0F);
     private final Block originalBlock;
 
-    public WitherRoseOnTop(Block originalBlock) {
-        super( ( (FlowerBlock) originalBlock ).getSuspiciousEffect(), BlockBehaviour.Properties.copy( originalBlock ) );
-        this.originalBlock = originalBlock;
+    public FallenLeavesOnTop( Block orininalBlock ) {
+        super( BlockBehaviour.Properties.copy( orininalBlock ) );
+        this.originalBlock = orininalBlock;
     }
 
     public Block getOriginBlock() {
@@ -31,12 +29,10 @@ public class WitherRoseOnTop extends WitherRoseBlock implements IAssignable, IBl
     }
 
     @Override
-    public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
-        Vec3 vec3 = pState.getOffset(pLevel, pPos);
-        return SHAPE.move(vec3.x, vec3.y, vec3.z);
+    public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+        return SHAPE;
     }
 
-    @Override
     protected boolean mayPlaceOn(BlockState pState, BlockGetter pLevel, BlockPos pPos) {
         return pState.getBlock() instanceof SlabBlock;
     }

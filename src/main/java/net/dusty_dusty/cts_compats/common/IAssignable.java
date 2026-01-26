@@ -1,7 +1,12 @@
 package net.dusty_dusty.cts_compats.common;
 
-public interface IAssignable {
+import net.minecraft.world.level.block.Block;
 
-    void assign();
+public interface IAssignable extends IBlockCopy {
+
+    default void assign() {
+        AssignUtil.putOnTopVegetation( this.getOriginBlock(), (Block) this );
+        AssignUtil.putVegetaitonOnTopItem( this.getOriginalItem(), (Block) this );
+    };
 
 }

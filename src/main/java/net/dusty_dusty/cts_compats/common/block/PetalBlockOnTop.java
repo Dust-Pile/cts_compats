@@ -25,7 +25,6 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.registries.RegistryObject;
 
 public class PetalBlockOnTop extends PinkPetalsBlock implements IAssignable, IBlockCopy {
     private Item originalItem;
@@ -38,6 +37,10 @@ public class PetalBlockOnTop extends PinkPetalsBlock implements IAssignable, IBl
 
     public Block getOriginBlock() {
         return originalBlock;
+    }
+
+    public Item getOriginalItem() {
+        return originalItem;
     }
 
     public void assign() {

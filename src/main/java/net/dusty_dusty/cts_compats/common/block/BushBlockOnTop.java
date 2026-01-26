@@ -4,6 +4,7 @@ import net.dusty_dusty.cts_compats.common.AssignUtil;
 import net.dusty_dusty.cts_compats.common.IAssignable;
 import net.dusty_dusty.cts_compats.common.IBlockCopy;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
@@ -26,11 +27,6 @@ public class BushBlockOnTop extends BushBlock implements IAssignable, IBlockCopy
 
     public Block getOriginBlock() {
         return originalBlock;
-    }
-
-    public void assign() {
-        AssignUtil.putOnTopVegetation( originalBlock, this );
-        AssignUtil.putVegetaitonOnTopItem( originalBlock.asItem(), this );
     }
 
     @Override
