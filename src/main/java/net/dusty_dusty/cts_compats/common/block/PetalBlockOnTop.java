@@ -1,6 +1,5 @@
 package net.dusty_dusty.cts_compats.common.block;
 
-import net.dusty_dusty.cts_compats.CTSCompats;
 import net.dusty_dusty.cts_compats.common.AssignUtil;
 import net.dusty_dusty.cts_compats.common.IAssignable;
 import net.dusty_dusty.cts_compats.common.IBlockCopy;
@@ -26,15 +25,24 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.registries.RegistryObject;
 
 public class PetalBlockOnTop extends PinkPetalsBlock implements IAssignable, IBlockCopy {
-    private final Item originalItem;
+    private Item originalItem;
+    private final RegistryObject<Item> originalItemRegister;
     private final Block originalBlock;
 
     public PetalBlockOnTop( Block originalBlock ) {
         super( BlockBehaviour.Properties.copy( originalBlock ) );
         this.originalBlock = originalBlock;
         originalItem = originalBlock.asItem();
+        originalItemRegister = null;
+    }
+
+    public PetalBlockOnTop( Block originalBlock, RegistryObject<Item> originalItemRegister ) {
+        super( BlockBehaviour.Properties.copy( originalBlock ) );
+        this.originalBlock = originalBlock;
+        this.originalItemRegister = originalItemRegister;
     }
 
     public Block getOriginBlock() {
@@ -42,8 +50,9 @@ public class PetalBlockOnTop extends PinkPetalsBlock implements IAssignable, IBl
     }
 
     public void assign() {
+        originalItem = originalItemRegister != null ? originalItemRegister.get() : originalItem;
         AssignUtil.putOnTopVegetation( originalBlock, this );
-        AssignUtil.putVegetaitonOnTopItem( originalBlock.asItem(), this );
+        AssignUtil.putVegetaitonOnTopItem( originalItem, this );
     }
 
     @Override
@@ -70,14 +79,11 @@ public class PetalBlockOnTop extends PinkPetalsBlock implements IAssignable, IBl
         } else {
             popResource(sLevel, pos, new ItemStack( originalItem ) );
         }
-
     }
 
     @Override
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         int amount = pState.getValue( AMOUNT );
-
-        CTSCompats.LOGGER.info( "Triggered Petal Block Use ({})", pPlayer.getItemInHand( pHand ).is( originalItem ) );
 
         if ( !pPlayer.getItemInHand( pHand ).is( originalItem ) ) {
             return InteractionResult.PASS;
