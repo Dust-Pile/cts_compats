@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "cts_compats:block/ontop/allium_on_top"
+      "model": "cts_compats:block/ontop/flowers/allium_on_top"
     }
   }
 }

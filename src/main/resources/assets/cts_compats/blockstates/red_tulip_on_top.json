@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "cts_compats:block/ontop/red_tulip_on_top"
+      "model": "cts_compats:block/ontop/flowers/red_tulip_on_top"
     }
   }
 }

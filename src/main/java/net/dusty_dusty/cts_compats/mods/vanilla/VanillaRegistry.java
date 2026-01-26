@@ -2,6 +2,8 @@ package net.dusty_dusty.cts_compats.mods.vanilla;
 
 import net.dusty_dusty.cts_compats.common.IAssignable;
 import net.dusty_dusty.cts_compats.common.block.*;
+import net.dusty_dusty.cts_compats.mods.vanilla.block.PitcherPlantOnTop;
+import net.dusty_dusty.cts_compats.mods.vanilla.block.SweetBerryBushOnTop;
 import net.dusty_dusty.cts_compats.mods.vanilla.block.WitherRoseOnTop;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -22,10 +24,13 @@ public class VanillaRegistry {
     protected static final DeferredRegister<Block> COMPAT_BLOCKS = DeferredRegister.create( ForgeRegistries.BLOCKS, MODID );
     protected static final DeferredRegister<Item> COMPAT_ITEMS = DeferredRegister.create( ForgeRegistries.ITEMS, MODID );
 
+    // Unique
     public static final RegistryObject<Block> PINK_PETALS_ON_TOP = registerBlock( "pink_petals_on_top",
             () -> new PetalBlockOnTop( Blocks.PINK_PETALS ) );
     public static final RegistryObject<Block> TALL_GRASS_ON_TOP = registerBlock( "tall_grass_on_top",
             () -> new DoublePlantOnTop( Blocks.TALL_GRASS ) );
+    public static final RegistryObject<Block> SWEET_BERRY_BUSH_ON_TOP = registerBlock( "sweet_berry_bush_on_top",
+            () -> new SweetBerryBushOnTop( Blocks.SWEET_BERRY_BUSH ) );
 
     // Fungus
     private static final VoxelShape fungusShape = Block.box(4.0D, -8.0D, 4.0D, 12.0D, 1.0D, 12.0D);
@@ -53,7 +58,19 @@ public class VanillaRegistry {
             () -> new FlowerBlockOnTop( Blocks.BLUE_ORCHID ) );
     public static final RegistryObject<Block> WITHER_ROSE_ON_TOP = registerBlock( "wither_rose_on_top",
             () -> new WitherRoseOnTop( Blocks.WITHER_ROSE ) );
+    public static final RegistryObject<Block> TORCHFLOWER_ON_TOP = registerBlock( "torchflower_on_top",
+            () -> new FlowerBlockOnTop( Blocks.TORCHFLOWER ) );
     // Tall Flowers
+    public static final RegistryObject<Block> PITCHER_PLANT_ON_TOP = registerBlock( "pitcher_plant_on_top",
+            () -> new PitcherPlantOnTop( Blocks.PITCHER_PLANT ) );
+    public static final RegistryObject<Block> PEONY_ON_TOP = registerBlock( "peony_on_top",
+            () -> new DoublePlantOnTop( Blocks.PEONY ) );
+    public static final RegistryObject<Block> ROSE_BUSH_ON_TOP = registerBlock( "rose_bush_on_top",
+            () -> new DoublePlantOnTop( Blocks.ROSE_BUSH ) );
+    public static final RegistryObject<Block> SUNFLOWER_ON_TOP = registerBlock( "sunflower_on_top",
+            () -> new DoublePlantOnTop( Blocks.SUNFLOWER ) );
+    public static final RegistryObject<Block> LILAC_ON_TOP = registerBlock( "lilac_on_top",
+            () -> new DoublePlantOnTop( Blocks.LILAC ) );
 
 
 

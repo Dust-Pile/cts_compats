@@ -1,0 +1,7 @@
+{
+  "parent": "cts_compats:block/ontop/cross_double",
+  "textures": {
+    "cross": "minecraft:block/sunflower_bottom",
+    "top_cross": "minecraft:block/sunflower_top"
+  }
+}
