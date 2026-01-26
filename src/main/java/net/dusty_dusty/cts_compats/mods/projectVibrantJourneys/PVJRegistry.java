@@ -1,18 +1,17 @@
 package net.dusty_dusty.cts_compats.mods.projectVibrantJourneys;
 
 import dev.orderedchaos.projectvibrantjourneys.core.registry.PVJBlocks;
-import dev.orderedchaos.projectvibrantjourneys.core.registry.PVJItems;
-import net.dusty_dusty.cts_compats.common.AssignUtil;
+import net.dusty_dusty.cts_compats.common.IAssignable;
 import net.dusty_dusty.cts_compats.mods.projectVibrantJourneys.block.ShortGrassOnTop;
 import net.dusty_dusty.cts_compats.mods.projectVibrantJourneys.block.SmallCactusOnTop;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import org.openjdk.nashorn.internal.ir.annotations.Ignore;
 
 import java.util.function.Supplier;
 
@@ -24,10 +23,11 @@ public class PVJRegistry {
     protected static final DeferredRegister<Item> COMPAT_ITEMS = DeferredRegister.create( ForgeRegistries.ITEMS, MODID );
 
     public static final RegistryObject<Block> SHORTER_GRASS_ON_TOP = registerBlock( "shorter_grass_on_top",
-            () -> new ShortGrassOnTop( BlockBehaviour.Properties.copy( PVJBlocks.SHORT_GRASS.get() ) ) );
+            () -> new ShortGrassOnTop( PVJBlocks.SHORT_GRASS.get() ) );
 
     public static final RegistryObject<Block> SMALL_CACTUS_ON_TOP = registerBlock( "small_cactus_on_top",
-            () -> new SmallCactusOnTop( BlockBehaviour.Properties.copy( PVJBlocks.SMALL_CACTUS.get() ) ) );
+            () -> new SmallCactusOnTop( PVJBlocks.SMALL_CACTUS.get() ) );
+
 
 
     private static <T extends Block> RegistryObject<T> registerBlock( String name, Supplier<T> block ) {
@@ -46,11 +46,11 @@ public class PVJRegistry {
     }
 
     public static void assign() {
-        AssignUtil.putOnTopVegetation( PVJBlocks.SHORT_GRASS.get(), SHORTER_GRASS_ON_TOP.get() );
-        AssignUtil.putVegetaitonOnTopItem(PVJItems.SHORT_GRASS.get(), SHORTER_GRASS_ON_TOP.get() );
-
-        AssignUtil.putOnTopVegetation( PVJBlocks.SMALL_CACTUS.get(), SMALL_CACTUS_ON_TOP.get() );
-        AssignUtil.putVegetaitonOnTopItem( PVJItems.SHORT_GRASS.get(), SMALL_CACTUS_ON_TOP.get() );
+        COMPAT_BLOCKS.getEntries().forEach( entry -> {
+            Block block = entry.get();
+            if ( block instanceof IAssignable) {
+                ( (IAssignable) block ).assign();
+            }
+        });
     }
-
 }
