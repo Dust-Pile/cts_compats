@@ -12,6 +12,7 @@ public class VanillaColorRegistry {
 
     public static void onColorHandlerEventBlock( RegisterColorHandlersEvent.Block event ) {
         event.register( getGrassColor(), VanillaRegistry.TALL_GRASS_ON_TOP.get() );
+        event.register( getGrassColor(), VanillaRegistry.LARGE_FERN_ON_TOP.get() );
     }
 
     public static void onColorHandlerEventItem( RegisterColorHandlersEvent.Item event ) {
@@ -21,6 +22,11 @@ public class VanillaColorRegistry {
             BlockState state = Blocks.OAK_LEAVES.defaultBlockState();
             return blockColors.getColor(state, null, null, tintIndex);
         }, VanillaRegistry.TALL_GRASS_ON_TOP.get() );
+
+        event.register( (itemstack, tintIndex) -> {
+            BlockState state = Blocks.OAK_LEAVES.defaultBlockState();
+            return blockColors.getColor(state, null, null, tintIndex);
+        }, VanillaRegistry.LARGE_FERN_ON_TOP.get() );
     }
 
     private static BlockColor getGrassColor() {

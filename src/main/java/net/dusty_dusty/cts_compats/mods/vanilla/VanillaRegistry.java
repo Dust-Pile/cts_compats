@@ -31,6 +31,8 @@ public class VanillaRegistry {
             () -> new PetalBlockOnTop( Blocks.PINK_PETALS ) );
     public static final RegistryObject<Block> TALL_GRASS_ON_TOP = registerBlock( "tall_grass_on_top",
             () -> new DoublePlantOnTop( Blocks.TALL_GRASS ) );
+    public static final RegistryObject<Block> LARGE_FERN_ON_TOP = registerBlock( "large_fern_on_top",
+            () -> new DoublePlantOnTop( Blocks.LARGE_FERN ) );
     public static final RegistryObject<Block> SWEET_BERRY_BUSH_ON_TOP = registerBlock( "sweet_berry_bush_on_top",
             () -> new SweetBerryBushOnTop( Blocks.SWEET_BERRY_BUSH ) );
 
