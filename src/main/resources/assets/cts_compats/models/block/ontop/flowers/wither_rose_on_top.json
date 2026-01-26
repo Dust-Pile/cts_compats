@@ -1,0 +1,6 @@
+{
+  "parent": "cts_compats:block/ontop/cross",
+  "textures": {
+    "cross": "block/wither_rose"
+  }
+}

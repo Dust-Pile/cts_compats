@@ -1,4 +1,18 @@
 {
   "block.cts_compats.shorter_grass_on_top": "Short Grass On Top",
-  "block.cts_compats.small_cactus_on_top": "Small Cactus On Top"
+  "block.cts_compats.small_cactus_on_top": "Small Cactus On Top",
+
+  "block.cts_compats.tall_grass_on_top": "Tall Grass On Top",
+  "block.cts_compats.pink_petals_on_top": "Pink Petals On Top",
+  "block.cts_compats.crimson_fungus_on_top": "Crimson Fungus On Top",
+  "block.cts_compats.warped_fungus_on_top": "Warped Fungus On Top",
+  "block.cts_compats.red_tulip_on_top": "Red Tulip On Top",
+  "block.cts_compats.orange_tulip_on_top": "Orange Tulip On Top",
+  "block.cts_compats.pink_tulip_on_top": "Pink Tulip On Top",
+  "block.cts_compats.white_tulip_on_top": "White Tulip On Top",
+  "block.cts_compats.lily_of_the_valley_on_top": "Lily Of The Valley On Top",
+  "block.cts_compats.oxeye_daisy_on_top": "Oxeye Daisy On Top",
+  "block.cts_compats.allium_on_top": "Allium On Top",
+  "block.cts_compats.blue_orchid_on_top": "Blue Orchid On Top",
+  "block.cts_compats.wither_rose_on_top": "Wither Rose On Top"
 }

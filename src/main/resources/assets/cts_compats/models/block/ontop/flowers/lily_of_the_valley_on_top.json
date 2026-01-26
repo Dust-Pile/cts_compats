@@ -1,0 +1,6 @@
+{
+  "parent": "cts_compats:block/ontop/cross",
+  "textures": {
+    "cross": "block/lily_of_the_valley"
+  }
+}

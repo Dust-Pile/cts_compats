@@ -1,5 +1,5 @@
 {
-  "parent": "cts_compats:block/ontop/flowerbed_1",
+  "parent": "cts_compats:block/ontop/petals/flowerbed_1",
   "textures": {
     "flowerbed": "minecraft:block/pink_petals",
     "stem": "minecraft:block/pink_petals_stem"

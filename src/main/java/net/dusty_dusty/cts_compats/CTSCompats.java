@@ -3,6 +3,7 @@ package net.dusty_dusty.cts_compats;
 import com.mojang.logging.LogUtils;
 import net.dusty_dusty.cts_compats.mods.projectVibrantJourneys.PVJColorRegistry;
 import net.dusty_dusty.cts_compats.mods.projectVibrantJourneys.PVJRegistry;
+import net.dusty_dusty.cts_compats.mods.vanilla.VanillaColorRegistry;
 import net.dusty_dusty.cts_compats.mods.vanilla.VanillaRegistry;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
@@ -63,11 +64,13 @@ public class CTSCompats
 
         @SubscribeEvent
         public static void onColorHandlerEventBlock(RegisterColorHandlersEvent.Block event) {
+            VanillaColorRegistry.onColorHandlerEventBlock( event );
             runModCompat( PVJ_MODID, () -> PVJColorRegistry.onColorHandlerEventBlock( event ) );
         }
 
         @SubscribeEvent
         public static void onColorHandlerEventItem(RegisterColorHandlersEvent.Item event) {
+            VanillaColorRegistry.onColorHandlerEventItem( event );
             runModCompat( PVJ_MODID, () -> PVJColorRegistry.onColorHandlerEventItem( event ) );
         }
     }

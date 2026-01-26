@@ -1,6 +1,9 @@
 package net.dusty_dusty.cts_compats.common.block;
 
 import net.dusty_dusty.cts_compats.CTSCompats;
+import net.dusty_dusty.cts_compats.common.AssignUtil;
+import net.dusty_dusty.cts_compats.common.IAssignable;
+import net.dusty_dusty.cts_compats.common.IBlockCopy;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -14,18 +17,30 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.PinkPetalsBlock;
 import net.minecraft.world.level.block.SlabBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class PetalBlockOnTop extends PinkPetalsBlock {
+public class PetalBlockOnTop extends PinkPetalsBlock implements IAssignable, IBlockCopy {
     private final Item originalItem;
+    private final Block originalBlock;
 
-    public PetalBlockOnTop( Properties p, Item item ) {
-        super( p );
-        originalItem = item;
+    public PetalBlockOnTop( Block originalBlock ) {
+        super( BlockBehaviour.Properties.copy( originalBlock ) );
+        this.originalBlock = originalBlock;
+        originalItem = originalBlock.asItem();
+    }
+
+    public Block getOriginBlock() {
+        return originalBlock;
+    }
+
+    public void assign() {
+        AssignUtil.putOnTopVegetation( originalBlock, this );
+        AssignUtil.putVegetaitonOnTopItem( originalBlock.asItem(), this );
     }
 
     @Override
