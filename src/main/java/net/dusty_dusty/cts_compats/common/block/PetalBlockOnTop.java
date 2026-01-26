@@ -5,12 +5,15 @@ import net.dusty_dusty.cts_compats.common.AssignUtil;
 import net.dusty_dusty.cts_compats.common.IAssignable;
 import net.dusty_dusty.cts_compats.common.IBlockCopy;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -57,6 +60,17 @@ public class PetalBlockOnTop extends PinkPetalsBlock implements IAssignable, IBl
     public boolean canBeReplaced( BlockState state, BlockPlaceContext context ) {
         boolean isHandMatch = context.getItemInHand().is( originalItem );// || context.getItemInHand().is(this.asItem());
         return super.canBeReplaced(state, context) || ( !context.isSecondaryUseActive() && isHandMatch && state.getValue(AMOUNT) < 4 );
+    }
+
+    @Override
+    public void performBonemeal(ServerLevel sLevel, RandomSource random, BlockPos pos, BlockState state) {
+        int i = state.getValue(AMOUNT);
+        if (i < 4) {
+            sLevel.setBlock(pos, state.setValue(AMOUNT, i + 1), 2);
+        } else {
+            popResource(sLevel, pos, new ItemStack( originalItem ) );
+        }
+
     }
 
     @Override

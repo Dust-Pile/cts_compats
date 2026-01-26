@@ -2,6 +2,7 @@ package net.dusty_dusty.cts_compats.mods.projectVibrantJourneys;
 
 import dev.orderedchaos.projectvibrantjourneys.core.registry.PVJBlocks;
 import net.dusty_dusty.cts_compats.common.IAssignable;
+import net.dusty_dusty.cts_compats.common.block.PetalBlockOnTop;
 import net.dusty_dusty.cts_compats.mods.projectVibrantJourneys.block.ShortGrassOnTop;
 import net.dusty_dusty.cts_compats.mods.projectVibrantJourneys.block.SmallCactusOnTop;
 import net.minecraft.world.item.BlockItem;
@@ -11,7 +12,6 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import org.openjdk.nashorn.internal.ir.annotations.Ignore;
 
 import java.util.function.Supplier;
 
@@ -22,11 +22,27 @@ public class PVJRegistry {
     protected static final DeferredRegister<Block> COMPAT_BLOCKS = DeferredRegister.create( ForgeRegistries.BLOCKS, MODID );
     protected static final DeferredRegister<Item> COMPAT_ITEMS = DeferredRegister.create( ForgeRegistries.ITEMS, MODID );
 
+    // Unique
     public static final RegistryObject<Block> SHORTER_GRASS_ON_TOP = registerBlock( "shorter_grass_on_top",
             () -> new ShortGrassOnTop( PVJBlocks.SHORT_GRASS.get() ) );
-
     public static final RegistryObject<Block> SMALL_CACTUS_ON_TOP = registerBlock( "small_cactus_on_top",
             () -> new SmallCactusOnTop( PVJBlocks.SMALL_CACTUS.get() ) );
+
+    // Petals
+    public static final RegistryObject<Block> PURPLE_WILDFLOWERS_ON_TOP = registerBlock( "purple_wildflowers_on_top",
+            () -> new PetalBlockOnTop( PVJBlocks.PURPLE_WILDFLOWERS.get() ) );
+    public static final RegistryObject<Block> BLUE_WILDFLOWERS_ON_TOP = registerBlock( "blue_wildflowers_on_top",
+            () -> new PetalBlockOnTop( PVJBlocks.BLUE_WILDFLOWERS.get() ) );
+    public static final RegistryObject<Block> MIXED_WILDFLOWERS_ON_TOP = registerBlock( "mixed_wildflowers_on_top",
+            () -> new PetalBlockOnTop( PVJBlocks.MIXED_WILDFLOWERS.get() ) );
+    public static final RegistryObject<Block> ORANGE_WILDFLOWERS_ON_TOP = registerBlock( "orange_wildflowers_on_top",
+            () -> new PetalBlockOnTop( PVJBlocks.ORANGE_WILDFLOWERS.get() ) );
+    public static final RegistryObject<Block> YELLOW_WILDFLOWERS_ON_TOP = registerBlock( "yellow_wildflowers_on_top",
+            () -> new PetalBlockOnTop( PVJBlocks.YELLOW_WILDFLOWERS.get() ) );
+    public static final RegistryObject<Block> SANDY_SPROUTS_ON_TOP = registerBlock( "sandy_sprouts_on_top",
+            () -> new PetalBlockOnTop( PVJBlocks.SANDY_SPROUTS.get() ) );
+    public static final RegistryObject<Block> WHITE_WILDFLOWERS_ON_TOP = registerBlock( "white_wildflowers_on_top",
+            () -> new PetalBlockOnTop( PVJBlocks.WHITE_WILDFLOWERS.get() ) );
 
 
 
