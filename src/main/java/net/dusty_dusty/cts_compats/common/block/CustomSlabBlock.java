@@ -3,7 +3,6 @@ package net.dusty_dusty.cts_compats.common.block;
 import net.dusty_dusty.cts_compats.common.AssignUtil;
 import net.dusty_dusty.cts_compats.common.IAssignable;
 import net.dusty_dusty.cts_compats.common.IBlockCopy;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;

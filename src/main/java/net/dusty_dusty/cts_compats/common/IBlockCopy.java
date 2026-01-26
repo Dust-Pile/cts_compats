@@ -9,6 +9,6 @@ public interface IBlockCopy {
 
     default Item getOriginalItem() {
         return this.getOriginBlock().asItem();
-    };
+    }
 
 }

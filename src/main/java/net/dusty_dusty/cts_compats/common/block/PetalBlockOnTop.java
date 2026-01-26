@@ -25,6 +25,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
 
 public class PetalBlockOnTop extends PinkPetalsBlock implements IAssignable, IBlockCopy {
     private Item originalItem;
@@ -46,27 +47,27 @@ public class PetalBlockOnTop extends PinkPetalsBlock implements IAssignable, IBl
     public void assign() {
         originalItem = originalBlock.asItem();
         AssignUtil.putOnTopVegetation( originalBlock, this );
-        AssignUtil.putVegetaitonOnTopItem( originalItem, this );
+        AssignUtil.putVegetationOnTopItem( originalItem, this );
     }
 
     @Override
-    public VoxelShape getShape( BlockState b, BlockGetter g, BlockPos p, CollisionContext c ) {
+    public @NotNull VoxelShape getShape(@NotNull BlockState b, @NotNull BlockGetter g, @NotNull BlockPos p, @NotNull CollisionContext c ) {
         return Block.box( 0.0D, -8.0D, 0.0D, 16.0D, -5.0D, 16.0D );
     }
 
     @Override
-    public boolean mayPlaceOn(BlockState pState, BlockGetter pLevel, BlockPos pPos) {
+    public boolean mayPlaceOn(BlockState pState, @NotNull BlockGetter pLevel, @NotNull BlockPos pPos) {
         return pState.getBlock() instanceof SlabBlock;
     }
 
     @Override
-    public boolean canBeReplaced( BlockState state, BlockPlaceContext context ) {
+    public boolean canBeReplaced(@NotNull BlockState state, BlockPlaceContext context ) {
         boolean isHandMatch = context.getItemInHand().is( originalItem );// || context.getItemInHand().is(this.asItem());
         return super.canBeReplaced(state, context) || ( !context.isSecondaryUseActive() && isHandMatch && state.getValue(AMOUNT) < 4 );
     }
 
     @Override
-    public void performBonemeal(ServerLevel sLevel, RandomSource random, BlockPos pos, BlockState state) {
+    public void performBonemeal(@NotNull ServerLevel sLevel, @NotNull RandomSource random, @NotNull BlockPos pos, BlockState state) {
         int i = state.getValue(AMOUNT);
         if (i < 4) {
             sLevel.setBlock(pos, state.setValue(AMOUNT, i + 1), 2);
@@ -76,7 +77,8 @@ public class PetalBlockOnTop extends PinkPetalsBlock implements IAssignable, IBl
     }
 
     @Override
-    public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
+    @SuppressWarnings("deprecation")
+    public @NotNull InteractionResult use(BlockState pState, @NotNull Level pLevel, @NotNull BlockPos pPos, Player pPlayer, @NotNull InteractionHand pHand, @NotNull BlockHitResult pHit) {
         int amount = pState.getValue( AMOUNT );
 
         if ( !pPlayer.getItemInHand( pHand ).is( originalItem ) ) {

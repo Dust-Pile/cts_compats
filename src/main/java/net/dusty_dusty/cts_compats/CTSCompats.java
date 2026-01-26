@@ -17,7 +17,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.slf4j.Logger;
 
-// The value here should match an entry in the META-INF/mods.toml file
 @Mod(CTSCompats.MODID)
 public class CTSCompats
 {
@@ -39,6 +38,7 @@ public class CTSCompats
         runModCompat( PVJ_MODID, () -> PVJRegistry.register( modEventBus ) );
     }
 
+    @SuppressWarnings("Convert2MethodRef")
     private void commonSetup(final FMLCommonSetupEvent event)
     {
         // Must use lambda to avoid class loading
@@ -46,21 +46,11 @@ public class CTSCompats
         runModCompat( PVJ_MODID, () -> PVJRegistry.assign() );
     }
 
-//    @SubscribeEvent
-//    public void onServerStarting(ServerStartingEvent event)
-//    {
-//
-//    }
-//
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
+    @SuppressWarnings("unused")
     @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents
     {
-//        @SubscribeEvent
-//        public static void onClientSetup(FMLClientSetupEvent event)
-//        {
-//
-//        }
 
         @SubscribeEvent
         public static void onColorHandlerEventBlock(RegisterColorHandlersEvent.Block event) {

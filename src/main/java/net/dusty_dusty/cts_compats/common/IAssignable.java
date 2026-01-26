@@ -6,7 +6,7 @@ public interface IAssignable extends IBlockCopy {
 
     default void assign() {
         AssignUtil.putOnTopVegetation( this.getOriginBlock(), (Block) this );
-        AssignUtil.putVegetaitonOnTopItem( this.getOriginalItem(), (Block) this );
-    };
+        AssignUtil.putVegetationOnTopItem( this.getOriginalItem(), (Block) this );
+    }
 
 }

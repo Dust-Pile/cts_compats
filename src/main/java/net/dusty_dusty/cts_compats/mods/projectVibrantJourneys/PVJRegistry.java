@@ -17,6 +17,7 @@ import java.util.function.Supplier;
 
 import static net.dusty_dusty.cts_compats.CTSCompats.MODID;
 
+@SuppressWarnings("unused")
 public class PVJRegistry {
 
     protected static final DeferredRegister<Block> COMPAT_BLOCKS = DeferredRegister.create( ForgeRegistries.BLOCKS, MODID );
@@ -46,13 +47,15 @@ public class PVJRegistry {
 
 
 
-    private static <T extends Block> RegistryObject<T> registerBlock( String name, Supplier<T> block ) {
+    @SuppressWarnings("unchecked")
+    private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block ) {
         RegistryObject<T> output = COMPAT_BLOCKS.register( name, block );
         registerBlockItem( name, ( RegistryObject<Block> ) output);
         return output;
     }
 
-    private static <T extends Block> RegistryObject<Item> registerBlockItem( String name, RegistryObject<Block> block ) {
+    @SuppressWarnings("UnusedReturnValue")
+    private static <T extends Block> RegistryObject<Item> registerBlockItem(String name, RegistryObject<Block> block ) {
         return COMPAT_ITEMS.register( name, () -> new BlockItem( block.get(), new Item.Properties() ) );
     }
 
