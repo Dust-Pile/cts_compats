@@ -29,20 +29,11 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class PetalBlockOnTop extends PinkPetalsBlock implements IAssignable, IBlockCopy {
     private Item originalItem;
-    private final RegistryObject<Item> originalItemRegister;
     private final Block originalBlock;
 
     public PetalBlockOnTop( Block originalBlock ) {
         super( BlockBehaviour.Properties.copy( originalBlock ) );
         this.originalBlock = originalBlock;
-        originalItem = originalBlock.asItem();
-        originalItemRegister = null;
-    }
-
-    public PetalBlockOnTop( Block originalBlock, RegistryObject<Item> originalItemRegister ) {
-        super( BlockBehaviour.Properties.copy( originalBlock ) );
-        this.originalBlock = originalBlock;
-        this.originalItemRegister = originalItemRegister;
     }
 
     public Block getOriginBlock() {
@@ -50,7 +41,7 @@ public class PetalBlockOnTop extends PinkPetalsBlock implements IAssignable, IBl
     }
 
     public void assign() {
-        originalItem = originalItemRegister != null ? originalItemRegister.get() : originalItem;
+        originalItem = originalBlock.asItem();
         AssignUtil.putOnTopVegetation( originalBlock, this );
         AssignUtil.putVegetaitonOnTopItem( originalItem, this );
     }
