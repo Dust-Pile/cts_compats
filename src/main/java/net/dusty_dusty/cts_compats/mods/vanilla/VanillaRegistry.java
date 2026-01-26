@@ -25,6 +25,8 @@ public class VanillaRegistry {
     protected static final DeferredRegister<Item> COMPAT_ITEMS = DeferredRegister.create( ForgeRegistries.ITEMS, MODID );
 
     // Unique
+    public static final RegistryObject<Block> DRIPSTONE_SLAB = registerBlock( "dripstone_slab",
+            () -> new CustomSlabBlock( Blocks.DRIPSTONE_BLOCK ) );
     public static final RegistryObject<Block> PINK_PETALS_ON_TOP = registerBlock( "pink_petals_on_top",
             () -> new PetalBlockOnTop( Blocks.PINK_PETALS ) );
     public static final RegistryObject<Block> TALL_GRASS_ON_TOP = registerBlock( "tall_grass_on_top",
