@@ -1,28 +1,23 @@
-package net.dusty_dusty.cts_compats.mods.vanilla.block;
+package net.dusty_dusty.cts_compats.mods.projectVibrantJourneys.block;
 
-import net.dusty_dusty.cts_compats.common.AssignUtil;
+import dev.orderedchaos.projectvibrantjourneys.common.blocks.GlowcapBlock;
 import net.dusty_dusty.cts_compats.common.IAssignable;
-import net.dusty_dusty.cts_compats.common.IBlockCopy;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SlabBlock;
-import net.minecraft.world.level.block.SweetBerryBushBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
-public class SweetBerryBushOnTop extends SweetBerryBushBlock implements IAssignable, IBlockCopy {
+public class GlowcapOnTop extends GlowcapBlock implements IAssignable {
+    protected static final VoxelShape SHAPE = Block.box(5.0D, -8.0D, 5.0D, 11.0D, -2.0D, 11.0D);
     private final Block originalBlock;
-    private static final VoxelShape SAPLING_SHAPE = Block.box(3.0D, -8.0D, 3.0D, 13.0D, 0.0D, 13.0D);
-    private static final VoxelShape MID_GROWTH_SHAPE = Block.box(1.0D, -8.0D, 1.0D, 15.0D, 8.0D, 15.0D);
 
-    public SweetBerryBushOnTop(Block originalBlock) {
+    public GlowcapOnTop( Block originalBlock ) {
         super( BlockBehaviour.Properties.copy( originalBlock ) );
         this.originalBlock = originalBlock;
     }
@@ -31,17 +26,9 @@ public class SweetBerryBushOnTop extends SweetBerryBushBlock implements IAssigna
         return originalBlock;
     }
 
-    public Item getOriginalItem() {
-        return Items.SWEET_BERRIES;
-    }
-
     @Override
-    public @NotNull VoxelShape getShape(BlockState pState, @NotNull BlockGetter pLevel, @NotNull BlockPos pPos, @NotNull CollisionContext pContext) {
-        if (pState.getValue(AGE) == 0) {
-            return SAPLING_SHAPE;
-        } else {
-            return pState.getValue(AGE) < 3 ? MID_GROWTH_SHAPE : AssignUtil.FULL_BLOCK_ON_SLAB;
-        }
+    public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter world, @NotNull BlockPos pos, @NotNull CollisionContext context) {
+        return SHAPE;
     }
 
     @Override
