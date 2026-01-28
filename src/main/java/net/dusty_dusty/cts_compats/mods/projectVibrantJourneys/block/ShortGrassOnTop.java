@@ -2,7 +2,6 @@ package net.dusty_dusty.cts_compats.mods.projectVibrantJourneys.block;
 
 import dev.orderedchaos.projectvibrantjourneys.common.blocks.ShortGrassBlock;
 import net.dusty_dusty.cts_compats.common.IAssignable;
-import net.dusty_dusty.cts_compats.common.IBlockCopy;
 import net.dusty_dusty.cts_compats.common.PropertiesUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
@@ -14,7 +13,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
-public class ShortGrassOnTop extends ShortGrassBlock implements IAssignable, IBlockCopy {
+public class ShortGrassOnTop extends ShortGrassBlock implements IAssignable {
     protected static final VoxelShape SHAPE = Block.box(2.0, -8.0, 2.0, 14.0, 5.0, 14.0);
     private final Block originalBlock;
 

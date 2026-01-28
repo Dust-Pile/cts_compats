@@ -1,6 +1,5 @@
 package net.dusty_dusty.cts_compats.mods.projectVibrantJourneys.block;
 
-import net.dusty_dusty.cts_compats.common.AssignUtil;
 import net.dusty_dusty.cts_compats.common.block.BushBlockOnTop;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
@@ -9,7 +8,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
-import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
 public class ThornsBlockOnTop extends BushBlockOnTop {

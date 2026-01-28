@@ -2,7 +2,6 @@ package net.dusty_dusty.cts_compats.mods.projectVibrantJourneys.block;
 
 import dev.orderedchaos.projectvibrantjourneys.common.blocks.SmallCactusBlock;
 import net.dusty_dusty.cts_compats.common.IAssignable;
-import net.dusty_dusty.cts_compats.common.IBlockCopy;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
@@ -13,7 +12,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
-public class SmallCactusOnTop extends SmallCactusBlock implements IAssignable, IBlockCopy {
+public class SmallCactusOnTop extends SmallCactusBlock implements IAssignable {
     protected static final VoxelShape SHAPE = Block.box(2.0F, -8.0F, 2.0F, 14.0F, 5.0F, 14.0F);
     private final Block originalBlock;
 

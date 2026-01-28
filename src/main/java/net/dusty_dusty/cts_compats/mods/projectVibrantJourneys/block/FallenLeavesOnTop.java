@@ -2,7 +2,6 @@ package net.dusty_dusty.cts_compats.mods.projectVibrantJourneys.block;
 
 import dev.orderedchaos.projectvibrantjourneys.common.blocks.FallenLeavesBlock;
 import net.dusty_dusty.cts_compats.common.IAssignable;
-import net.dusty_dusty.cts_compats.common.IBlockCopy;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelReader;
@@ -14,7 +13,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
-public class FallenLeavesOnTop extends FallenLeavesBlock implements IAssignable, IBlockCopy {
+public class FallenLeavesOnTop extends FallenLeavesBlock implements IAssignable {
     private final VoxelShape SHAPE = Block.box(0.01, -8.0F, 0.0F, 16.0F, -6.01, 16.0F);
     private final Block originalBlock;
 

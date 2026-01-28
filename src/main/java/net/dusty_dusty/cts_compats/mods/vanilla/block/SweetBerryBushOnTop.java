@@ -1,8 +1,6 @@
 package net.dusty_dusty.cts_compats.mods.vanilla.block;
 
-import net.dusty_dusty.cts_compats.common.AssignUtil;
 import net.dusty_dusty.cts_compats.common.IAssignable;
-import net.dusty_dusty.cts_compats.common.IBlockCopy;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -17,7 +15,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
-public class SweetBerryBushOnTop extends SweetBerryBushBlock implements IAssignable, IBlockCopy {
+public class SweetBerryBushOnTop extends SweetBerryBushBlock implements IAssignable {
     private final Block originalBlock;
     private static final VoxelShape SAPLING_SHAPE = Block.box(3.0D, -8.0D, 3.0D, 13.0D, 0.0D, 13.0D);
     private static final VoxelShape MID_GROWTH_SHAPE = Block.box(1.0D, -8.0D, 1.0D, 15.0D, 8.0D, 15.0D);

@@ -1,8 +1,6 @@
 package net.dusty_dusty.cts_compats.common.block;
 
-import net.dusty_dusty.cts_compats.common.AssignUtil;
 import net.dusty_dusty.cts_compats.common.IAssignable;
-import net.dusty_dusty.cts_compats.common.IBlockCopy;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
@@ -27,7 +25,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
-public class PetalBlockOnTop extends PinkPetalsBlock implements IAssignable, IBlockCopy {
+public class PetalBlockOnTop extends PinkPetalsBlock implements IAssignable {
     private Item originalItem;
     private final Block originalBlock;
 

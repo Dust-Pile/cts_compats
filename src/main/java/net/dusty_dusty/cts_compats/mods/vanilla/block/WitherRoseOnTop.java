@@ -1,7 +1,6 @@
 package net.dusty_dusty.cts_compats.mods.vanilla.block;
 
 import net.dusty_dusty.cts_compats.common.IAssignable;
-import net.dusty_dusty.cts_compats.common.IBlockCopy;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelReader;
@@ -16,7 +15,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
-public class WitherRoseOnTop extends WitherRoseBlock implements IAssignable, IBlockCopy {
+public class WitherRoseOnTop extends WitherRoseBlock implements IAssignable {
     private static final VoxelShape SHAPE = Block.box(5.0D, -8.0D, 5.0D, 11.0D, 2.0D, 11.0D);
     private final Block originalBlock;
 
