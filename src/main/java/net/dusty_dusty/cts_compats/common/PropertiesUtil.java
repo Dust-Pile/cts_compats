@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 public class PropertiesUtil {
+    private static final double OFFSET_VAL = -0.5;
 
     public static BlockBehaviour.Properties copyAndOffsetOnTopBlockProperties( Block block ) {
         return autoOnTopOffset( BlockBehaviour.Properties.copy( block ), block );
@@ -48,7 +49,7 @@ public class PropertiesUtil {
                     float f = block.getMaxHorizontalOffset();
                     double d1 = Mth.clamp(((double)((float)(i & 15L) / 15.0F) - 0.5D) * 0.5D, -f, f);
                     double d2 = Mth.clamp(((double)((float)(i >> 8 & 15L) / 15.0F) - 0.5D) * 0.5D, -f, f);
-                    return new Vec3(d1, d0 - 8.0D, d2);
+                    return new Vec3(d1, d0 + OFFSET_VAL, d2);
                 });
                 break;
             case XZ:
@@ -58,12 +59,12 @@ public class PropertiesUtil {
                     float f = block.getMaxHorizontalOffset();
                     double d0 = Mth.clamp(((double)((float)(i & 15L) / 15.0F) - 0.5D) * 0.5D, -f, f);
                     double d1 = Mth.clamp(((double)((float)(i >> 8 & 15L) / 15.0F) - 0.5D) * 0.5D, -f, f);
-                    return new Vec3(d0, -8.0D, d1);
+                    return new Vec3(d0, OFFSET_VAL, d1);
                 });
                 break;
             default:
                 props.offsetFunction = Optional.of( (blockState, blockGetter, blockPos) ->
-                        new Vec3( 0.0D, -8.0D, 0.0D ));
+                        new Vec3( 0.0D, OFFSET_VAL, 0.0D ));
         }
 
         return props;

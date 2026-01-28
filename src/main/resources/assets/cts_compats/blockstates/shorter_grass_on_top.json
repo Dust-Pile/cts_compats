@@ -1,25 +1,25 @@
 {
   "variants": {
     "model=0": {
-      "model": "cts_compats:block/ontop/short_grass/short_grass_on_top0"
+      "model": "projectvibrantjourneys:block/short_grass0"
     },
     "model=1": {
-      "model": "cts_compats:block/ontop/short_grass/short_grass_on_top1"
+      "model": "projectvibrantjourneys:block/short_grass1"
     },
     "model=2": {
-      "model": "cts_compats:block/ontop/short_grass/short_grass_on_top2"
+      "model": "projectvibrantjourneys:block/short_grass2"
     },
     "model=3": {
-      "model": "cts_compats:block/ontop/short_grass/short_grass_on_top3"
+      "model": "projectvibrantjourneys:block/short_grass3"
     },
     "model=4": {
-      "model": "cts_compats:block/ontop/short_grass/short_grass_on_top4"
+      "model": "projectvibrantjourneys:block/short_grass4"
     },
     "model=5": {
-      "model": "cts_compats:block/ontop/short_grass/short_grass_on_top5"
+      "model": "projectvibrantjourneys:block/short_grass5"
     },
     "model=6": {
-      "model": "cts_compats:block/ontop/short_grass/short_grass_on_top6"
+      "model": "projectvibrantjourneys:block/short_grass6"
     }
   }
 }
