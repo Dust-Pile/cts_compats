@@ -23,7 +23,7 @@ public class CTSCompats
     public static final String MODID = "cts_compats";
     public static final Logger LOGGER = LogUtils.getLogger();
 
-    private static final String PVJ_MODID = "projectvibrantjourneys";
+    public static final String PVJ_MODID = "projectvibrantjourneys";
 
     public CTSCompats(FMLJavaModLoadingContext context)
     {
@@ -65,7 +65,7 @@ public class CTSCompats
         }
     }
 
-    private static void runModCompat( String modid, Runnable initializer ) {
+    public static void runModCompat( String modid, Runnable initializer ) {
         if ( ModList.get().isLoaded( modid ) ) {
             LOGGER.info( "Loading Runnable for {}.", modid );
             initializer.run();
