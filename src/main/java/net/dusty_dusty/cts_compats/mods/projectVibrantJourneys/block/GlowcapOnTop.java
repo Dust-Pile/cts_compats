@@ -1,7 +1,8 @@
 package net.dusty_dusty.cts_compats.mods.projectVibrantJourneys.block;
 
 import dev.orderedchaos.projectvibrantjourneys.common.blocks.GlowcapBlock;
-import net.dusty_dusty.cts_compats.common.IAssignable;
+import net.dusty_dusty.cts_compats.common.interfaces.IAssignable;
+import net.dusty_dusty.cts_compats.common.interfaces.IOnTopCopy;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelReader;
@@ -13,7 +14,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
-public class GlowcapOnTop extends GlowcapBlock implements IAssignable {
+public class GlowcapOnTop extends GlowcapBlock implements IAssignable, IOnTopCopy {
     protected static final VoxelShape SHAPE = Block.box(5.0D, -8.0D, 5.0D, 11.0D, -2.0D, 11.0D);
     private final Block originalBlock;
 

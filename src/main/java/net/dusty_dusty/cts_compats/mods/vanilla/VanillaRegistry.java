@@ -1,6 +1,6 @@
 package net.dusty_dusty.cts_compats.mods.vanilla;
 
-import net.dusty_dusty.cts_compats.common.IAssignable;
+import net.dusty_dusty.cts_compats.common.interfaces.IAssignable;
 import net.dusty_dusty.cts_compats.common.block.*;
 import net.dusty_dusty.cts_compats.mods.vanilla.block.PitcherPlantOnTop;
 import net.dusty_dusty.cts_compats.mods.vanilla.block.SweetBerryBushOnTop;

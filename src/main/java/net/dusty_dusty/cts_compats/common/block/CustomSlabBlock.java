@@ -1,6 +1,7 @@
 package net.dusty_dusty.cts_compats.common.block;
 
-import net.dusty_dusty.cts_compats.common.IAssignable;
+import net.dusty_dusty.cts_compats.common.interfaces.IAssignable;
+import net.dusty_dusty.cts_compats.common.interfaces.ISlabCopy;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -9,7 +10,7 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.SlabType;
 
-public class CustomSlabBlock extends SlabBlock implements IAssignable {
+public class CustomSlabBlock extends SlabBlock implements IAssignable, ISlabCopy {
     public static final BooleanProperty GENERATED;
     private final Block originalBlock;
 

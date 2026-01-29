@@ -1,7 +1,8 @@
-package net.dusty_dusty.cts_compats.common;
+package net.dusty_dusty.cts_compats.common.interfaces;
 
 import net.countered.terrainslabs.block.ModSlabsMap;
 import net.countered.terrainslabs.callbacks.RegisterCallbacks;
+import net.dusty_dusty.cts_compats.common.block.CustomSlabBlock;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -14,11 +15,14 @@ public interface IAssignable extends IBlockCopy {
                 AssignUtil.putOnTopVegetation( this.getOriginBlock(), (Block) this );
                 AssignUtil.putVegetationOnTopItem( this.getOriginalItem(), (Block) this );
                 break;
-            case DUEL_SLAB:
-                AssignUtil.putTopSlabReplacement( (Block) this, this.getDuelSlab() );
-                AssignUtil.putBlockBelowReplacement( this.getOriginBlock(), this.getDuelSlab().getOriginBlock() );
             case SLAB:
                 AssignUtil.putTerrainSlab( this.getOriginBlock(), (Block) this );
+                if ( this instanceof IDuelSlab ) {
+                    CustomSlabBlock duel = ( (IDuelSlab) this).getDuelSlab();
+
+                    AssignUtil.putTopSlabReplacement( (Block) this, duel );
+                    AssignUtil.putBlockBelowReplacement( this.getOriginBlock(), duel.getOriginBlock() );
+                }
                 break;
         }
     }

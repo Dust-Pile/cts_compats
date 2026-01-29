@@ -1,6 +1,7 @@
 package net.dusty_dusty.cts_compats.common.block;
 
-import net.dusty_dusty.cts_compats.common.IAssignable;
+import net.dusty_dusty.cts_compats.common.interfaces.IAssignable;
+import net.dusty_dusty.cts_compats.common.interfaces.IOnTopCopy;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelReader;
@@ -13,7 +14,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
-public class BushBlockOnTop extends BushBlock implements IAssignable {
+public class BushBlockOnTop extends BushBlock implements IAssignable, IOnTopCopy {
     private final VoxelShape shape;
     private final Block originalBlock;
 
