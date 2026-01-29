@@ -1,0 +1,27 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "projectvibrantjourneys:block/short_grass0"
+      },
+      {
+        "model": "projectvibrantjourneys:block/short_grass1"
+      },
+      {
+        "model": "projectvibrantjourneys:block/short_grass2"
+      },
+      {
+        "model": "projectvibrantjourneys:block/short_grass3"
+      },
+      {
+        "model": "projectvibrantjourneys:block/short_grass4"
+      },
+      {
+        "model": "projectvibrantjourneys:block/short_grass5"
+      },
+      {
+        "model": "projectvibrantjourneys:block/short_grass6"
+      }
+    ]
+  }
+}

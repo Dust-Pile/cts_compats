@@ -33,15 +33,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        CTSCompats.runModCompat( CTSCompats.PVJ_MODID, () -> {
-            simpleBlockCopy( (IBlockCopy) PVJRegistry.SHORTER_GRASS_ON_TOP.get() );
-        } );
+        simpleBlockCopy( (IBlockCopy) PVJRegistry.SHORTER_GRASS_ON_TOP.get() );
     }
 
 
 
     @SuppressWarnings("deprecation")
-    private void simpleBlockCopy(IBlockCopy blockCopy ) {
+    private void simpleBlockCopy( IBlockCopy blockCopy ) {
         ResourceLocation loc = BuiltInRegistries.BLOCK.getKey( blockCopy.getOriginBlock() );
         Resource blockStateJson;
         JsonObject jsonObject;
@@ -50,7 +48,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
             blockStateJson = existingFileHelper.getResource( loc, PackType.CLIENT_RESOURCES, ".json", "blockstates" );
             jsonObject = GsonHelper.parse( blockStateJson.openAsReader() );
         } catch ( IOException e ) {
-            LOGGER.warn( e.toString() );
+            LOGGER.warn( "CTS_COMPATS: {}", e.toString() );
             return;
         }
 
@@ -129,7 +127,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 //noinspection DataFlowIssue,OptionalGetWithoutIsPresent
                 tempVal = tempState.getValue( stateValue[1] ).get();
             } catch ( Exception e ) {
-                LOGGER.error( e.toString() );
+                LOGGER.error( "CTS_COMPATS: {}", e.toString() );
             }
 
             state = tempState;
