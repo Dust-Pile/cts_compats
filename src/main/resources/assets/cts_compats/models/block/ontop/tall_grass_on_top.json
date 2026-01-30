@@ -1,0 +1,7 @@
+{
+  "parent": "cts_compats:block/ontop/tinted_cross_double",
+  "textures": {
+    "cross": "minecraft:block/tall_grass_bottom",
+    "top_cross": "minecraft:block/tall_grass_top"
+  }
+}

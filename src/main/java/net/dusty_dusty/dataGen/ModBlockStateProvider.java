@@ -37,7 +37,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
     protected void registerStatesAndModels() {
         autoFromRegistry( VanillaRegistry.COMPAT_BLOCKS );
         autoFromRegistry( PVJRegistry.COMPAT_BLOCKS );
-        // simpleBlockCopy( (IOnTopCopy) PVJRegistry.SHORTER_GRASS_ON_TOP.get() );
     }
 
 

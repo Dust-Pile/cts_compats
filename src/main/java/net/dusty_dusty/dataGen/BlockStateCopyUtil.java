@@ -17,7 +17,7 @@ import java.util.function.Supplier;
 
 import static net.dusty_dusty.cts_compats.CTSCompats.LOGGER;
 
-record BlockStateCopyUtil(ExistingFileHelper existingFileHelper ) {
+record BlockStateCopyUtil( ExistingFileHelper existingFileHelper ) {
 
     @SuppressWarnings({"unchecked","rawtypes"})
     void copyVariants( VariantBlockStateBuilder builder, JsonObject jsonObject ) {
