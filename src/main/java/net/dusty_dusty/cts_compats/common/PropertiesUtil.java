@@ -32,7 +32,7 @@ public class PropertiesUtil {
 
         for ( Vec3 vec : vectors ) {
             if ( vec.z != 0.0 || vec.x != 0.0 ) {
-                return assignOnTopOfSlabOffset( props, BlockBehaviour.OffsetType.XYZ );
+                return assignOnTopOfSlabOffset( props, BlockBehaviour.OffsetType.XZ );
             }
         }
 
