@@ -1,0 +1,18 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "minecraft:block/sweet_berry_bush_stage0"
+      },
+      {
+        "model": "minecraft:block/sweet_berry_bush_stage1"
+      },
+      {
+        "model": "minecraft:block/sweet_berry_bush_stage2"
+      },
+      {
+        "model": "minecraft:block/sweet_berry_bush_stage3"
+      }
+    ]
+  }
+}

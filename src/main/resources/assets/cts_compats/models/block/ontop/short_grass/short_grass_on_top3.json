@@ -1,6 +1,0 @@
-{
-  "parent": "cts_compats:block/ontop/tinted_cross",
-  "textures": {
-    "cross": "projectvibrantjourneys:block/short_grass3"
-  }
-}

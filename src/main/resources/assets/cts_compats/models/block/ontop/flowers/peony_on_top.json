@@ -1,7 +1,0 @@
-{
-  "parent": "cts_compats:block/ontop/cross_double",
-  "textures": {
-    "cross": "minecraft:block/peony_bottom",
-    "top_cross": "minecraft:block/peony_top"
-  }
-}

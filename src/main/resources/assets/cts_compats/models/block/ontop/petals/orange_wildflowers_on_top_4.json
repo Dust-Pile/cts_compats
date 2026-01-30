@@ -1,7 +1,0 @@
-{
-  "parent": "cts_compats:block/ontop/petals/flowerbed_4",
-  "textures": {
-    "flowerbed": "projectvibrantjourneys:block/orange_petals",
-    "stem": "minecraft:block/pink_petals_stem"
-  }
-}

@@ -1,8 +1,0 @@
-{
-  "parent": "cts_compats:block/ontop/petals/flowerbed_2",
-  "render_type": "minecraft:cutout",
-  "textures": {
-    "flowerbed": "projectvibrantjourneys:block/sandy_sprouts",
-    "stem": "projectvibrantjourneys:block/sandy_stem"
-  }
-}
