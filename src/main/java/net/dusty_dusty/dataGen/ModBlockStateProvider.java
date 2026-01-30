@@ -1,10 +1,12 @@
-package net.dusty_dusty.cts_compats.dataGen;
+package net.dusty_dusty.dataGen;
 
 import com.google.gson.JsonObject;
-import com.sun.jdi.InvalidTypeException;
 import net.dusty_dusty.cts_compats.CTSCompats;
+import net.dusty_dusty.cts_compats.common.block.DoublePlantOnTop;
 import net.dusty_dusty.cts_compats.common.interfaces.IOnTopCopy;
+import net.dusty_dusty.cts_compats.common.interfaces.ISlabCopy;
 import net.dusty_dusty.cts_compats.mods.projectVibrantJourneys.PVJRegistry;
+import net.dusty_dusty.cts_compats.mods.vanilla.VanillaRegistry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -14,6 +16,8 @@ import net.minecraft.util.GsonHelper;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.*;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.RegistryObject;
 
 import java.io.IOException;
 
@@ -31,17 +35,19 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        try {
-            simpleBlockCopy( (IOnTopCopy) PVJRegistry.SHORTER_GRASS_ON_TOP.get() );
-        } catch (InvalidTypeException e) {
-            throw new RuntimeException(e);
-        }
+        autoFromRegistry( VanillaRegistry.COMPAT_BLOCKS );
+        autoFromRegistry( PVJRegistry.COMPAT_BLOCKS );
+        // simpleBlockCopy( (IOnTopCopy) PVJRegistry.SHORTER_GRASS_ON_TOP.get() );
     }
 
 
 
+    private void slabBlockCopy( ISlabCopy blockCopy ) {
+
+    }
+
     @SuppressWarnings("deprecation")
-    private void simpleBlockCopy( IOnTopCopy blockCopy ) throws InvalidTypeException {
+    private void simpleBlockCopy( IOnTopCopy blockCopy ) {
         ResourceLocation loc = BuiltInRegistries.BLOCK.getKey( blockCopy.getOriginBlock() );
         Resource blockStateJson;
         JsonObject jsonObject;
@@ -57,7 +63,20 @@ public class ModBlockStateProvider extends BlockStateProvider {
         if ( jsonObject.has( "variants" ) ) {
             util.copyVariants( this.getVariantBuilder( (Block) blockCopy ), jsonObject );
         } else {
-            util.copyMultipart( this.getMultipartBuilder( (Block) blockCopy ), jsonObject );
+            util.copyMultipart( this.getMultipartBuilder( (Block) blockCopy ), jsonObject, (Block) blockCopy );
+        }
+    }
+
+    private void autoFromRegistry( DeferredRegister<Block> blocks ) {
+        for ( RegistryObject<Block> entry : blocks.getEntries() ) {
+            if ( entry.get() instanceof IOnTopCopy ) {
+                LOGGER.info( "Creating blockstate json for {}", entry.get() );
+                if ( entry.get() instanceof DoublePlantOnTop ) {
+
+                } else {
+                    simpleBlockCopy( (IOnTopCopy) entry.get() );
+                }
+            }
         }
     }
 }

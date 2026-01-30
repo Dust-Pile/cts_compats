@@ -1,10 +1,8 @@
-package net.dusty_dusty.cts_compats.dataGen;
+package net.dusty_dusty.dataGen;
 
-import net.dusty_dusty.cts_compats.dataGen.loot.ModBlockLootTables;
+import net.dusty_dusty.dataGen.loot.ModBlockLootTables;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.LootTableProvider;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.storage.loot.parameters.LootContextParamSet;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 
 import java.util.List;

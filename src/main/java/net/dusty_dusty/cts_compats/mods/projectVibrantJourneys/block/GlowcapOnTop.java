@@ -1,6 +1,7 @@
 package net.dusty_dusty.cts_compats.mods.projectVibrantJourneys.block;
 
 import dev.orderedchaos.projectvibrantjourneys.common.blocks.GlowcapBlock;
+import net.dusty_dusty.cts_compats.common.PropertiesUtil;
 import net.dusty_dusty.cts_compats.common.interfaces.IAssignable;
 import net.dusty_dusty.cts_compats.common.interfaces.IOnTopCopy;
 import net.minecraft.core.BlockPos;
@@ -8,7 +9,6 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SlabBlock;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -19,7 +19,7 @@ public class GlowcapOnTop extends GlowcapBlock implements IAssignable, IOnTopCop
     private final Block originalBlock;
 
     public GlowcapOnTop( Block originalBlock ) {
-        super( BlockBehaviour.Properties.copy( originalBlock ) );
+        super( PropertiesUtil.copyAndOffsetOnTopBlockProperties( originalBlock ) );
         this.originalBlock = originalBlock;
     }
 

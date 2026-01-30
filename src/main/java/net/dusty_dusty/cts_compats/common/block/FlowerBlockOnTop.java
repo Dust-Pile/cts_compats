@@ -1,5 +1,6 @@
 package net.dusty_dusty.cts_compats.common.block;
 
+import net.dusty_dusty.cts_compats.common.PropertiesUtil;
 import net.dusty_dusty.cts_compats.common.interfaces.IAssignable;
 import net.dusty_dusty.cts_compats.common.interfaces.IOnTopCopy;
 import net.minecraft.core.BlockPos;
@@ -8,7 +9,6 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.FlowerBlock;
 import net.minecraft.world.level.block.SlabBlock;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
@@ -21,7 +21,7 @@ public class FlowerBlockOnTop extends FlowerBlock implements IAssignable, IOnTop
 
     public FlowerBlockOnTop(Block originalBlock) {
         super(( (FlowerBlock) originalBlock )::getSuspiciousEffect, ( (FlowerBlock) originalBlock ).getEffectDuration(),
-                BlockBehaviour.Properties.copy( originalBlock ) );
+                PropertiesUtil.copyAndOffsetOnTopBlockProperties( originalBlock ) );
         this.originalBlock = originalBlock;
     }
 

@@ -2,7 +2,6 @@ package net.dusty_dusty.cts_compats.mods.vanilla;
 
 import net.dusty_dusty.cts_compats.common.interfaces.IAssignable;
 import net.dusty_dusty.cts_compats.common.block.*;
-import net.dusty_dusty.cts_compats.mods.vanilla.block.PitcherPlantOnTop;
 import net.dusty_dusty.cts_compats.mods.vanilla.block.SweetBerryBushOnTop;
 import net.dusty_dusty.cts_compats.mods.vanilla.block.WitherRoseOnTop;
 import net.minecraft.world.item.BlockItem;
@@ -22,8 +21,8 @@ import static net.dusty_dusty.cts_compats.CTSCompats.MODID;
 @SuppressWarnings({"unused"})
 public class VanillaRegistry {
 
-    protected static final DeferredRegister<Block> COMPAT_BLOCKS = DeferredRegister.create( ForgeRegistries.BLOCKS, MODID );
-    protected static final DeferredRegister<Item> COMPAT_ITEMS = DeferredRegister.create( ForgeRegistries.ITEMS, MODID );
+    public static final DeferredRegister<Block> COMPAT_BLOCKS = DeferredRegister.create( ForgeRegistries.BLOCKS, MODID );
+    public static final DeferredRegister<Item> COMPAT_ITEMS = DeferredRegister.create( ForgeRegistries.ITEMS, MODID );
 
     // Unique
     public static final RegistryObject<Block> DRIPSTONE_SLAB = registerBlock( "dripstone_slab",
@@ -67,7 +66,7 @@ public class VanillaRegistry {
             () -> new FlowerBlockOnTop( Blocks.TORCHFLOWER ) );
     // Tall Flowers
     public static final RegistryObject<Block> PITCHER_PLANT_ON_TOP = registerBlock( "pitcher_plant_on_top",
-            () -> new PitcherPlantOnTop( Blocks.PITCHER_PLANT ) );
+            () -> new DoublePlantOnTop( Blocks.PITCHER_PLANT ) );
     public static final RegistryObject<Block> PEONY_ON_TOP = registerBlock( "peony_on_top",
             () -> new DoublePlantOnTop( Blocks.PEONY ) );
     public static final RegistryObject<Block> ROSE_BUSH_ON_TOP = registerBlock( "rose_bush_on_top",

@@ -1,4 +1,4 @@
-package net.dusty_dusty.cts_compats.dataGen.loot;
+package net.dusty_dusty.dataGen.loot;
 
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlagSet;

@@ -1,5 +1,6 @@
 package net.dusty_dusty.cts_compats.common.block;
 
+import net.dusty_dusty.cts_compats.common.PropertiesUtil;
 import net.dusty_dusty.cts_compats.common.interfaces.IAssignable;
 import net.dusty_dusty.cts_compats.common.interfaces.IOnTopCopy;
 import net.minecraft.core.BlockPos;
@@ -18,7 +19,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.PinkPetalsBlock;
 import net.minecraft.world.level.block.SlabBlock;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.BlockHitResult;
@@ -31,7 +31,7 @@ public class PetalBlockOnTop extends PinkPetalsBlock implements IAssignable, IOn
     private final Block originalBlock;
 
     public PetalBlockOnTop( Block originalBlock ) {
-        super( BlockBehaviour.Properties.copy( originalBlock ) );
+        super( PropertiesUtil.copyAndOffsetOnTopBlockProperties( originalBlock ) );
         this.originalBlock = originalBlock;
     }
 

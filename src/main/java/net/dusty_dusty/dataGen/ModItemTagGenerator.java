@@ -1,4 +1,4 @@
-package net.dusty_dusty.cts_compats.dataGen;
+package net.dusty_dusty.dataGen;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;

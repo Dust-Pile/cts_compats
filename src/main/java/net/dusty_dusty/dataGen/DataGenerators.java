@@ -1,4 +1,4 @@
-package net.dusty_dusty.cts_compats.dataGen;
+package net.dusty_dusty.dataGen;
 
 import net.dusty_dusty.cts_compats.CTSCompats;
 import net.minecraft.core.HolderLookup;
@@ -24,7 +24,7 @@ public class DataGenerators {
         generator.addProvider( event.includeClient(), new ModBlockStateProvider( packOutput, existingFileHelper ) );
 
         generator.addProvider( event.includeServer(), new ModRecipeProvider( packOutput ) );
-        generator.addProvider( event.includeServer(), ModLootTableProvider.create( packOutput ) );
+        // generator.addProvider( event.includeServer(), ModLootTableProvider.create( packOutput ) );
 
         generator.addProvider( event.includeClient(), new ModItemModelProvider( packOutput, existingFileHelper ) );
 

@@ -4,8 +4,7 @@
   "compatibilityLevel": "JAVA_17",
   "refmap": "cts_compats.refmap.json",
   "mixins": [
-  ],
-  "client": [
+
   ],
   "minVersion": "0.8"
 }

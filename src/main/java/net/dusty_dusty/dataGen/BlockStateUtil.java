@@ -1,0 +1,143 @@
+package net.dusty_dusty.dataGen;
+
+import com.google.common.base.Preconditions;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.properties.Property;
+import net.minecraftforge.client.model.generators.*;
+import net.minecraftforge.client.model.generators.MultiPartBlockStateBuilder.PartBuilder;
+import net.minecraftforge.common.data.ExistingFileHelper;
+
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.function.Supplier;
+
+import static net.dusty_dusty.cts_compats.CTSCompats.LOGGER;
+
+record BlockStateUtil ( ExistingFileHelper existingFileHelper ) {
+
+    void copyVariants( VariantBlockStateBuilder builder, JsonObject jsonObject ) {
+        JsonObject variants = jsonObject.getAsJsonObject("variants");
+        Block block = builder.getOwner();
+
+        for ( String key : variants.keySet() ) {
+            VariantBlockStateBuilder.PartialBlockstate partial = builder.partialState();
+            if ( !key.isEmpty() ) {
+                for ( String stateDef : key.split(",") ) {
+                    //noinspection rawtypes
+                    StateValPair pair = new StateValPair( block, stateDef.split("=") );
+                    //noinspection unchecked
+                    partial.with( pair.state, pair.getFirstValue() );
+                }
+            }
+
+            builder.addModels( partial, buildModelOrModels(
+                    variants.getAsJsonObject( key ), partial.modelForState()
+            ).build() );
+        }
+    }
+
+    @SuppressWarnings({"unchecked","rawtypes"})
+    void copyMultipart(MultiPartBlockStateBuilder builder, JsonObject jsonObject, Block owner) {
+        JsonArray parts = jsonObject.getAsJsonArray("multipart");
+        for ( JsonElement part : parts ) {
+            JsonObject apply = part.getAsJsonObject().getAsJsonObject( "apply" );
+            ConfiguredModel.Builder<PartBuilder> configuredModelBuilder = buildModelOrModels( apply, builder.part() );
+            PartBuilder partBuilder = configuredModelBuilder.addModel();
+
+            JsonObject when = part.getAsJsonObject().getAsJsonObject( "when" );
+            if ( when.has( "OR" ) || when.has( "AND" ) ) {
+                return;
+//                if ( when.has( "OR" ) ) {
+//
+//                }
+//                if ( when.has( "AND" ) ) {
+//
+//                }
+            } else {
+                for ( String state : when.keySet() ) {
+                    String values = when.get( state ).getAsString();
+                    StateValPair pair = new StateValPair( owner, state, values );
+                    addConditionsFromList( partBuilder, owner, pair.state, pair.values );
+                }
+            }
+        }
+    }
+
+    // Tbh idk if this works...
+    private <T> ConfiguredModel.Builder<T> buildModelOrModels(JsonObject modelOrModels, ConfiguredModel.Builder<T> builder ) {
+        try {
+            Map<String, JsonElement> aModel = modelOrModels.asMap();
+            builder.modelFile( new BlockModelBuilder( ResourceLocation.parse( aModel.get("model").getAsString() ), existingFileHelper) )
+                    .rotationX( getOrDefault(() -> aModel.get("x").getAsInt(), 0) )
+                    .rotationY( getOrDefault(() -> aModel.get("y").getAsInt(), 0) )
+                    .uvLock( getOrDefault(() -> aModel.get("uvlock").getAsBoolean(), false) );
+        } catch ( Exception e ) {
+            JsonArray stateArray = modelOrModels.getAsJsonArray();
+            stateArray.forEach(element -> {
+                Map<String, JsonElement> aModel = element.getAsJsonObject().asMap();
+                builder.modelFile( new BlockModelBuilder(ResourceLocation.parse(aModel.get("model").getAsString()), existingFileHelper) )
+                        .rotationX( getOrDefault(() -> aModel.get("x").getAsInt(), 0) )
+                        .rotationY( getOrDefault(() -> aModel.get("y").getAsInt(), 0) )
+                        .uvLock( getOrDefault(() -> aModel.get("uvlock").getAsBoolean(), false) )
+                        .weight( getOrDefault(() -> aModel.get("weight").getAsInt(), 1) );
+                builder.nextModel();
+            });
+        }
+
+        return builder;
+    }
+
+    private static <T> T getOrDefault(Supplier<T> attemptedReturn, T defaultReturn) {
+        try {
+            return attemptedReturn.get();
+        } catch (Exception error) {
+            return defaultReturn;
+        }
+    }
+
+    private <T extends Comparable<T>> PartBuilder addConditionsFromList( PartBuilder builder, Block owner, Property<T> prop, ArrayList<T> values) {
+        Preconditions.checkNotNull(prop, "Property must not be null");
+        Preconditions.checkNotNull(values, "Value list must not be null");
+        Preconditions.checkArgument(!values.isEmpty(), "Value list must not be empty");
+        Preconditions.checkArgument(!builder.conditions.containsKey(prop), "Cannot set condition for property \"%s\" more than once", prop.getName());
+        Preconditions.checkArgument(builder.canApplyTo(owner), "IProperty %s is not valid for the block %s", prop, owner);
+        Preconditions.checkState(builder.nestedConditionGroups.isEmpty(), "Can't have normal conditions if there are already nested condition groups");
+        builder.conditions.putAll(prop, values);
+        return builder;
+    }
+
+    // Util for unpacking state and value from files
+    private static class StateValPair<T extends Comparable<T>> {
+        final Property<T> state;
+        final ArrayList<T> values;
+
+        @SuppressWarnings({"unchecked", "DataFlowIssue", "OptionalGetWithoutIsPresent"})
+        StateValPair(Block b, String[] stateValue) {
+            Property<T> tempState = null;
+            ArrayList<T> tempVals = new ArrayList<>();
+            try {
+                tempState = (Property<T>) b.getStateDefinition().getProperty(stateValue[0]);
+                for ( String valString : stateValue[1].split( "\\|" ) ) {
+                    tempVals.add( tempState.getValue( valString ).get() );
+                }
+            } catch (Exception e) {
+                LOGGER.error("CTS_COMPATS: {}", e.toString());
+            }
+
+            state = tempState;
+            values = tempVals;
+        }
+
+        StateValPair( Block b, String state, String values ) {
+            this( b, new String[] {state, values} );
+        }
+
+        T getFirstValue() {
+            return values.get(0);
+        }
+    }
+}
