@@ -58,8 +58,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         this.slabBlock( (SlabBlock) blockCopy, origLoc,
                 ResourceLocation.parse( jsonObject.getAsJsonObject( "textures" ).get( "all" ).getAsString() ) );
 
-        itemModels().getBuilder( "item/" + ((Block) blockCopy).asItem().getDescriptionId().split("\\.")[2] )
-                .parent( new BlockModelBuilder( loc.withPrefix("block/").withSuffix(".json"), existingFileHelper ) );
+        simpleBlockItem( (Block) blockCopy, new BlockModelBuilder( loc.withPrefix("block/"), existingFileHelper ) );
     }
 
     private void simpleBlockCopy( IOnTopCopy blockCopy ) {
@@ -77,12 +76,27 @@ public class ModBlockStateProvider extends BlockStateProvider {
         }
     }
 
+    private void autoFromRegistry( DeferredRegister<Block> blocks ) {
+        for ( RegistryObject<Block> entry : blocks.getEntries() ) {
+            Block block = entry.get();
+            if ( block instanceof IOnTopCopy ) {
+                LOGGER.info( "Creating blockstate json for {}", block );
+                if ( block instanceof DoublePlantOnTop ) {
+                    // TODO: Automate Double Plant Model
+                    copyItemModel( (IBlockCopy) block );
+                } else {
+                    simpleBlockCopy( (IOnTopCopy) block );
+                }
+            }
+        }
+    }
+
     @SuppressWarnings("deprecation")
     private void copyItemModel( IBlockCopy blockCopy ) {
         ResourceLocation origItem = BuiltInRegistries.ITEM.getKey( blockCopy.getOriginBlock().asItem() );
 
         itemModels().getBuilder( "item/" + ((Block) blockCopy).asItem().getDescriptionId().split("\\.")[2] )
-                .parent( new ItemModelBuilder( origItem.withPrefix("item/").withSuffix(".json"), existingFileHelper ) );
+                .parent( new ItemModelBuilder( origItem.withPrefix("item/"), existingFileHelper ) );
     }
 
     @SuppressWarnings("deprecation")
@@ -95,21 +109,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
         } catch ( IOException e ) {
             LOGGER.warn( "CTS_COMPATS: {}", e.toString() );
             return null;
-        }
-    }
-
-    private void autoFromRegistry( DeferredRegister<Block> blocks ) {
-        for ( RegistryObject<Block> entry : blocks.getEntries() ) {
-            Block block = entry.get();
-            if ( block instanceof IOnTopCopy ) {
-                LOGGER.info( "Creating blockstate json for {}", block );
-                if ( block instanceof DoublePlantOnTop ) {
-                    // TODO: Automate
-                    copyItemModel( (IBlockCopy) block );
-                } else {
-                    simpleBlockCopy( (IOnTopCopy) block );
-                }
-            }
         }
     }
 }

@@ -1,3 +1,3 @@
 {
-  "parent": "minecraft:item/wither_rose.json"
+  "parent": "minecraft:item/wither_rose"
 }
