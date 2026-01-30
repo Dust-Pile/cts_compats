@@ -2,12 +2,12 @@ package net.dusty_dusty.dataGen;
 
 import com.google.gson.JsonObject;
 import net.dusty_dusty.cts_compats.CTSCompats;
+import net.dusty_dusty.cts_compats.RegistryManager;
 import net.dusty_dusty.cts_compats.common.block.DoublePlantOnTop;
-import net.dusty_dusty.cts_compats.common.interfaces.IBlockCopy;
-import net.dusty_dusty.cts_compats.common.interfaces.IOnTopCopy;
-import net.dusty_dusty.cts_compats.common.interfaces.ISlabCopy;
-import net.dusty_dusty.cts_compats.mods.projectVibrantJourneys.PVJRegistry;
-import net.dusty_dusty.cts_compats.mods.vanilla.VanillaRegistry;
+import net.dusty_dusty.cts_compats.common.block.interfaces.IBlockCopy;
+import net.dusty_dusty.cts_compats.common.block.interfaces.IOnTopCopy;
+import net.dusty_dusty.cts_compats.common.block.interfaces.ISlabCopy;
+import net.dusty_dusty.dataGen.util.BlockStateCopyUtil;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -18,10 +18,8 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraftforge.client.model.generators.*;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
-import javax.json.Json;
 import java.io.IOException;
 
 import static net.dusty_dusty.cts_compats.CTSCompats.LOGGER;
@@ -38,23 +36,56 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     @Override
     protected void registerStatesAndModels() {
-        // Automatic Gen
-        autoFromRegistry( VanillaRegistry.COMPAT_BLOCKS );
-        autoFromRegistry( PVJRegistry.COMPAT_BLOCKS );
-
-        // Manual Gen
-        slabFromCubeAll( (ISlabCopy) VanillaRegistry.DRIPSTONE_SLAB.get() );
+        RegistryManager.forEachRegistry( registry -> {
+            for ( RegistryObject<Block> entry : registry.COMPAT_BLOCKS.getEntries() ) {
+                Block block = entry.get();
+                LOGGER.info( "Auto Generating files for {} if applicable", block );
+                if ( block instanceof IOnTopCopy onTopCopy ) {
+                    if ( onTopCopy instanceof DoublePlantOnTop ) {
+                        // TODO: Automate Double Plant Model
+                        copyItemModel( onTopCopy );
+                    } else {
+                        simpleBlockCopy( onTopCopy );
+                    }
+                } else if ( block instanceof ISlabCopy slabCopy &&
+                        slabCopy.getCopyModelType() != ISlabCopy.CopyModelType.GRASSY )
+                {
+                    slabCopyFromCube( slabCopy );
+                }
+            }
+        } );
     }
 
+
     @SuppressWarnings("deprecation")
-    private void slabFromCubeAll(ISlabCopy blockCopy ) {
+    private void slabCopyFromCube(ISlabCopy blockCopy) {
         ResourceLocation origLoc = BuiltInRegistries.BLOCK.getKey( blockCopy.getOriginBlock() );
         ResourceLocation loc = BuiltInRegistries.BLOCK.getKey( (Block) blockCopy );
         JsonObject jsonObject = getBlockJson( blockCopy, "models/block" );
         if ( jsonObject == null ) {
             return;
         }
+        if ( jsonObject.get( "parent" ).getAsString().contains("cube_all") ) {
+            slabCopyFromCubeAll( blockCopy, jsonObject, loc, origLoc );
+            return;
+        }
 
+        JsonObject textures = jsonObject.getAsJsonObject( "textures" );
+
+        try {
+            this.slabBlock( (SlabBlock) blockCopy, origLoc,
+                    ResourceLocation.parse( textures.get( "side" ).getAsString() ),
+                    ResourceLocation.parse( textures.get( "bottom" ).getAsString() ),
+                    ResourceLocation.parse( textures.get( "top" ).getAsString() ) );
+        } catch (Exception e) {
+            LOGGER.error( e.toString() );
+            return;
+        }
+
+        simpleBlockItem( (Block) blockCopy, new BlockModelBuilder( loc.withPrefix("block/"), existingFileHelper ) );
+    }
+
+    private void slabCopyFromCubeAll( ISlabCopy blockCopy, JsonObject jsonObject, ResourceLocation loc, ResourceLocation origLoc ) {
         this.slabBlock( (SlabBlock) blockCopy, origLoc,
                 ResourceLocation.parse( jsonObject.getAsJsonObject( "textures" ).get( "all" ).getAsString() ) );
 
@@ -73,21 +104,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
             util.copyVariants( this.getVariantBuilder( (Block) blockCopy ), jsonObject );
         } else {
             util.copyMultipart( this.getMultipartBuilder( (Block) blockCopy ), jsonObject, (Block) blockCopy );
-        }
-    }
-
-    private void autoFromRegistry( DeferredRegister<Block> blocks ) {
-        for ( RegistryObject<Block> entry : blocks.getEntries() ) {
-            Block block = entry.get();
-            if ( block instanceof IOnTopCopy ) {
-                LOGGER.info( "Creating blockstate json for {}", block );
-                if ( block instanceof DoublePlantOnTop ) {
-                    // TODO: Automate Double Plant Model
-                    copyItemModel( (IBlockCopy) block );
-                } else {
-                    simpleBlockCopy( (IOnTopCopy) block );
-                }
-            }
         }
     }
 

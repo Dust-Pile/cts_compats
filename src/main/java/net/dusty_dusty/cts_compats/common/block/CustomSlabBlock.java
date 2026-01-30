@@ -1,7 +1,7 @@
 package net.dusty_dusty.cts_compats.common.block;
 
-import net.dusty_dusty.cts_compats.common.interfaces.IAssignable;
-import net.dusty_dusty.cts_compats.common.interfaces.ISlabCopy;
+import net.dusty_dusty.cts_compats.common.block.interfaces.IAssignable;
+import net.dusty_dusty.cts_compats.common.block.interfaces.ISlabCopy;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;

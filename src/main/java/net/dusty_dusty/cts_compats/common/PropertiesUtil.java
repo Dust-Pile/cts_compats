@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.ArrayList;
@@ -12,12 +13,12 @@ import java.util.Optional;
 public class PropertiesUtil {
     private static final double OFFSET_VAL = -0.5;
 
-    public static BlockBehaviour.Properties copyAndOffsetOnTopBlockProperties( Block block ) {
-        return autoOnTopOffset( BlockBehaviour.Properties.copy( block ), block );
+    public static Properties copyAndOffsetOnTopBlockProperties( Block block ) {
+        return autoOnTopOffset( Properties.copy( block ), block );
     }
 
     // Checks 9 locations to ensure failure chance is abysmal
-    public static BlockBehaviour.Properties autoOnTopOffset( BlockBehaviour.Properties props, Block block ) {
+    public static Properties autoOnTopOffset( Properties props, Block block ) {
         if ( props.offsetFunction.isEmpty() ) {
             return assignOnTopOfSlabOffset( props, BlockBehaviour.OffsetType.NONE );
         }
@@ -39,7 +40,8 @@ public class PropertiesUtil {
         return assignOnTopOfSlabOffset( props, BlockBehaviour.OffsetType.NONE );
     }
 
-    public static BlockBehaviour.Properties assignOnTopOfSlabOffset(BlockBehaviour.Properties props, BlockBehaviour.OffsetType pOffsetType ) {
+    @SuppressWarnings("deprecation")
+    public static Properties assignOnTopOfSlabOffset(Properties props, BlockBehaviour.OffsetType pOffsetType ) {
         switch (pOffsetType) {
             case XYZ:
                 props.offsetFunction = Optional.of((blockState, blockGetter, blockPos) -> {
@@ -70,8 +72,8 @@ public class PropertiesUtil {
         return props;
     }
 
-    @SuppressWarnings("OptionalGetWithoutIsPresent")
-    private static ArrayList<Vec3> planeUtil( BlockBehaviour.Properties props, Block block ) {
+    @SuppressWarnings({"OptionalGetWithoutIsPresent", "DataFlowIssue"})
+    private static ArrayList<Vec3> planeUtil( Properties props, Block block ) {
         ArrayList<Vec3> vectors = new ArrayList<>();
         for ( int i = -1; i < 2; i++ ) {
             for ( int j = -1; j < 2; j++ ) {

@@ -1,4 +1,4 @@
-package net.dusty_dusty.dataGen;
+package net.dusty_dusty.dataGen.util;
 
 import com.google.common.base.Preconditions;
 import com.google.gson.JsonArray;
@@ -17,10 +17,10 @@ import java.util.function.Supplier;
 
 import static net.dusty_dusty.cts_compats.CTSCompats.LOGGER;
 
-record BlockStateCopyUtil( ExistingFileHelper existingFileHelper ) {
+public record BlockStateCopyUtil( ExistingFileHelper existingFileHelper ) {
 
     @SuppressWarnings({"unchecked","rawtypes"})
-    void copyVariants( VariantBlockStateBuilder builder, JsonObject jsonObject ) {
+    public void copyVariants( VariantBlockStateBuilder builder, JsonObject jsonObject ) {
         JsonObject variants = jsonObject.getAsJsonObject("variants");
         Block block = builder.getOwner();
 
@@ -40,7 +40,7 @@ record BlockStateCopyUtil( ExistingFileHelper existingFileHelper ) {
     }
 
     @SuppressWarnings({"unchecked","rawtypes"})
-    void copyMultipart(MultiPartBlockStateBuilder builder, JsonObject jsonObject, Block owner) {
+    public void copyMultipart(MultiPartBlockStateBuilder builder, JsonObject jsonObject, Block owner) {
         JsonArray parts = jsonObject.getAsJsonArray("multipart");
         for ( JsonElement part : parts ) {
             JsonObject apply = part.getAsJsonObject().getAsJsonObject( "apply" );

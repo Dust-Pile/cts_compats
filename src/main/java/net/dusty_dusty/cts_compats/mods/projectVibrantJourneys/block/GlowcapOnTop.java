@@ -2,8 +2,8 @@ package net.dusty_dusty.cts_compats.mods.projectVibrantJourneys.block;
 
 import dev.orderedchaos.projectvibrantjourneys.common.blocks.GlowcapBlock;
 import net.dusty_dusty.cts_compats.common.PropertiesUtil;
-import net.dusty_dusty.cts_compats.common.interfaces.IAssignable;
-import net.dusty_dusty.cts_compats.common.interfaces.IOnTopCopy;
+import net.dusty_dusty.cts_compats.common.block.interfaces.IAssignable;
+import net.dusty_dusty.cts_compats.common.block.interfaces.IOnTopCopy;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelReader;

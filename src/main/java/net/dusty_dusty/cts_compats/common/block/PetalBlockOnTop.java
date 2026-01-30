@@ -1,8 +1,8 @@
 package net.dusty_dusty.cts_compats.common.block;
 
 import net.dusty_dusty.cts_compats.common.PropertiesUtil;
-import net.dusty_dusty.cts_compats.common.interfaces.IAssignable;
-import net.dusty_dusty.cts_compats.common.interfaces.IOnTopCopy;
+import net.dusty_dusty.cts_compats.common.block.interfaces.IAssignable;
+import net.dusty_dusty.cts_compats.common.block.interfaces.IOnTopCopy;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
