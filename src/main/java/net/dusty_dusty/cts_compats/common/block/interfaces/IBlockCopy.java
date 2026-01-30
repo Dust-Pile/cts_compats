@@ -1,4 +1,4 @@
-package net.dusty_dusty.cts_compats.common.interfaces;
+package net.dusty_dusty.cts_compats.common.block.interfaces;
 
 import net.dusty_dusty.cts_compats.common.block.CustomSlabBlock;
 import net.minecraft.world.item.Item;

@@ -3,9 +3,9 @@ package net.dusty_dusty.dataGen;
 import com.google.gson.JsonObject;
 import net.dusty_dusty.cts_compats.CTSCompats;
 import net.dusty_dusty.cts_compats.common.block.DoublePlantOnTop;
-import net.dusty_dusty.cts_compats.common.interfaces.IBlockCopy;
-import net.dusty_dusty.cts_compats.common.interfaces.IOnTopCopy;
-import net.dusty_dusty.cts_compats.common.interfaces.ISlabCopy;
+import net.dusty_dusty.cts_compats.common.block.interfaces.IBlockCopy;
+import net.dusty_dusty.cts_compats.common.block.interfaces.IOnTopCopy;
+import net.dusty_dusty.cts_compats.common.block.interfaces.ISlabCopy;
 import net.dusty_dusty.cts_compats.mods.projectVibrantJourneys.PVJRegistry;
 import net.dusty_dusty.cts_compats.mods.vanilla.VanillaRegistry;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -21,7 +21,6 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
-import javax.json.Json;
 import java.io.IOException;
 
 import static net.dusty_dusty.cts_compats.CTSCompats.LOGGER;
@@ -39,8 +38,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         // Automatic Gen
-        autoFromRegistry( VanillaRegistry.COMPAT_BLOCKS );
-        autoFromRegistry( PVJRegistry.COMPAT_BLOCKS );
+        autoFromRegistry( VanillaRegistry.getInstance().COMPAT_BLOCKS );
+        autoFromRegistry( PVJRegistry.getInstance().COMPAT_BLOCKS );
 
         // Manual Gen
         slabFromCubeAll( (ISlabCopy) VanillaRegistry.DRIPSTONE_SLAB.get() );
