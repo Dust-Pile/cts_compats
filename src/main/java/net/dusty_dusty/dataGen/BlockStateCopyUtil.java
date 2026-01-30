@@ -17,8 +17,9 @@ import java.util.function.Supplier;
 
 import static net.dusty_dusty.cts_compats.CTSCompats.LOGGER;
 
-record BlockStateUtil ( ExistingFileHelper existingFileHelper ) {
+record BlockStateCopyUtil(ExistingFileHelper existingFileHelper ) {
 
+    @SuppressWarnings({"unchecked","rawtypes"})
     void copyVariants( VariantBlockStateBuilder builder, JsonObject jsonObject ) {
         JsonObject variants = jsonObject.getAsJsonObject("variants");
         Block block = builder.getOwner();
@@ -27,9 +28,7 @@ record BlockStateUtil ( ExistingFileHelper existingFileHelper ) {
             VariantBlockStateBuilder.PartialBlockstate partial = builder.partialState();
             if ( !key.isEmpty() ) {
                 for ( String stateDef : key.split(",") ) {
-                    //noinspection rawtypes
                     StateValPair pair = new StateValPair( block, stateDef.split("=") );
-                    //noinspection unchecked
                     partial.with( pair.state, pair.getFirstValue() );
                 }
             }
@@ -49,14 +48,23 @@ record BlockStateUtil ( ExistingFileHelper existingFileHelper ) {
             PartBuilder partBuilder = configuredModelBuilder.addModel();
 
             JsonObject when = part.getAsJsonObject().getAsJsonObject( "when" );
+            String orAnd = "AND";
             if ( when.has( "OR" ) || when.has( "AND" ) ) {
-                return;
-//                if ( when.has( "OR" ) ) {
-//
-//                }
-//                if ( when.has( "AND" ) ) {
-//
-//                }
+                // TODO: Idk if this works either...
+                if ( when.has( "OR" ) ) {
+                    orAnd = "OR";
+                    partBuilder.useOr();
+                }
+                JsonArray conditions = when.getAsJsonArray( orAnd );
+                for ( JsonElement condition : conditions ) {
+                    PartBuilder.ConditionGroup conditionGroup = partBuilder.nestedGroup();
+                    JsonObject states = condition.getAsJsonObject();
+                    for ( String state : states.keySet() ) {
+                        String values = when.get( state ).getAsString();
+                        StateValPair pair = new StateValPair( owner, state, values );
+                        addConditionsFromList( partBuilder, conditionGroup, owner, pair.state, pair.values );
+                    }
+                }
             } else {
                 for ( String state : when.keySet() ) {
                     String values = when.get( state ).getAsString();
@@ -67,7 +75,7 @@ record BlockStateUtil ( ExistingFileHelper existingFileHelper ) {
         }
     }
 
-    // Tbh idk if this works...
+    // TODO: Tbh idk if this works like I think...
     private <T> ConfiguredModel.Builder<T> buildModelOrModels(JsonObject modelOrModels, ConfiguredModel.Builder<T> builder ) {
         try {
             Map<String, JsonElement> aModel = modelOrModels.asMap();
@@ -99,7 +107,7 @@ record BlockStateUtil ( ExistingFileHelper existingFileHelper ) {
         }
     }
 
-    private <T extends Comparable<T>> PartBuilder addConditionsFromList( PartBuilder builder, Block owner, Property<T> prop, ArrayList<T> values) {
+    private <T extends Comparable<T>> void addConditionsFromList(PartBuilder builder, Block owner, Property<T> prop, ArrayList<T> values) {
         Preconditions.checkNotNull(prop, "Property must not be null");
         Preconditions.checkNotNull(values, "Value list must not be null");
         Preconditions.checkArgument(!values.isEmpty(), "Value list must not be empty");
@@ -107,10 +115,18 @@ record BlockStateUtil ( ExistingFileHelper existingFileHelper ) {
         Preconditions.checkArgument(builder.canApplyTo(owner), "IProperty %s is not valid for the block %s", prop, owner);
         Preconditions.checkState(builder.nestedConditionGroups.isEmpty(), "Can't have normal conditions if there are already nested condition groups");
         builder.conditions.putAll(prop, values);
-        return builder;
+    }
+    private <T extends Comparable<T>> void addConditionsFromList(PartBuilder builder, PartBuilder.ConditionGroup group, Block owner, Property<T> prop, ArrayList<T> values) {
+        Preconditions.checkNotNull(prop, "Property must not be null");
+        Preconditions.checkNotNull(values, "Value list must not be null");
+        Preconditions.checkArgument(!values.isEmpty(), "Value list must not be empty");
+        Preconditions.checkArgument(!group.conditions.containsKey(prop), "Cannot set condition for property \"%s\" more than once", prop.getName());
+        Preconditions.checkArgument(builder.canApplyTo(owner), "IProperty %s is not valid for the block %s", prop, owner);
+        Preconditions.checkState(group.nestedConditionGroups.isEmpty(), "Can't have normal conditions if there are already nested condition groups");
+        group.conditions.putAll(prop, values);
     }
 
-    // Util for unpacking state and value from files
+    // Util for unpacking state and value from files and making the types compile
     private static class StateValPair<T extends Comparable<T>> {
         final Property<T> state;
         final ArrayList<T> values;

@@ -25,12 +25,12 @@ import static net.dusty_dusty.cts_compats.CTSCompats.LOGGER;
 
 public class ModBlockStateProvider extends BlockStateProvider {
     final ExistingFileHelper existingFileHelper;
-    final BlockStateUtil util;
+    final BlockStateCopyUtil util;
 
     protected ModBlockStateProvider( PackOutput output, ExistingFileHelper existingFileHelper ) {
         super( output, CTSCompats.MODID, existingFileHelper );
         this.existingFileHelper = existingFileHelper;
-        util = new BlockStateUtil( existingFileHelper );
+        util = new BlockStateCopyUtil( existingFileHelper );
     }
 
     @Override
