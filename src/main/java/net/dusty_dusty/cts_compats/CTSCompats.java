@@ -30,13 +30,14 @@ public class CTSCompats
     public static final Logger LOGGER = LogUtils.getLogger();
 
     private static final String PVJ_MODID = "projectvibrantjourneys";
+    private static final String BOP_MODID = "biomesoplenty";
 
     public CTSCompats(FMLJavaModLoadingContext context)
     {
         IEventBus modEventBus = context.getModEventBus();
 
         modEventBus.addListener(this::commonSetup);
-        modEventBus.addListener(this::clientSetup);
+        //modEventBus.addListener(this::clientSetup);
 
         MinecraftForge.EVENT_BUS.register(this);
 
@@ -53,15 +54,15 @@ public class CTSCompats
         runModCompat( PVJ_MODID, () -> PVJRegistry.assign() );
     }
 
-    private void clientSetup(final FMLClientSetupEvent event) {
-        // Have to do it this way if I want to copy vanilla blockstates. Gives better resourcepack compatibility.
-        for( RegistryObject<Block> blockRegister : VanillaRegistry.COMPAT_BLOCKS.getEntries() ) {
-            if ( blockRegister.get() instanceof IOnTopCopy ) {
-                ItemBlockRenderTypes.setRenderLayer( blockRegister.get(), RenderType.cutout() );
-            }
-        }
-
-    }
+//    private void clientSetup(final FMLClientSetupEvent event) {
+//        // Have to do it this way if I want to copy vanilla blockstates. Gives better resourcepack compatibility.
+//        for( RegistryObject<Block> blockRegister : VanillaRegistry.COMPAT_BLOCKS.getEntries() ) {
+//            if ( blockRegister.get() instanceof IOnTopCopy ) {
+//                ItemBlockRenderTypes.setRenderLayer( blockRegister.get(), RenderType.cutout() );
+//            }
+//        }
+//
+//    }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
     @SuppressWarnings("unused")

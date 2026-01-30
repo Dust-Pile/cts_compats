@@ -69,7 +69,7 @@ minecraft {
             workingDirectory project.file('run-data')
 
             // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
-            args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/'), '--existing-mod', 'projectvibrantjourneys'
+            args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/'), '--existing-mod', 'projectvibrantjourneys', '--existing-mod', 'biomesoplenty'
         }
     }
 }
@@ -105,8 +105,15 @@ dependencies {
     implementation fileTree(dir: 'libs', include: '*.jar')
         //implementation fg.deobf("curse.maven:countereds-terrain-slabs-1125437:7347714")
 
+    // Compat Dependencies
+    runtimeOnly fg.deobf("curse.maven:terrablender-563928:6290448")
+
     // Compats Mods
     implementation fg.deobf("curse.maven:project-vibrant-journeys-300297:6841170")
+    implementation fg.deobf("curse.maven:biomes-o-plenty-220318:4617259")
+
+    // Other
+    runtimeOnly "curse.maven:terralith-513688:5512076"
 
 }
 
