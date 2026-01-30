@@ -7,7 +7,9 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.BushBlock;
+import net.minecraft.world.level.block.DoublePlantBlock;
 import net.minecraft.world.level.block.SlabBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -19,8 +21,14 @@ public class BushBlockOnTop extends BushBlock implements IAssignable, IOnTopCopy
     private final VoxelShape shape;
     private final Block originalBlock;
 
-    public BushBlockOnTop(Block originalBlock, VoxelShape shape) {
+    public BushBlockOnTop( Block originalBlock, VoxelShape shape ) {
         super( PropertiesUtil.copyAndOffsetOnTopBlockProperties( originalBlock ) );
+        this.originalBlock = originalBlock;
+        this.shape = shape;
+    }
+
+    protected BushBlockOnTop( DoublePlantBlock originalBlock, VoxelShape shape ) {
+        super( BlockBehaviour.Properties.copy( originalBlock ) );
         this.originalBlock = originalBlock;
         this.shape = shape;
     }
