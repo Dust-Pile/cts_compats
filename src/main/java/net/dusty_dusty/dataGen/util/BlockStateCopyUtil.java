@@ -29,9 +29,11 @@ public record BlockStateCopyUtil( ExistingFileHelper existingFileHelper ) {
             if ( !key.isEmpty() ) {
                 for ( String stateDef : key.split(",") ) {
                     StateValPair pair = new StateValPair( block, stateDef.split("=") );
-                    partial.with( pair.state, pair.getFirstValue() );
+                    partial = partial.with( pair.state, pair.getFirstValue() );
                 }
             }
+
+            LOGGER.info( key );
 
             builder.addModels( partial, buildModelOrModels( variants.get( key ), partial.modelForState()
             ).build() );
