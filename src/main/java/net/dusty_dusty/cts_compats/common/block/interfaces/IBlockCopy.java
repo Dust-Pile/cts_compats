@@ -1,6 +1,5 @@
 package net.dusty_dusty.cts_compats.common.block.interfaces;
 
-import net.dusty_dusty.cts_compats.common.block.CustomSlabBlock;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 
@@ -12,9 +11,7 @@ public interface IBlockCopy {
         return this.getOriginBlock().asItem();
     }
 
-    default BlockCopyType getCopyType() {
-        return this instanceof CustomSlabBlock ? BlockCopyType.SLAB : BlockCopyType.ON_TOP;
-    }
+    BlockCopyType getCopyType();
 
     default boolean isSlabBlock() {
         return getCopyType() == BlockCopyType.SLAB;

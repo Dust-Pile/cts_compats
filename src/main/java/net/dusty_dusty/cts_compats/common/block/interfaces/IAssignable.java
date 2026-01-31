@@ -2,7 +2,6 @@ package net.dusty_dusty.cts_compats.common.block.interfaces;
 
 import net.countered.terrainslabs.block.ModSlabsMap;
 import net.countered.terrainslabs.callbacks.RegisterCallbacks;
-import net.dusty_dusty.cts_compats.common.block.CustomSlabBlock;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -18,9 +17,9 @@ public interface IAssignable extends IBlockCopy {
             case SLAB:
                 AssignUtil.putTerrainSlab( this.getOriginBlock(), (Block) this );
                 if ( this instanceof IDuelSlab ) {
-                    CustomSlabBlock duel = ( (IDuelSlab) this).getDuelSlab();
+                    IBlockCopy duel = ( (IDuelSlab) this).getDuelSlab();
 
-                    AssignUtil.putTopSlabReplacement( (Block) this, duel );
+                    AssignUtil.putTopSlabReplacement( (Block) this, (Block) duel );
                     AssignUtil.putBlockBelowReplacement( this.getOriginBlock(), duel.getOriginBlock() );
                 }
                 break;
@@ -28,7 +27,7 @@ public interface IAssignable extends IBlockCopy {
     }
 
     class AssignUtil {
-        public static final VoxelShape FULL_BLOCK_ON_SLAB = Block.box( 0.0D, -8.0D, 0.0D, 16.0D, 8.0D, 16.0D );
+        public static final VoxelShape FULL_BLOCK_ON_SLAB = Block.box( 0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D );
 
         public static void putOnTopVegetation( Block key, Block value ) {
             String[] keyStrings = getIdComponents( key );

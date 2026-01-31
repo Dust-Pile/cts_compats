@@ -24,8 +24,8 @@ public class CTSCompats
     public static final Logger LOGGER = LogUtils.getLogger();
     public final RegistryManager registryManager;
 
-    private static final String PVJ_MODID = "projectvibrantjourneys";
-    private static final String BOP_MODID = "biomesoplenty";
+    protected static final String PVJ_MODID = "projectvibrantjourneys";
+    protected static final String BOP_MODID = "biomesoplenty";
 
     public CTSCompats(FMLJavaModLoadingContext context)
     {
@@ -54,6 +54,5 @@ public class CTSCompats
                 ItemBlockRenderTypes.setRenderLayer( blockRegister.get(), RenderType.cutout() );
             }
         }
-
     }
 }

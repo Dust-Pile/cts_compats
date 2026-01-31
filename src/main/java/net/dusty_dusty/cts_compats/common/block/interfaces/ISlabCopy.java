@@ -18,11 +18,12 @@ public interface ISlabCopy extends IBlockCopy {
     }
 
     default CopyModelType getCopyModelType() {
-        return CopyModelType.CUBE_ALL;
+        return CopyModelType.CUBE;
     }
 
     enum CopyModelType {
-        CUBE_ALL("cube_all");
+        CUBE("cube"),
+        TINTED_OVERLAY("tinted_overlay");
 
         private final String name;
 

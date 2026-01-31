@@ -3,6 +3,7 @@ package net.dusty_dusty.cts_compats;
 import net.dusty_dusty.cts_compats.common.registry.AbstractRegistry;
 import net.dusty_dusty.cts_compats.common.registry.IColorRegistry;
 import net.dusty_dusty.cts_compats.common.registry.IRegistry;
+import net.dusty_dusty.cts_compats.mods.biomesOPlenty.BOPRegistry;
 import net.dusty_dusty.cts_compats.mods.vanilla.VanillaRegistry;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
@@ -10,6 +11,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
 import java.util.ArrayList;
@@ -32,8 +34,11 @@ public class RegistryManager {
         if ( INSTANCE != null ) {
             throw new IllegalAccessException( "RegistryHolder can only be instantiated Once" );
         }
+
         this.MOD_EVENT_BUS = modEventBus;
         modEventBus.addListener( this::commonSetup );
+        modEventBus.addListener( this::clientSetup );
+
         register( VanillaRegistry.getInstance() );
         INSTANCE = this;
     }
@@ -53,6 +58,10 @@ public class RegistryManager {
     private void commonSetup(final FMLCommonSetupEvent event)
     {
         REGISTRIES.forEach( IRegistry::assign );
+    }
+
+    private void clientSetup(final FMLClientSetupEvent event) {
+        runModCompat( CTSCompats.BOP_MODID, () -> BOPRegistry.setRenderTypes() );
     }
 
     @Mod.EventBusSubscriber( modid = CTSCompats.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
