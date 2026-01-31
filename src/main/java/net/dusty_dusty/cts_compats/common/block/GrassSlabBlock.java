@@ -72,7 +72,7 @@ public class GrassSlabBlock extends GrassBlock implements IAssignable, ISlabCopy
     }
 
     protected void createBlockStateDefinition( StateDefinition.Builder<Block, BlockState> pBuilder ) {
-        pBuilder.add( TYPE, WATERLOGGED, GENERATED );
+        pBuilder.add( TYPE, WATERLOGGED, GENERATED, SNOWY );
     }
 
     @Override

@@ -47,10 +47,12 @@ public class ModBlockStateProvider extends BlockStateProvider {
                     } else {
                         simpleBlockCopy( onTopCopy );
                     }
-                } else if ( block instanceof ISlabCopy slabCopy &&
+                } else if ( block instanceof ISlabCopy slabCopy && slabCopy instanceof SlabBlock &&
                         slabCopy.getCopyModelType() != ISlabCopy.CopyModelType.TINTED_OVERLAY )
                 {
                     slabCopyFromCube( slabCopy );
+                } else {
+                    LOGGER.warn( "No Valid arrangement found for block {}", block );
                 }
             }
         } );

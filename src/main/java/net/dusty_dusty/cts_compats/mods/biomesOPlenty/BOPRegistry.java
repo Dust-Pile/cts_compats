@@ -24,19 +24,19 @@ public class BOPRegistry extends AbstractRegistry {
     }
 
     // Overworld Blocks
-//    public static final RegistryObject<Block> WHITE_SAND_SLAB = INSTANCE.registerBlock( "white_sand_slab",
-//            () -> new SandSlabBlockBOP( BOPBlocks.WHITE_SAND.get() ) );
-//    public static final RegistryObject<Block> ORANGE_SAND_SLAB = INSTANCE.registerBlock( "orange_sand_slab",
-//            () -> new SandSlabBlockBOP( BOPBlocks.ORANGE_SAND.get() ) );
-//    public static final RegistryObject<Block> BLACK_SAND_SLAB = INSTANCE.registerBlock( "black_sand_slab",
-//            () -> new SandSlabBlockBOP( BOPBlocks.BLACK_SAND.get() ) );
-//    public static final RegistryObject<Block> MOSSY_BLACK_SAND_SLAB = INSTANCE.registerBlock( "mossy_black_sand_slab",
-//            () -> new MossyBlackSandSlab( BOPBlocks.MOSSY_BLACK_SAND.get() ) );
-//    public static final RegistryObject<Block> DRIED_SALT_SLAB = INSTANCE.registerBlock( "dried_salt_slab",
-//            () -> new DriedSaltSlab( BOPBlocks.DRIED_SALT.get() ) );
-//
-//    public static final RegistryObject<Block> ORIGIN_GRASS_SLAB = INSTANCE.registerBlock( "origin_grass_slab",
-//            () -> new GrassSlabBlock( BOPBlocks.ORIGIN_GRASS_BLOCK.get() ) );
+    public static final RegistryObject<Block> WHITE_SAND_SLAB = INSTANCE.registerBlock( "white_sand_slab",
+            () -> new SandSlabBlockBOP( BOPBlocks.WHITE_SAND.get() ) );
+    public static final RegistryObject<Block> ORANGE_SAND_SLAB = INSTANCE.registerBlock( "orange_sand_slab",
+            () -> new SandSlabBlockBOP( BOPBlocks.ORANGE_SAND.get() ) );
+    public static final RegistryObject<Block> BLACK_SAND_SLAB = INSTANCE.registerBlock( "black_sand_slab",
+            () -> new SandSlabBlockBOP( BOPBlocks.BLACK_SAND.get() ) );
+    public static final RegistryObject<Block> MOSSY_BLACK_SAND_SLAB = INSTANCE.registerBlock( "mossy_black_sand_slab",
+            () -> new MossyBlackSandSlab( BOPBlocks.MOSSY_BLACK_SAND.get() ) );
+    public static final RegistryObject<Block> DRIED_SALT_SLAB = INSTANCE.registerBlock( "dried_salt_slab",
+            () -> new DriedSaltSlab( BOPBlocks.DRIED_SALT.get() ) );
+
+    public static final RegistryObject<Block> ORIGIN_GRASS_SLAB = INSTANCE.registerBlock( "origin_grass_slab",
+            () -> new GrassSlabBlock( BOPBlocks.ORIGIN_GRASS_BLOCK.get() ) );
 
     // Overworld On Top Plants
         // Foliage
@@ -80,12 +80,12 @@ public class BOPRegistry extends AbstractRegistry {
             () -> new BurningBlossomOnTop( BOPBlocks.BURNING_BLOSSOM.get() ) );
 
     // Nether Blocks
-//    public static final RegistryObject<Block> FLESH_SLAB = INSTANCE.registerBlock( "flesh_slab",
-//            () -> new FleshSlab( BOPBlocks.FLESH.get() ) );
-//    public static final RegistryObject<Block> POROUS_FLESH_SLAB = INSTANCE.registerBlock( "porous_flesh_slab",
-//            () -> new FleshSlab( BOPBlocks.POROUS_FLESH.get() ) );
-//    public static final RegistryObject<Block> BRIMSTONE_SLAB = INSTANCE.registerBlock( "brimstone_slab",
-//            () -> new CustomSlabBlock( BOPBlocks.BRIMSTONE.get() ) );
+    public static final RegistryObject<Block> FLESH_SLAB = INSTANCE.registerBlock( "flesh_slab",
+            () -> new FleshSlab( BOPBlocks.FLESH.get() ) );
+    public static final RegistryObject<Block> POROUS_FLESH_SLAB = INSTANCE.registerBlock( "porous_flesh_slab",
+            () -> new FleshSlab( BOPBlocks.POROUS_FLESH.get() ) );
+    public static final RegistryObject<Block> BRIMSTONE_SLAB = INSTANCE.registerBlock( "brimstone_slab",
+            () -> new CustomSlabBlock( BOPBlocks.BRIMSTONE.get() ) );
 
     // Nether On Top "Things"
         // Visceral Heap
