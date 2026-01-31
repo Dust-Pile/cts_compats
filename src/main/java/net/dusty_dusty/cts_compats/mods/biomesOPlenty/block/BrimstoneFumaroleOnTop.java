@@ -17,8 +17,8 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
 public class BrimstoneFumaroleOnTop extends BasicOnTopBlock {
-    protected static final VoxelShape SHAPE_TOP = Block.box(4.0F, 8.0F, 4.0F, 12.0F, 16.0F, 12.0F);
-    protected static final VoxelShape SHAPE_BOTTOM = Block.box(2.0F, 0.0F, 2.0F, 14.0F, 8.0F, 14.0F);
+    protected static final VoxelShape SHAPE_TOP = Block.box(4.0F, 0.0F, 4.0F, 12.0F, 8.0F, 12.0F);
+    protected static final VoxelShape SHAPE_BOTTOM = Block.box(2.0F, -8.0F, 2.0F, 14.0F, 0.0F, 14.0F);
     protected static final VoxelShape FULL_SHAPE;
 
     public BrimstoneFumaroleOnTop( Block originalBlock ) {

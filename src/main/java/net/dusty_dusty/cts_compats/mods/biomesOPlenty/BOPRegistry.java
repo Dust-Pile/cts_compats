@@ -90,17 +90,17 @@ public class BOPRegistry extends AbstractRegistry {
     // Nether On Top "Things"
         // Visceral Heap
     public static final RegistryObject<Block> HAIR_ON_TOP = INSTANCE.registerBlockCutout( "hair_on_top",
-            () -> new BasicOnTopBlock( BOPBlocks.HAIR.get(), Block.box(1.0F, 0.0F, 1.0F, 15.0F, 12.0F, 15.0F) ) );
+            () -> new BasicOnTopBlock( BOPBlocks.HAIR.get(), Block.box(1.0F, -8.0F, 1.0F, 15.0F, 4.0F, 15.0F) ) );
     public static final RegistryObject<Block> PUS_BUBBLE_ON_TOP = INSTANCE.registerBlockCutout( "pus_bubble_on_top",
             () -> new PusBubbleOnTop( BOPBlocks.PUS_BUBBLE.get() ) );
         // Blackstone
     public static final RegistryObject<Block> BLACKSTONE_BULB_ON_TOP = INSTANCE.registerBlockCutout( "blackstone_bulb_on_top",
-            () -> new BasicOnTopBlock( BOPBlocks.BLACKSTONE_BULB.get(), Block.box(1.0F, 0.0F, 1.0F, 15.0F, 8.0F, 15.0F) ) );
+            () -> new BasicOnTopBlock( BOPBlocks.BLACKSTONE_BULB.get(), Block.box(1.0F, -8.0F, 1.0F, 15.0F, 0.0F, 15.0F) ) );
     public static final RegistryObject<Block> BLACKSTONE_SPINES_ON_TOP = INSTANCE.registerBlockCutout( "blackstone_spines_on_top",
-            () -> new BasicOnTopBlock( BOPBlocks.BLACKSTONE_SPINES.get(), Block.box(1.0F, 0.0F, 1.0F, 15.0F, 8.0F, 15.0F) ) );
+            () -> new BasicOnTopBlock( BOPBlocks.BLACKSTONE_SPINES.get(), Block.box(1.0F, -8.0F, 1.0F, 15.0F, 0.0F, 15.0F) ) );
         // Brimstone
     public static final RegistryObject<Block> BRIMSTONE_BUD_ON_TOP = INSTANCE.registerBlockCutout( "brimstone_bud_on_top",
-            () -> new BasicOnTopBlock( BOPBlocks.BRIMSTONE_BUD.get(), Block.box(2.0F, 0.0F, 2.0F, 14.0F, 3.0F, 14.0F) ) );
+            () -> new BasicOnTopBlock( BOPBlocks.BRIMSTONE_BUD.get(), Block.box(2.0F, -8.0F, 2.0F, 14.0F, -5.0F, 14.0F) ) );
     public static final RegistryObject<Block> BRIMSTONE_FUMAROLE_ON_TOP = INSTANCE.registerBlock( "brimstone_fumarole_on_top",
             () -> new BrimstoneFumaroleOnTop( BOPBlocks.BRIMSTONE_FUMAROLE.get() ) );
 

@@ -18,8 +18,8 @@ import org.jetbrains.annotations.NotNull;
 import javax.annotation.Nullable;
 
 public class FoliageOnTopBOP extends BushBlockOnTop implements IPlantable {
-    protected static final VoxelShape NORMAL = Block.box(2.0F, 0.0F, 2.0F, 14.0F, 13.0F, 14.0F);
-    protected static final VoxelShape SHORT = Block.box(1.0F, 0.0F, 1.0F, 15.0F, 7.0F, 15.0F);
+    protected static final VoxelShape NORMAL = Block.box(2.0F, -8.0F, 2.0F, 14.0F, 5.0F, 14.0F);
+    protected static final VoxelShape SHORT = Block.box(1.0F, -8.0F, 1.0F, 15.0F, -1.0F, 15.0F);
 
     public FoliageOnTopBOP(Block originalBlock ) {
         super(originalBlock, originalBlock == BOPBlocks.DESERT_GRASS.get() ? SHORT : NORMAL);

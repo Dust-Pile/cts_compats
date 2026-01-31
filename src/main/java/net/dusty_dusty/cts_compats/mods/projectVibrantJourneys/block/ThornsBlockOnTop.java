@@ -11,6 +11,7 @@ import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 
 public class ThornsBlockOnTop extends BushBlockOnTop {
+
     public ThornsBlockOnTop( Block originalBlock ) {
         super( originalBlock, AssignUtil.FULL_BLOCK_ON_SLAB );
     }

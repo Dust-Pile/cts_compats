@@ -21,7 +21,7 @@ import org.jetbrains.annotations.NotNull;
 
 @SuppressWarnings("deprecation")
 public class PusBubbleOnTop extends BasicOnTopBlock {
-    protected static final VoxelShape SHAPE = Block.box(3.0F, 0.0F, 3.0F, 13.0F, 8.0F, 13.0F);
+    protected static final VoxelShape SHAPE = Block.box(3.0F, -8.0F, 3.0F, 13.0F, 0.0F, 13.0F);
 
     public PusBubbleOnTop( Block originalBlock ) {
         super( originalBlock, SHAPE );
