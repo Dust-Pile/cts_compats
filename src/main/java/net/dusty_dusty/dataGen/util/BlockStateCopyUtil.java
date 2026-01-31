@@ -33,8 +33,7 @@ public record BlockStateCopyUtil( ExistingFileHelper existingFileHelper ) {
                 }
             }
 
-            builder.addModels( partial, buildModelOrModels(
-                    variants.getAsJsonObject( key ), partial.modelForState()
+            builder.addModels( partial, buildModelOrModels( variants.get( key ), partial.modelForState()
             ).build() );
         }
     }
@@ -43,14 +42,12 @@ public record BlockStateCopyUtil( ExistingFileHelper existingFileHelper ) {
     public void copyMultipart(MultiPartBlockStateBuilder builder, JsonObject jsonObject, Block owner) {
         JsonArray parts = jsonObject.getAsJsonArray("multipart");
         for ( JsonElement part : parts ) {
-            JsonObject apply = part.getAsJsonObject().getAsJsonObject( "apply" );
-            ConfiguredModel.Builder<PartBuilder> configuredModelBuilder = buildModelOrModels( apply, builder.part() );
-            PartBuilder partBuilder = configuredModelBuilder.addModel();
+            PartBuilder partBuilder = buildModelOrModels( part.getAsJsonObject().get( "apply" ), builder.part() ).addModel();
 
             JsonObject when = part.getAsJsonObject().getAsJsonObject( "when" );
             String orAnd = "AND";
             if ( when.has( "OR" ) || when.has( "AND" ) ) {
-                // TODO: Idk if this works either...
+                // TODO: Idk if this works...
                 if ( when.has( "OR" ) ) {
                     orAnd = "OR";
                     partBuilder.useOr();
@@ -75,15 +72,14 @@ public record BlockStateCopyUtil( ExistingFileHelper existingFileHelper ) {
         }
     }
 
-    // TODO: Tbh idk if this works like I think...
-    private <T> ConfiguredModel.Builder<T> buildModelOrModels(JsonObject modelOrModels, ConfiguredModel.Builder<T> builder ) {
+    private <T> ConfiguredModel.Builder<T> buildModelOrModels( JsonElement modelOrModels, ConfiguredModel.Builder<T> builder ) {
         try {
-            Map<String, JsonElement> aModel = modelOrModels.asMap();
+            JsonObject aModel = modelOrModels.getAsJsonObject();
             builder.modelFile( new BlockModelBuilder( ResourceLocation.parse( aModel.get("model").getAsString() ), existingFileHelper) )
                     .rotationX( getOrDefault(() -> aModel.get("x").getAsInt(), 0) )
                     .rotationY( getOrDefault(() -> aModel.get("y").getAsInt(), 0) )
                     .uvLock( getOrDefault(() -> aModel.get("uvlock").getAsBoolean(), false) );
-        } catch ( Exception e ) {
+        } catch ( IllegalStateException e ) {
             JsonArray stateArray = modelOrModels.getAsJsonArray();
             stateArray.forEach(element -> {
                 Map<String, JsonElement> aModel = element.getAsJsonObject().asMap();
