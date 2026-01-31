@@ -27,7 +27,7 @@ public interface IAssignable extends IBlockCopy {
     }
 
     class AssignUtil {
-        public static final VoxelShape FULL_BLOCK_ON_SLAB = Block.box( 0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D );
+        public static final VoxelShape FULL_BLOCK_ON_SLAB = Block.box( 0.0D, -8.0D, 0.0D, 16.0D, -8.0D, 16.0D );
 
         public static void putOnTopVegetation( Block key, Block value ) {
             String[] keyStrings = getIdComponents( key );
