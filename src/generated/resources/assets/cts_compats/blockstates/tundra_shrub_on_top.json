@@ -1,7 +1,12 @@
 {
   "variants": {
-    "": {
-      "model": "biomesoplenty:block/tundra_shrub_red"
-    }
+    "": [
+      {
+        "model": "biomesoplenty:block/tundra_shrub"
+      },
+      {
+        "model": "biomesoplenty:block/tundra_shrub_red"
+      }
+    ]
   }
 }

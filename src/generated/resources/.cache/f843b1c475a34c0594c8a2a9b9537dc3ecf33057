@@ -1,4 +1,4 @@
-// 1.20.1	2026-01-30T21:16:09.1218306	Block States: cts_compats
+// 1.20.1	2026-01-30T22:27:58.5855449	Block States: cts_compats
 6bb565aeaa73e7eeb66813587b7655265ab66d93 assets/cts_compats/blockstates/allium_on_top.json
 1291f5aba841865f6ef16f02a887fd8f587b47f3 assets/cts_compats/blockstates/beach_grass_on_top.json
 19301dd4c7419b6d20bb54cef7a03d064da7c447 assets/cts_compats/blockstates/blackstone_bulb_on_top.json
@@ -46,7 +46,7 @@ af1c3a58e03b67c335d094ec569405ae128ec5e2 assets/cts_compats/blockstates/pink_tul
 c4c0eaa3268bc6d3c17806b2858872923a0ce7f4 assets/cts_compats/blockstates/sprout_on_top.json
 81c3a1507629b86ac10ea39b0000c5366bcb0fe8 assets/cts_compats/blockstates/sweet_berry_bush_on_top.json
 dd42badc33447bc81a45164118f0085404eff4e9 assets/cts_compats/blockstates/torchflower_on_top.json
-84bcc1f3fb88fe3626bd166965c9c65e1f9cafa5 assets/cts_compats/blockstates/tundra_shrub_on_top.json
+510c03e9d5ab787bb919cf99d49ae42bfe828797 assets/cts_compats/blockstates/tundra_shrub_on_top.json
 4071081bc617a7c910b9722c0489ccef4c016236 assets/cts_compats/blockstates/violet_on_top.json
 e6411395ab48e65e5c73bc8e9e3ea682ab6adf4a assets/cts_compats/blockstates/warped_fungus_on_top.json
 a8b616baba0b6d26c84080593163a54b0f8fa5b4 assets/cts_compats/blockstates/white_petals_on_top.json

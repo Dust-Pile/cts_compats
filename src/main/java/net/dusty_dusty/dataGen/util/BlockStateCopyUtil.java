@@ -12,7 +12,6 @@ import net.minecraftforge.client.model.generators.MultiPartBlockStateBuilder.Par
 import net.minecraftforge.common.data.ExistingFileHelper;
 
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.function.Supplier;
 
 import static net.dusty_dusty.cts_compats.CTSCompats.LOGGER;
@@ -32,8 +31,6 @@ public record BlockStateCopyUtil( ExistingFileHelper existingFileHelper ) {
                     partial = partial.with( pair.state, pair.getFirstValue() );
                 }
             }
-
-            LOGGER.info( key );
 
             builder.addModels( partial, buildModelOrModels( variants.get( key ), partial.modelForState()
             ).build() );
@@ -83,15 +80,18 @@ public record BlockStateCopyUtil( ExistingFileHelper existingFileHelper ) {
                     .uvLock( getOrDefault(() -> aModel.get("uvlock").getAsBoolean(), false) );
         } catch ( IllegalStateException e ) {
             JsonArray stateArray = modelOrModels.getAsJsonArray();
-            stateArray.forEach(element -> {
-                Map<String, JsonElement> aModel = element.getAsJsonObject().asMap();
-                builder.modelFile( new BlockModelBuilder(ResourceLocation.parse(aModel.get("model").getAsString()), existingFileHelper) )
-                        .rotationX( getOrDefault(() -> aModel.get("x").getAsInt(), 0) )
-                        .rotationY( getOrDefault(() -> aModel.get("y").getAsInt(), 0) )
-                        .uvLock( getOrDefault(() -> aModel.get("uvlock").getAsBoolean(), false) )
-                        .weight( getOrDefault(() -> aModel.get("weight").getAsInt(), 1) );
-                builder.nextModel();
-            });
+            for ( int i = 0; i < stateArray.size(); i++ ) {
+                JsonObject aModel = stateArray.get( i ).getAsJsonObject();
+                LOGGER.info(aModel.get("model").getAsString());
+                builder.modelFile(new BlockModelBuilder(ResourceLocation.parse(aModel.get("model").getAsString()), existingFileHelper))
+                        .rotationX(getOrDefault(() -> aModel.get("x").getAsInt(), 0))
+                        .rotationY(getOrDefault(() -> aModel.get("y").getAsInt(), 0))
+                        .uvLock(getOrDefault(() -> aModel.get("uvlock").getAsBoolean(), false))
+                        .weight(getOrDefault(() -> aModel.get("weight").getAsInt(), 1));
+                if ( i < stateArray.size() - 1 ) {
+                    builder = builder.nextModel();
+                }
+            }
         }
 
         return builder;
