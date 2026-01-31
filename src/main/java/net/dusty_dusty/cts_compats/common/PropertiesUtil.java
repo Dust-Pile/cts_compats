@@ -14,7 +14,7 @@ public class PropertiesUtil {
     private static final double OFFSET_VAL = -0.5;
 
     public static Properties copyAndOffsetOnTopBlockProperties( Block block ) {
-        return autoOnTopOffset( Properties.copy( block ), block );
+        return autoOnTopOffset( Properties.copy( block ), block ).dynamicShape();
     }
 
     // Checks 9 locations to ensure failure chance is abysmal
