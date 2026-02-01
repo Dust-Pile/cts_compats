@@ -27,6 +27,7 @@ public class CTSCompats
     protected static final String PVJ_MODID = "projectvibrantjourneys";
     protected static final String BOP_MODID = "biomesoplenty";
 
+    @SuppressWarnings("Convert2MethodRef")
     public CTSCompats(FMLJavaModLoadingContext context)
     {
         IEventBus modEventBus = context.getModEventBus();
