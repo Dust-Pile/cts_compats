@@ -10,7 +10,5 @@ public interface IRegistry {
 
     void register( IEventBus modEventBus );
 
-    default Optional<IColorRegistry> getColorRegistry() {
-        return Optional.empty();
-    }
+    Optional<IColorRegistry> getColorRegistry();
 }

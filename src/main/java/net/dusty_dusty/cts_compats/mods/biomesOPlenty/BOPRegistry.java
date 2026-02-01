@@ -6,6 +6,7 @@ import net.dusty_dusty.cts_compats.common.block.CustomSlabBlock;
 import net.dusty_dusty.cts_compats.common.block.GrassSlabBlock;
 import net.dusty_dusty.cts_compats.common.block.PetalBlockOnTop;
 import net.dusty_dusty.cts_compats.common.registry.AbstractRegistry;
+import net.dusty_dusty.cts_compats.common.registry.IColorRegistry;
 import net.dusty_dusty.cts_compats.mods.biomesOPlenty.block.*;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -13,6 +14,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.function.Supplier;
 
 @SuppressWarnings("unused")
@@ -21,6 +23,11 @@ public class BOPRegistry extends AbstractRegistry {
     private static final ArrayList<RegistryObject<Block>> cutoutRender = new ArrayList<>();
     public static BOPRegistry getInstance() {
         return INSTANCE;
+    }
+
+    @Override
+    public Optional<IColorRegistry> getColorRegistry() {
+        return Optional.of( new BOPColorRegistry() );
     }
 
     // Overworld Blocks
