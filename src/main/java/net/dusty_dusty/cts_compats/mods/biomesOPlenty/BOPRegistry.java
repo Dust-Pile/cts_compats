@@ -1,10 +1,10 @@
 package net.dusty_dusty.cts_compats.mods.biomesOPlenty;
 
 import biomesoplenty.api.block.BOPBlocks;
-import net.dusty_dusty.cts_compats.common.block.BasicOnTopBlock;
+import net.dusty_dusty.cts_compats.common.block.onTopBlocks.BasicOnTopBlock;
 import net.dusty_dusty.cts_compats.common.block.CustomSlabBlock;
 import net.dusty_dusty.cts_compats.common.block.GrassSlabBlock;
-import net.dusty_dusty.cts_compats.common.block.PetalBlockOnTop;
+import net.dusty_dusty.cts_compats.common.block.onTopBlocks.PetalBlockOnTop;
 import net.dusty_dusty.cts_compats.common.registry.AbstractRegistry;
 import net.dusty_dusty.cts_compats.common.registry.IColorRegistry;
 import net.dusty_dusty.cts_compats.mods.biomesOPlenty.block.*;
@@ -114,9 +114,8 @@ public class BOPRegistry extends AbstractRegistry {
     @SuppressWarnings("removal")
     public static void setRenderTypes() {
         // ItemBlockRenderTypes.setRenderLayer( MOSSY_BLACK_SAND_SLAB.get(), RenderType.cutoutMipped() );
-        cutoutRender.forEach( blockRegistryObject -> {
-            ItemBlockRenderTypes.setRenderLayer( blockRegistryObject.get(), RenderType.cutout() );
-        } );
+        cutoutRender.forEach( blockRegistryObject ->
+                ItemBlockRenderTypes.setRenderLayer( blockRegistryObject.get(), RenderType.cutout() ));
     }
 
     @SuppressWarnings("unchecked")

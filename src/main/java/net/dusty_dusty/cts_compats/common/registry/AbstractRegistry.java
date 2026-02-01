@@ -24,6 +24,7 @@ public abstract class AbstractRegistry implements IRegistry {
         return output;
     }
 
+    @SuppressWarnings("UnusedReturnValue")
     protected RegistryObject<Item> registerBlockItem(String name, RegistryObject<Block> block ) {
         return this.COMPAT_ITEMS.register( name, () -> new BlockItem( block.get(), new Item.Properties() ) );
     }

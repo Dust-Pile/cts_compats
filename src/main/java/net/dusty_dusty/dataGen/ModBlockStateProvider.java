@@ -3,7 +3,7 @@ package net.dusty_dusty.dataGen;
 import com.google.gson.JsonObject;
 import net.dusty_dusty.cts_compats.CTSCompats;
 import net.dusty_dusty.cts_compats.RegistryManager;
-import net.dusty_dusty.cts_compats.common.block.DoublePlantOnTop;
+import net.dusty_dusty.cts_compats.common.block.onTopBlocks.DoublePlantOnTop;
 import net.dusty_dusty.cts_compats.common.block.interfaces.IBlockCopyForge;
 import net.dusty_dusty.cts_compats.common.block.interfaces.IOnTopCopy;
 import net.dusty_dusty.cts_compats.common.block.interfaces.ISlabCopy;

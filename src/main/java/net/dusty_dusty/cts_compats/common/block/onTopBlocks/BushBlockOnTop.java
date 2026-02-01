@@ -1,4 +1,4 @@
-package net.dusty_dusty.cts_compats.common.block;
+package net.dusty_dusty.cts_compats.common.block.onTopBlocks;
 
 import net.dusty_dusty.cts_compats.common.block.interfaces.IAssignable;
 import net.dusty_dusty.cts_compats.common.block.interfaces.IOnTopCopy;

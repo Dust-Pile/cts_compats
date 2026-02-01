@@ -1,24 +1,14 @@
 package net.dusty_dusty.cts_compats.mods.projectVibrantJourneys;
 
 import dev.orderedchaos.projectvibrantjourneys.core.registry.PVJBlocks;
-import net.dusty_dusty.cts_compats.common.block.interfaces.IAssignable;
-import net.dusty_dusty.cts_compats.common.block.PetalBlockOnTop;
+import net.dusty_dusty.cts_compats.common.block.onTopBlocks.PetalBlockOnTop;
 import net.dusty_dusty.cts_compats.common.registry.AbstractRegistry;
 import net.dusty_dusty.cts_compats.common.registry.IColorRegistry;
-import net.dusty_dusty.cts_compats.common.registry.IRegistry;
 import net.dusty_dusty.cts_compats.mods.projectVibrantJourneys.block.*;
-import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.Optional;
-import java.util.function.Supplier;
-
-import static net.dusty_dusty.cts_compats.CTSCompats.MODID;
 
 @SuppressWarnings("unused")
 public class PVJRegistry extends AbstractRegistry {

@@ -1,6 +1,10 @@
 package net.dusty_dusty.cts_compats.mods.vanilla;
 
 import net.dusty_dusty.cts_compats.common.block.*;
+import net.dusty_dusty.cts_compats.common.block.onTopBlocks.BushBlockOnTop;
+import net.dusty_dusty.cts_compats.common.block.onTopBlocks.DoublePlantOnTop;
+import net.dusty_dusty.cts_compats.common.block.onTopBlocks.FlowerBlockOnTop;
+import net.dusty_dusty.cts_compats.common.block.onTopBlocks.PetalBlockOnTop;
 import net.dusty_dusty.cts_compats.common.registry.AbstractRegistry;
 import net.dusty_dusty.cts_compats.common.registry.IColorRegistry;
 import net.dusty_dusty.cts_compats.mods.vanilla.block.SweetBerryBushOnTop;

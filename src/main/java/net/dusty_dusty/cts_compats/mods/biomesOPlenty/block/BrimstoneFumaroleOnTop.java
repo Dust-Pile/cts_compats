@@ -1,6 +1,6 @@
 package net.dusty_dusty.cts_compats.mods.biomesOPlenty.block;
 
-import net.dusty_dusty.cts_compats.common.block.BasicOnTopBlock;
+import net.dusty_dusty.cts_compats.common.block.onTopBlocks.BasicOnTopBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.util.RandomSource;
