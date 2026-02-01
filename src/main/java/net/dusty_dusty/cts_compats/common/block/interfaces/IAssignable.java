@@ -6,7 +6,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public interface IAssignable extends IBlockCopy {
+public interface IAssignable extends IBlockCopyForge {
 
     default void assign() {
         switch ( this.getCopyType() ) {
@@ -17,7 +17,7 @@ public interface IAssignable extends IBlockCopy {
             case SLAB:
                 AssignUtil.putTerrainSlab( this.getOriginBlock(), (Block) this );
                 if ( this instanceof IDuelSlab ) {
-                    IBlockCopy duel = ( (IDuelSlab) this).getDuelSlab();
+                    IBlockCopyForge duel = ( (IDuelSlab) this).getDuelSlab();
 
                     AssignUtil.putTopSlabReplacement( (Block) this, (Block) duel );
                     AssignUtil.putBlockBelowReplacement( this.getOriginBlock(), duel.getOriginBlock() );

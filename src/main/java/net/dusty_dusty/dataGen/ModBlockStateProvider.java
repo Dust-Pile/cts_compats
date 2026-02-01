@@ -4,7 +4,7 @@ import com.google.gson.JsonObject;
 import net.dusty_dusty.cts_compats.CTSCompats;
 import net.dusty_dusty.cts_compats.RegistryManager;
 import net.dusty_dusty.cts_compats.common.block.DoublePlantOnTop;
-import net.dusty_dusty.cts_compats.common.block.interfaces.IBlockCopy;
+import net.dusty_dusty.cts_compats.common.block.interfaces.IBlockCopyForge;
 import net.dusty_dusty.cts_compats.common.block.interfaces.IOnTopCopy;
 import net.dusty_dusty.cts_compats.common.block.interfaces.ISlabCopy;
 import net.dusty_dusty.dataGen.util.BlockStateCopyUtil;
@@ -110,7 +110,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
     }
 
     @SuppressWarnings("deprecation")
-    private void copyItemModel( IBlockCopy blockCopy ) {
+    private void copyItemModel( IBlockCopyForge blockCopy ) {
         ResourceLocation origItem = BuiltInRegistries.ITEM.getKey( blockCopy.getOriginBlock().asItem() );
 
         itemModels().getBuilder( "item/" + ((Block) blockCopy).asItem().getDescriptionId().split("\\.")[2] )
@@ -118,7 +118,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
     }
 
     @SuppressWarnings("deprecation")
-    private JsonObject getBlockJson(IBlockCopy blockCopy, String prefix ) {
+    private JsonObject getBlockJson(IBlockCopyForge blockCopy, String prefix ) {
         ResourceLocation loc = BuiltInRegistries.BLOCK.getKey( blockCopy.getOriginBlock() );
 
         try {
