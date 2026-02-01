@@ -1,7 +1,0 @@
-{
-  "parent": "terrainslabs:block/ontop/tinted_cross",
-  "textures": {
-    "cross": "#cross"
-  },
-  "render_type": "cutout"
-}

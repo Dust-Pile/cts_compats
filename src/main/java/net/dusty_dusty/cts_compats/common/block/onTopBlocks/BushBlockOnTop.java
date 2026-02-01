@@ -27,12 +27,6 @@ public class BushBlockOnTop extends BushBlock implements IAssignable, IOnTopCopy
         this.shape = shape;
     }
 
-    protected BushBlockOnTop( DoublePlantBlock originalBlock, VoxelShape shape ) {
-        super( BlockBehaviour.Properties.copy( originalBlock ) );
-        this.originalBlock = originalBlock;
-        this.shape = shape;
-    }
-
     public Block getOriginBlock() {
         return originalBlock;
     }

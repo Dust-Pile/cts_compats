@@ -41,12 +41,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 Block block = entry.get();
                 LOGGER.info( "Auto Generating files for {} if applicable", block );
                 if ( block instanceof IOnTopCopy onTopCopy ) {
-                    if ( onTopCopy instanceof DoublePlantOnTop ) {
-                        // TODO: Automate Double Plant Model
-                        copyItemModel( onTopCopy );
-                    } else {
-                        simpleBlockCopy( onTopCopy );
-                    }
+                    simpleBlockCopy( onTopCopy );
                 } else if ( block instanceof ISlabCopy slabCopy && slabCopy instanceof SlabBlock &&
                         slabCopy.getCopyModelType() != ISlabCopy.CopyModelType.TINTED_OVERLAY )
                 {
