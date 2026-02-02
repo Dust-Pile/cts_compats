@@ -26,7 +26,7 @@ public interface IAssignable extends IBlockCopyForge {
         }
     }
 
-    class AssignUtil {
+    final class AssignUtil {
         public static final VoxelShape FULL_BLOCK_ON_SLAB = Block.box( 0.0D, -8.0D, 0.0D, 16.0D, 8.0D, 16.0D );
 
         public static void putOnTopVegetation( Block key, Block value ) {
@@ -65,5 +65,4 @@ public interface IAssignable extends IBlockCopyForge {
             return new String[] { strings[1], strings[2] };
         }
     }
-
 }
