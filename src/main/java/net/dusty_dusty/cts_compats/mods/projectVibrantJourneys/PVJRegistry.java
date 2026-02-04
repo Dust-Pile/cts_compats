@@ -1,6 +1,7 @@
 package net.dusty_dusty.cts_compats.mods.projectVibrantJourneys;
 
 import dev.orderedchaos.projectvibrantjourneys.core.registry.PVJBlocks;
+import net.dusty_dusty.cts_compats.common.block.onTopBlocks.DoublePlantOnTop;
 import net.dusty_dusty.cts_compats.common.block.onTopBlocks.PetalBlockOnTop;
 import net.dusty_dusty.cts_compats.common.registry.AbstractRegistry;
 import net.dusty_dusty.cts_compats.common.registry.IColorRegistry;
@@ -33,6 +34,10 @@ public class PVJRegistry extends AbstractRegistry {
             () -> new ThornsBlockOnTop( PVJBlocks.PRICKLY_BUSH.get() ) );
     public static final RegistryObject<Block> GLOWCAP_ON_TOP = INSTANCE.registerBlock( "glowcap_on_top",
             () -> new GlowcapOnTop( PVJBlocks.GLOWCAP.get() ) );
+
+    // Tall Plants
+    public static final RegistryObject<Block> SEA_OATS_ON_TOP = INSTANCE.registerBlock( "vibrant_sea_oats_on_top",
+            () -> new DoublePlantOnTop( PVJBlocks.SEA_OATS.get() ) );
 
     // Fallen Leaves
     public static final RegistryObject<Block> FALLEN_LEAVES_ON_TOP = INSTANCE.registerBlock( "fallen_leaves_on_top",

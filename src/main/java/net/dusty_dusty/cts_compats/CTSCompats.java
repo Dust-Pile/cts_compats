@@ -22,7 +22,7 @@ public class CTSCompats
 {
     public static final String MODID = "cts_compats";
     public static final Logger LOGGER = LogUtils.getLogger();
-    public final RegistryManager registryManager;
+    public final RegistryManager REGISTRY_MANAGER;
 
     protected static final String PVJ_MODID = "projectvibrantjourneys";
     protected static final String BOP_MODID = "biomesoplenty";
@@ -33,7 +33,7 @@ public class CTSCompats
         IEventBus modEventBus = context.getModEventBus();
 
         try {
-            registryManager = new RegistryManager( modEventBus );
+            REGISTRY_MANAGER = new RegistryManager( modEventBus );
         } catch (IllegalAccessException e) {
             throw new RuntimeException(e);
         }
@@ -43,8 +43,8 @@ public class CTSCompats
         MinecraftForge.EVENT_BUS.register(this);
 
         // Compats, must use lambda to avoid class loading
-        registryManager.register( PVJ_MODID, () -> PVJRegistry.getInstance() );
-        registryManager.register( BOP_MODID, () -> BOPRegistry.getInstance() );
+        REGISTRY_MANAGER.register( PVJ_MODID, () -> PVJRegistry.getInstance() );
+        REGISTRY_MANAGER.register( BOP_MODID, () -> BOPRegistry.getInstance() );
     }
 
     @SuppressWarnings("removal")

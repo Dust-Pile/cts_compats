@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "biomesoplenty:block/goldenrod_bottom"
+    },
+    "half=upper": {
+      "model": "biomesoplenty:block/goldenrod_top"
+    }
+  }
+}
