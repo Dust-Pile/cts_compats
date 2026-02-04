@@ -9,13 +9,15 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+import java.util.Collection;
+import java.util.Set;
 import java.util.function.Supplier;
 
 import static net.dusty_dusty.cts_compats.CTSCompats.MODID;
 
 public abstract class AbstractRegistry implements IRegistry {
-    public final DeferredRegister<Block> COMPAT_BLOCKS = DeferredRegister.create( ForgeRegistries.BLOCKS, MODID );
-    public final DeferredRegister<Item> COMPAT_ITEMS = DeferredRegister.create( ForgeRegistries.ITEMS, MODID );
+    protected final DeferredRegister<Block> COMPAT_BLOCKS = DeferredRegister.create( ForgeRegistries.BLOCKS, MODID );
+    protected final DeferredRegister<Item> COMPAT_ITEMS = DeferredRegister.create( ForgeRegistries.ITEMS, MODID );
 
     @SuppressWarnings("unchecked")
     protected <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block ) {
@@ -41,6 +43,10 @@ public abstract class AbstractRegistry implements IRegistry {
                 ( (IAssignable) block ).assign();
             }
         });
+    }
+
+    public Collection<RegistryObject<Block>> getRegistryBlocks() {
+        return COMPAT_BLOCKS.getEntries();
     }
 
 }

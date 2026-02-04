@@ -3,6 +3,7 @@ package net.dusty_dusty.cts_compats;
 import com.mojang.logging.LogUtils;
 import net.dusty_dusty.cts_compats.common.block.interfaces.IOnTopCopy;
 import net.dusty_dusty.cts_compats.mods.biomesOPlenty.BOPRegistry;
+import net.dusty_dusty.cts_compats.mods.biomesOPlenty.BOPVersionRouter;
 import net.dusty_dusty.cts_compats.mods.projectVibrantJourneys.PVJRegistry;
 import net.dusty_dusty.cts_compats.mods.vanilla.VanillaRegistry;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
@@ -44,13 +45,13 @@ public class CTSCompats
 
         // Compats, must use lambda to avoid class loading
         REGISTRY_MANAGER.register( PVJ_MODID, () -> PVJRegistry.getInstance() );
-        REGISTRY_MANAGER.register( BOP_MODID, () -> BOPRegistry.getInstance() );
+        REGISTRY_MANAGER.register( BOP_MODID, () -> BOPVersionRouter.getInstance() );
     }
 
     @SuppressWarnings("removal")
     private void clientSetup(final FMLClientSetupEvent event) {
-        // Have to do it this way if I want to copy vanilla blockstates. Gives better resourcepack compatibility.
-        for( RegistryObject<Block> blockRegister : VanillaRegistry.getInstance().COMPAT_BLOCKS.getEntries() ) {
+        // Have to do it this way if I want to copy vanilla blockstates. Gives better resource pack compatibility.
+        for( RegistryObject<Block> blockRegister : VanillaRegistry.getInstance().getRegistryBlocks() ) {
             if ( blockRegister.get() instanceof IOnTopCopy ) {
                 ItemBlockRenderTypes.setRenderLayer( blockRegister.get(), RenderType.cutout() );
             }

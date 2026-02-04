@@ -15,6 +15,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
@@ -23,8 +25,9 @@ import static net.dusty_dusty.cts_compats.CTSCompats.LOGGER;
 
 public class RegistryManager {
     final IEventBus MOD_EVENT_BUS;
-    final ArrayList<AbstractRegistry> REGISTRIES = new ArrayList<>();
+    final ArrayList<IRegistry> REGISTRIES = new ArrayList<>();
 
+    public static final Map<String, String> LOADED_MODS = new HashMap<>();
     private static RegistryManager INSTANCE;
     public static RegistryManager getInstance() {
         return INSTANCE;
@@ -43,14 +46,14 @@ public class RegistryManager {
         INSTANCE = this;
     }
 
-    public static void forEachRegistry( Consumer<AbstractRegistry> consumer ) {
+    public static void forEachRegistry( Consumer<IRegistry> consumer ) {
         INSTANCE.REGISTRIES.forEach( consumer );
     }
 
-    public boolean register( String modid, Supplier<AbstractRegistry> registrySupplier ) {
+    public boolean register( String modid, Supplier<IRegistry> registrySupplier ) {
         return runModCompat( modid, () -> register( registrySupplier.get() ) );
     }
-    private void register( AbstractRegistry registry ) {
+    private void register( IRegistry registry ) {
         REGISTRIES.add( registry );
         registry.register( MOD_EVENT_BUS );
     }
@@ -60,6 +63,7 @@ public class RegistryManager {
         REGISTRIES.forEach( IRegistry::assign );
     }
 
+    @SuppressWarnings("Convert2MethodRef") // Method Reference loads class. Unacceptable.
     private void clientSetup(final FMLClientSetupEvent event) {
         runModCompat( CTSCompats.BOP_MODID, () -> BOPRegistry.setRenderTypes() );
     }
@@ -83,10 +87,11 @@ public class RegistryManager {
         }
     }
 
-    private static boolean runModCompat( String modid, Runnable initializer ) {
+    private static boolean runModCompat( String modid, Runnable registry ) {
         if ( ModList.get().isLoaded( modid ) ) {
-            LOGGER.info( "Loading Runnable for {}.", modid );
-            initializer.run();
+            LOADED_MODS.put( modid, ModList.get().getModFileById( modid ).versionString() );
+            LOGGER.info( "Loading Runnable for {} version {}.", modid, LOADED_MODS.get( modid ) );
+            registry.run();
             return true;
         }
         return false;

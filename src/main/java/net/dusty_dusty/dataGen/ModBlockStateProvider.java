@@ -37,7 +37,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         RegistryManager.forEachRegistry( registry -> {
-            for ( RegistryObject<Block> entry : registry.COMPAT_BLOCKS.getEntries() ) {
+            for ( RegistryObject<Block> entry : registry.getRegistryBlocks() ) {
                 Block block = entry.get();
                 LOGGER.info( "Auto Generating files for {} if applicable", block );
                 if ( block instanceof IOnTopCopy onTopCopy ) {
