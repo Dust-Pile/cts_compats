@@ -7,10 +7,13 @@ public class BOPColorRegistry extends AbstractColorRegistry {
     @Override
     public void onColorHandlerEventBlock(RegisterColorHandlersEvent.Block event) {
         event.register(getFoliageColor(), BOPRegistry.BUSH_ON_TOP.get() );
-        event.register(getGrassColor(), BOPRegistry.MOSSY_BLACK_SAND_SLAB.get());
-        event.register(getGrassColor(), BOPRegistry.WHITE_PETALS_ON_TOP.get());
-        event.register(getGrassColor(), BOPRegistry.SPROUT_ON_TOP.get());
-        event.register(getGrassColor(), BOPRegistry.CLOVER_ON_TOP.get());
+        event.register(getGrassColor(),
+                BOPRegistry.MOSSY_BLACK_SAND_SLAB.get(),
+                BOPRegistry.WHITE_PETALS_ON_TOP.get(),
+                BOPRegistry.SPROUT_ON_TOP.get(),
+                BOPRegistry.CLOVER_ON_TOP.get(),
+                BOPRegistry.BARLEY_ON_TOP.get()
+        );
     }
 
     @Override
