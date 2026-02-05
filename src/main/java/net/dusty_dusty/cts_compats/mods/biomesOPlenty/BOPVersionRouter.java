@@ -14,7 +14,7 @@ public final class BOPVersionRouter extends AbstractVersionRouter {
         VERSION_MAP.put( "*", () -> BOPRegistry.getInstance() );
     }
 
-    private static final BOPVersionRouter INSTANCE = new BOPVersionRouter( "biomesoplenty", VERSION_MAP );
+    private static final BOPVersionRouter INSTANCE = new BOPVersionRouter( BOP_MODID, VERSION_MAP );
     public static BOPVersionRouter getInstance() {
         return INSTANCE;
     }

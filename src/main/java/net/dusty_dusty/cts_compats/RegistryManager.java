@@ -65,7 +65,7 @@ public class RegistryManager {
 
     @SuppressWarnings("Convert2MethodRef") // Method Reference loads class. Unacceptable.
     private void clientSetup(final FMLClientSetupEvent event) {
-        runModCompat( CTSCompats.BOP_MODID, () -> BOPRegistry.setRenderTypes() );
+        runModCompat( IRegistry.BOP_MODID, () -> BOPRegistry.setRenderTypes() );
     }
 
     @Mod.EventBusSubscriber( modid = CTSCompats.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)

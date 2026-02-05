@@ -2,6 +2,7 @@ package net.dusty_dusty.cts_compats;
 
 import com.mojang.logging.LogUtils;
 import net.dusty_dusty.cts_compats.common.block.interfaces.IOnTopCopy;
+import net.dusty_dusty.cts_compats.common.registry.IRegistry;
 import net.dusty_dusty.cts_compats.mods.biomesOPlenty.BOPRegistry;
 import net.dusty_dusty.cts_compats.mods.biomesOPlenty.BOPVersionRouter;
 import net.dusty_dusty.cts_compats.mods.projectVibrantJourneys.PVJRegistry;
@@ -25,9 +26,6 @@ public class CTSCompats
     public static final Logger LOGGER = LogUtils.getLogger();
     public final RegistryManager REGISTRY_MANAGER;
 
-    protected static final String PVJ_MODID = "projectvibrantjourneys";
-    protected static final String BOP_MODID = "biomesoplenty";
-
     @SuppressWarnings("Convert2MethodRef")
     public CTSCompats(FMLJavaModLoadingContext context)
     {
@@ -44,8 +42,8 @@ public class CTSCompats
         MinecraftForge.EVENT_BUS.register(this);
 
         // Compats, must use lambda to avoid class loading
-        REGISTRY_MANAGER.register( PVJ_MODID, () -> PVJRegistry.getInstance() );
-        REGISTRY_MANAGER.register( BOP_MODID, () -> BOPVersionRouter.getInstance() );
+        REGISTRY_MANAGER.register( IRegistry.PVJ_MODID, () -> PVJRegistry.getInstance() );
+        REGISTRY_MANAGER.register( IRegistry.BOP_MODID, () -> BOPVersionRouter.getInstance() );
     }
 
     @SuppressWarnings("removal")

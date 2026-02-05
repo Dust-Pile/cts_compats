@@ -8,6 +8,8 @@ import java.util.Collection;
 import java.util.Optional;
 
 public interface IRegistry {
+    String PVJ_MODID = "projectvibrantjourneys";
+    String BOP_MODID = "biomesoplenty";
 
     void assign();
 
