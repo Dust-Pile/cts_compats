@@ -1,6 +1,6 @@
 package net.dusty_dusty.cts_compats.common.block.interfaces;
 
-public interface IOnTopCopy extends IBlockCopy {
+public interface IOnTopCopy extends IBlockCopyForge {
 
     @Override
     default BlockCopyType getCopyType() {

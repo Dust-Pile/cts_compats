@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "biomesoplenty:block/watergrass_bottom"
+    },
+    "half=upper": {
+      "model": "biomesoplenty:block/watergrass_top"
+    }
+  }
+}

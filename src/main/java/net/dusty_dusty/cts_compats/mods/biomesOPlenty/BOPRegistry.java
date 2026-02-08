@@ -1,10 +1,12 @@
 package net.dusty_dusty.cts_compats.mods.biomesOPlenty;
 
 import biomesoplenty.api.block.BOPBlocks;
-import net.dusty_dusty.cts_compats.common.block.BasicOnTopBlock;
+import net.dusty_dusty.cts_compats.common.block.onTopBlocks.BasicOnTopBlock;
 import net.dusty_dusty.cts_compats.common.block.CustomSlabBlock;
 import net.dusty_dusty.cts_compats.common.block.GrassSlabBlock;
-import net.dusty_dusty.cts_compats.common.block.PetalBlockOnTop;
+import net.dusty_dusty.cts_compats.common.block.onTopBlocks.BushBlockOnTop;
+import net.dusty_dusty.cts_compats.common.block.onTopBlocks.DoublePlantOnTop;
+import net.dusty_dusty.cts_compats.common.block.onTopBlocks.PetalBlockOnTop;
 import net.dusty_dusty.cts_compats.common.registry.AbstractRegistry;
 import net.dusty_dusty.cts_compats.common.registry.IColorRegistry;
 import net.dusty_dusty.cts_compats.mods.biomesOPlenty.block.*;
@@ -37,14 +39,17 @@ public class BOPRegistry extends AbstractRegistry {
             () -> new SandSlabBlockBOP( BOPBlocks.ORANGE_SAND.get() ) );
     public static final RegistryObject<Block> BLACK_SAND_SLAB = INSTANCE.registerBlock( "black_sand_slab",
             () -> new SandSlabBlockBOP( BOPBlocks.BLACK_SAND.get() ) );
+    // TODO: mossy black sand texture
     public static final RegistryObject<Block> MOSSY_BLACK_SAND_SLAB = INSTANCE.registerBlock( "mossy_black_sand_slab",
             () -> new MossyBlackSandSlab( BOPBlocks.MOSSY_BLACK_SAND.get() ) );
     public static final RegistryObject<Block> DRIED_SALT_SLAB = INSTANCE.registerBlock( "dried_salt_slab",
             () -> new DriedSaltSlab( BOPBlocks.DRIED_SALT.get() ) );
 
-    public static final RegistryObject<Block> ORIGIN_GRASS_SLAB = INSTANCE.registerBlock( "origin_grass_slab",
-            () -> new GrassSlabBlock( BOPBlocks.ORIGIN_GRASS_BLOCK.get() ) );
+    // TODO: Fix the grass
+//    public static final RegistryObject<Block> ORIGIN_GRASS_SLAB = INSTANCE.registerBlock( "origin_grass_slab",
+//            () -> new GrassSlabBlock( BOPBlocks.ORIGIN_GRASS_BLOCK.get() ) );
 
+    // TODO: mayPlaceOn mixins so that the plants place properly :annoyed:
     // Overworld On Top Plants
         // Foliage
     public static final RegistryObject<Block> SPROUT_ON_TOP = INSTANCE.registerBlockCutout( "sprout_on_top",
@@ -59,6 +64,8 @@ public class BOPRegistry extends AbstractRegistry {
             () -> new FoliageOnTopBOP( BOPBlocks.DESERT_GRASS.get() ) );
     public static final RegistryObject<Block> TUNDRA_SHRUB_ON_TOP = INSTANCE.registerBlockCutout( "tundra_shrub_on_top",
             () -> new FoliageOnTopBOP( BOPBlocks.TUNDRA_SHRUB.get() ) );
+    public static final RegistryObject<Block> TOADSTOOL_ON_TOP = INSTANCE.registerBlockCutout( "toadstool_on_top",
+            () -> new BushBlockOnTop( BOPBlocks.TOADSTOOL.get(), Block.box( 5.0D, -8.0D, 5.0D, 11.0D, -2.0D, 11.0D ) ) );
         // Petals
     public static final RegistryObject<Block> CLOVER_ON_TOP = INSTANCE.registerBlockCutout( "clover_on_top",
             () -> new PetalBlockOnTop( BOPBlocks.CLOVER.get() ) );
@@ -85,6 +92,25 @@ public class BOPRegistry extends AbstractRegistry {
             () -> new FlowerOnTopBOP( BOPBlocks.GLOWFLOWER.get() ) );
     public static final RegistryObject<Block> BURNING_BLOSSOM_ON_TOP = INSTANCE.registerBlockCutout( "burning_blossom_on_top",
             () -> new BurningBlossomOnTop( BOPBlocks.BURNING_BLOSSOM.get() ) );
+        // Tall plants / flowers
+    public static final RegistryObject<Block> SEA_OATS_ON_TOP = INSTANCE.registerBlockCutout( "sea_oats_on_top",
+            () -> new SeaOatBOP( BOPBlocks.SEA_OATS.get() ) );
+    public static final RegistryObject<Block> BARLEY_ON_TOP = INSTANCE.registerBlockCutout( "barley_on_top",
+            () -> new DoublePlantBOP( BOPBlocks.BARLEY.get() ) );
+    public static final RegistryObject<Block> GOLDENROD_ON_TOP = INSTANCE.registerBlockCutout( "goldenrod_on_top",
+            () -> new DoubleFlowerBOP( BOPBlocks.GOLDENROD.get() ) );
+    public static final RegistryObject<Block> TALL_LAVENDER_ON_TOP = INSTANCE.registerBlockCutout( "tall_lavender_on_top",
+            () -> new DoubleFlowerBOP( BOPBlocks.TALL_LAVENDER.get() ) );
+    public static final RegistryObject<Block> BLUE_HYDRANGEA_ON_TOP = INSTANCE.registerBlockCutout( "blue_hydrangea_on_top",
+            () -> new DoubleFlowerBOP( BOPBlocks.BLUE_HYDRANGEA.get() ) );
+    public static final RegistryObject<Block> ICY_IRIS_ON_TOP = INSTANCE.registerBlockCutout( "icy_iris_on_top",
+            () -> new DoubleFlowerBOP( BOPBlocks.ICY_IRIS.get() ) );
+    public static final RegistryObject<Block> CATTAIL_ON_TOP = INSTANCE.registerBlockCutout( "cattail_on_top",
+            () -> new DoubleFlowerBOP( BOPBlocks.CATTAIL.get() ) );
+    public static final RegistryObject<Block> REED_ON_TOP = INSTANCE.registerBlockCutout( "reed_on_top",
+            () -> new DoubleFlowerBOP( BOPBlocks.REED.get() ) );
+    public static final RegistryObject<Block> WATERGRASS_ON_TOP = INSTANCE.registerBlockCutout( "watergrass_on_top",
+            () -> new DoubleFlowerBOP( BOPBlocks.WATERGRASS.get() ) );
 
     // Nether Blocks
     public static final RegistryObject<Block> FLESH_SLAB = INSTANCE.registerBlock( "flesh_slab",
@@ -100,6 +126,8 @@ public class BOPRegistry extends AbstractRegistry {
             () -> new BasicOnTopBlock( BOPBlocks.HAIR.get(), Block.box(1.0F, -8.0F, 1.0F, 15.0F, 4.0F, 15.0F) ) );
     public static final RegistryObject<Block> PUS_BUBBLE_ON_TOP = INSTANCE.registerBlockCutout( "pus_bubble_on_top",
             () -> new PusBubbleOnTop( BOPBlocks.PUS_BUBBLE.get() ) );
+    public static final RegistryObject<Block> EYEBULB_ON_TOP = INSTANCE.registerBlockCutout( "eyebulb_on_top",
+            () -> new DoublePlantOnTop( BOPBlocks.EYEBULB.get() ) );
         // Blackstone
     public static final RegistryObject<Block> BLACKSTONE_BULB_ON_TOP = INSTANCE.registerBlockCutout( "blackstone_bulb_on_top",
             () -> new BasicOnTopBlock( BOPBlocks.BLACKSTONE_BULB.get(), Block.box(1.0F, -8.0F, 1.0F, 15.0F, 0.0F, 15.0F) ) );
@@ -110,13 +138,16 @@ public class BOPRegistry extends AbstractRegistry {
             () -> new BasicOnTopBlock( BOPBlocks.BRIMSTONE_BUD.get(), Block.box(2.0F, -8.0F, 2.0F, 14.0F, -5.0F, 14.0F) ) );
     public static final RegistryObject<Block> BRIMSTONE_FUMAROLE_ON_TOP = INSTANCE.registerBlock( "brimstone_fumarole_on_top",
             () -> new BrimstoneFumaroleOnTop( BOPBlocks.BRIMSTONE_FUMAROLE.get() ) );
+    public static final RegistryObject<Block> BRIMSTONE_CLUSTER_ON_TOP = INSTANCE.registerBlockCutout( "brimstone_cluster_on_top",
+            () -> new BrimstoneClusterOnTop( BOPBlocks.BRIMSTONE_CLUSTER.get() ) );
+
+
 
     @SuppressWarnings("removal")
     public static void setRenderTypes() {
-        // ItemBlockRenderTypes.setRenderLayer( MOSSY_BLACK_SAND_SLAB.get(), RenderType.cutoutMipped() );
-        cutoutRender.forEach( blockRegistryObject -> {
-            ItemBlockRenderTypes.setRenderLayer( blockRegistryObject.get(), RenderType.cutout() );
-        } );
+        ItemBlockRenderTypes.setRenderLayer( MOSSY_BLACK_SAND_SLAB.get(), RenderType.cutoutMipped() );
+        cutoutRender.forEach( blockRegistryObject ->
+                ItemBlockRenderTypes.setRenderLayer( blockRegistryObject.get(), RenderType.cutout() ));
     }
 
     @SuppressWarnings("unchecked")
