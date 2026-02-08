@@ -1,7 +1,7 @@
 package net.dusty_dusty.cts_compats.mods.biomesOPlenty.block;
 
 import biomesoplenty.api.block.BOPBlocks;
-import net.dusty_dusty.cts_compats.common.block.onTopBlocks.BushBlockOnTop;
+import net.dusty_dusty.cts_compats.common.block.BushBlockOnTop;
 import net.minecraft.core.BlockPos;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.entity.player.Player;

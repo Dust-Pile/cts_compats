@@ -1,6 +1,6 @@
 package net.dusty_dusty.cts_compats.mods.projectVibrantJourneys.block;
 
-import net.dusty_dusty.cts_compats.common.block.onTopBlocks.BushBlockOnTop;
+import net.dusty_dusty.cts_compats.common.block.BushBlockOnTop;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;

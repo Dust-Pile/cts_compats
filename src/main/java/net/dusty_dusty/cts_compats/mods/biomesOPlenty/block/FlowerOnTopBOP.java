@@ -2,7 +2,7 @@ package net.dusty_dusty.cts_compats.mods.biomesOPlenty.block;
 
 import biomesoplenty.api.block.BOPBlocks;
 import biomesoplenty.common.block.FlowerBlockBOP;
-import net.dusty_dusty.cts_compats.common.block.onTopBlocks.FlowerBlockOnTop;
+import net.dusty_dusty.cts_compats.common.block.FlowerBlockOnTop;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.level.BlockGetter;

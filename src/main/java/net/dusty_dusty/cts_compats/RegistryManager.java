@@ -15,19 +15,16 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 import static net.dusty_dusty.cts_compats.CTSCompats.LOGGER;
 
-public final class RegistryManager {
+public class RegistryManager {
     final IEventBus MOD_EVENT_BUS;
-    final ArrayList<IRegistry> REGISTRIES = new ArrayList<>();
+    final ArrayList<AbstractRegistry> REGISTRIES = new ArrayList<>();
 
-    public static final Map<String, String> LOADED_MODS = new HashMap<>();
     private static RegistryManager INSTANCE;
     public static RegistryManager getInstance() {
         return INSTANCE;
@@ -46,14 +43,14 @@ public final class RegistryManager {
         INSTANCE = this;
     }
 
-    public static void forEachRegistry( Consumer<IRegistry> consumer ) {
+    public static void forEachRegistry( Consumer<AbstractRegistry> consumer ) {
         INSTANCE.REGISTRIES.forEach( consumer );
     }
 
-    public boolean register( String modid, Supplier<IRegistry> registrySupplier ) {
+    public boolean register( String modid, Supplier<AbstractRegistry> registrySupplier ) {
         return runModCompat( modid, () -> register( registrySupplier.get() ) );
     }
-    private void register( IRegistry registry ) {
+    private void register( AbstractRegistry registry ) {
         REGISTRIES.add( registry );
         registry.register( MOD_EVENT_BUS );
     }
@@ -63,9 +60,8 @@ public final class RegistryManager {
         REGISTRIES.forEach( IRegistry::assign );
     }
 
-    @SuppressWarnings("Convert2MethodRef") // Method Reference loads class. Unacceptable.
     private void clientSetup(final FMLClientSetupEvent event) {
-        runModCompat( IRegistry.BOP_MODID, () -> BOPRegistry.setRenderTypes() );
+        runModCompat( CTSCompats.BOP_MODID, () -> BOPRegistry.setRenderTypes() );
     }
 
     @Mod.EventBusSubscriber( modid = CTSCompats.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
@@ -87,11 +83,10 @@ public final class RegistryManager {
         }
     }
 
-    private static boolean runModCompat( String modid, Runnable registry ) {
+    private static boolean runModCompat( String modid, Runnable initializer ) {
         if ( ModList.get().isLoaded( modid ) ) {
-            LOADED_MODS.put( modid, ModList.get().getModFileById( modid ).versionString() );
-            LOGGER.info( "Loading Runnable for {} version {}.", modid, LOADED_MODS.get( modid ) );
-            registry.run();
+            LOGGER.info( "Loading Runnable for {}.", modid );
+            initializer.run();
             return true;
         }
         return false;

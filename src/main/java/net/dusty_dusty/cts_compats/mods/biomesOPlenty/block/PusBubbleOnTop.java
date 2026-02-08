@@ -1,7 +1,8 @@
 package net.dusty_dusty.cts_compats.mods.biomesOPlenty.block;
 
 import biomesoplenty.init.ModParticles;
-import net.dusty_dusty.cts_compats.common.block.onTopBlocks.BasicOnTopBlock;
+import biomesoplenty.init.ModTags;
+import net.dusty_dusty.cts_compats.common.block.BasicOnTopBlock;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;

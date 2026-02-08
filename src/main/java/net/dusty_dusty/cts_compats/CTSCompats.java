@@ -2,9 +2,7 @@ package net.dusty_dusty.cts_compats;
 
 import com.mojang.logging.LogUtils;
 import net.dusty_dusty.cts_compats.common.block.interfaces.IOnTopCopy;
-import net.dusty_dusty.cts_compats.common.registry.IRegistry;
 import net.dusty_dusty.cts_compats.mods.biomesOPlenty.BOPRegistry;
-import net.dusty_dusty.cts_compats.mods.biomesOPlenty.BOPVersionRouter;
 import net.dusty_dusty.cts_compats.mods.projectVibrantJourneys.PVJRegistry;
 import net.dusty_dusty.cts_compats.mods.vanilla.VanillaRegistry;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
@@ -20,19 +18,21 @@ import net.minecraftforge.registries.RegistryObject;
 import org.slf4j.Logger;
 
 @Mod(CTSCompats.MODID)
-public final class CTSCompats
+public class CTSCompats
 {
     public static final String MODID = "cts_compats";
     public static final Logger LOGGER = LogUtils.getLogger();
-    public final RegistryManager REGISTRY_MANAGER;
+    public final RegistryManager registryManager;
 
-    @SuppressWarnings("Convert2MethodRef")
+    protected static final String PVJ_MODID = "projectvibrantjourneys";
+    protected static final String BOP_MODID = "biomesoplenty";
+
     public CTSCompats(FMLJavaModLoadingContext context)
     {
         IEventBus modEventBus = context.getModEventBus();
 
         try {
-            REGISTRY_MANAGER = new RegistryManager( modEventBus );
+            registryManager = new RegistryManager( modEventBus );
         } catch (IllegalAccessException e) {
             throw new RuntimeException(e);
         }
@@ -42,14 +42,14 @@ public final class CTSCompats
         MinecraftForge.EVENT_BUS.register(this);
 
         // Compats, must use lambda to avoid class loading
-        REGISTRY_MANAGER.register( IRegistry.PVJ_MODID, () -> PVJRegistry.getInstance() );
-        REGISTRY_MANAGER.register( IRegistry.BOP_MODID, () -> BOPVersionRouter.getInstance() );
+        registryManager.register( PVJ_MODID, () -> PVJRegistry.getInstance() );
+        registryManager.register( BOP_MODID, () -> BOPRegistry.getInstance() );
     }
 
     @SuppressWarnings("removal")
     private void clientSetup(final FMLClientSetupEvent event) {
-        // Have to do it this way if I want to copy vanilla blockstates. Gives better resource pack compatibility.
-        for( RegistryObject<Block> blockRegister : VanillaRegistry.getInstance().getRegistryBlocks() ) {
+        // Have to do it this way if I want to copy vanilla blockstates. Gives better resourcepack compatibility.
+        for( RegistryObject<Block> blockRegister : VanillaRegistry.getInstance().COMPAT_BLOCKS.getEntries() ) {
             if ( blockRegister.get() instanceof IOnTopCopy ) {
                 ItemBlockRenderTypes.setRenderLayer( blockRegister.get(), RenderType.cutout() );
             }

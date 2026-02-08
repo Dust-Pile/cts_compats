@@ -1,7 +1,6 @@
 package net.dusty_dusty.cts_compats.mods.vanilla;
 
 import net.dusty_dusty.cts_compats.common.block.*;
-import net.dusty_dusty.cts_compats.common.block.onTopBlocks.*;
 import net.dusty_dusty.cts_compats.common.registry.AbstractRegistry;
 import net.dusty_dusty.cts_compats.common.registry.IColorRegistry;
 import net.dusty_dusty.cts_compats.mods.vanilla.block.SweetBerryBushOnTop;
@@ -70,12 +69,12 @@ public class VanillaRegistry extends AbstractRegistry {
     public static final RegistryObject<Block> PITCHER_PLANT_ON_TOP =
             INSTANCE.registerBlock( "pitcher_plant_on_top", () -> new DoublePlantOnTop( Blocks.PITCHER_PLANT ) );
     public static final RegistryObject<Block> PEONY_ON_TOP =
-            INSTANCE.registerBlock( "peony_on_top", () -> new DoubleFlowerOnTop( Blocks.PEONY ) );
+            INSTANCE.registerBlock( "peony_on_top", () -> new DoublePlantOnTop( Blocks.PEONY ) );
     public static final RegistryObject<Block> ROSE_BUSH_ON_TOP =
-            INSTANCE.registerBlock( "rose_bush_on_top", () -> new DoubleFlowerOnTop( Blocks.ROSE_BUSH ) );
+            INSTANCE.registerBlock( "rose_bush_on_top", () -> new DoublePlantOnTop( Blocks.ROSE_BUSH ) );
     public static final RegistryObject<Block> SUNFLOWER_ON_TOP =
-            INSTANCE.registerBlock( "sunflower_on_top", () -> new DoubleFlowerOnTop( Blocks.SUNFLOWER ) );
+            INSTANCE.registerBlock( "sunflower_on_top", () -> new DoublePlantOnTop( Blocks.SUNFLOWER ) );
     public static final RegistryObject<Block> LILAC_ON_TOP =
-            INSTANCE.registerBlock( "lilac_on_top", () -> new DoubleFlowerOnTop( Blocks.LILAC ) );
+            INSTANCE.registerBlock( "lilac_on_top", () -> new DoublePlantOnTop( Blocks.LILAC ) );
 
 }

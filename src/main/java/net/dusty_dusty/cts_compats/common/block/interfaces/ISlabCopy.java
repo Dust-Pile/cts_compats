@@ -1,6 +1,6 @@
 package net.dusty_dusty.cts_compats.common.block.interfaces;
 
-public interface ISlabCopy extends IBlockCopyForge {
+public interface ISlabCopy extends IBlockCopy {
 
     @Override
     default BlockCopyType getCopyType() {
