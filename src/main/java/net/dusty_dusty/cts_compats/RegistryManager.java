@@ -23,7 +23,7 @@ import java.util.function.Supplier;
 
 import static net.dusty_dusty.cts_compats.CTSCompats.LOGGER;
 
-public class RegistryManager {
+public final class RegistryManager {
     final IEventBus MOD_EVENT_BUS;
     final ArrayList<IRegistry> REGISTRIES = new ArrayList<>();
 

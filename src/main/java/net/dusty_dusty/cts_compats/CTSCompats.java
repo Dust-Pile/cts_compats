@@ -20,7 +20,7 @@ import net.minecraftforge.registries.RegistryObject;
 import org.slf4j.Logger;
 
 @Mod(CTSCompats.MODID)
-public class CTSCompats
+public final class CTSCompats
 {
     public static final String MODID = "cts_compats";
     public static final Logger LOGGER = LogUtils.getLogger();
