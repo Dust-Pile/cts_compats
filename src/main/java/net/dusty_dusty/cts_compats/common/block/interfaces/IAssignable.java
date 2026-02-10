@@ -53,7 +53,7 @@ public interface IAssignable extends IBlockCopyForge {
         public static void putVegetationOnTopItem(Item item, Block block ) {
             String[] keyStrings = getIdComponents( item );
             String[] valueStrings = getIdComponents( block );
-            RegisterCallbacks.putVegetaitonOnTopItemFromString( keyStrings[0], keyStrings[1], valueStrings[0], valueStrings[1] );
+            RegisterCallbacks.putVegetationOnTopItemFromString( keyStrings[0], keyStrings[1], valueStrings[0], valueStrings[1] );
         }
 
         private static String[] getIdComponents( Block block ) {
