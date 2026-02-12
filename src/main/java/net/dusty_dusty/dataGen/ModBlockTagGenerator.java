@@ -10,8 +10,11 @@ import org.jetbrains.annotations.Nullable;
 import java.util.concurrent.CompletableFuture;
 
 public class ModBlockTagGenerator extends BlockTagsProvider {
+    final ExistingFileHelper existingFileHelper;
+
     public ModBlockTagGenerator(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, @Nullable ExistingFileHelper existingFileHelper) {
         super(output, lookupProvider, CTSCompats.MODID, existingFileHelper);
+        this.existingFileHelper = existingFileHelper;
     }
 
     @Override

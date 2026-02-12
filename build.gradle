@@ -68,9 +68,9 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
     // See https://docs.gradle.org/current/userguide/declaring_repositories.html#sub:flat_dir_resolver
-//    flatDir {
-//        dir 'libs'
-//    }
+    flatDir {
+        dir 'libs'
+    }
 
     maven { url = "https://cursemaven.com" }
     maven { url = "https://api.modrinth.com/maven" }
@@ -97,14 +97,10 @@ dependencies {
     // Other
     runtimeOnly "curse.maven:terralith-513688:5512076"
 
-    // NOTE: runData does not work when mixins are loaded
+    // NOTE: mixins no worky ;-;
 //    mixin {
 //        add sourceSets.main, "mixins.cts_compats.refmap.json"
 //        config "mixins.cts_compats.json"
-//
-//        debug.verbose = true
-//        debug.export = true
-//        dumpTargetOnFailure = true
 //    }
 }
 
