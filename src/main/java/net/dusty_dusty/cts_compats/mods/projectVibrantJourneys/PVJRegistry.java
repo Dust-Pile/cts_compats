@@ -38,6 +38,12 @@ public class PVJRegistry extends AbstractRegistry {
     // Tall Plants
     public static final RegistryObject<Block> SEA_OATS_ON_TOP = INSTANCE.registerBlock( "vibrant_sea_oats_on_top",
             () -> new DoublePlantOnTop( PVJBlocks.SEA_OATS.get() ) );
+    public static final RegistryObject<Block> CATTAIL_ON_TOP = INSTANCE.registerBlock( "vibrant_cattail_on_top",
+            () -> new DoublePlantOnTop( PVJBlocks.CATTAIL.get() ) );
+    public static final RegistryObject<Block> REEDS_ON_TOP = INSTANCE.registerBlock( "vibrant_reeds_on_top",
+            () -> new DoublePlantOnTop( PVJBlocks.REEDS.get() ) );
+    public static final RegistryObject<Block> WATERGRASS_ON_TOP = INSTANCE.registerBlock( "vibrant_watergrass_on_top",
+            () -> new DoublePlantOnTop( PVJBlocks.WATERGRASS.get() ) );
 
     // Fallen Leaves
     public static final RegistryObject<Block> FALLEN_LEAVES_ON_TOP = INSTANCE.registerBlock( "fallen_leaves_on_top",

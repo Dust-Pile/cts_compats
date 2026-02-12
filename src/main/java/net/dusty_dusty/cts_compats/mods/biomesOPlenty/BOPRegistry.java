@@ -3,7 +3,6 @@ package net.dusty_dusty.cts_compats.mods.biomesOPlenty;
 import biomesoplenty.api.block.BOPBlocks;
 import net.dusty_dusty.cts_compats.common.block.onTopBlocks.BasicOnTopBlock;
 import net.dusty_dusty.cts_compats.common.block.CustomSlabBlock;
-import net.dusty_dusty.cts_compats.common.block.GrassSlabBlock;
 import net.dusty_dusty.cts_compats.common.block.onTopBlocks.BushBlockOnTop;
 import net.dusty_dusty.cts_compats.common.block.onTopBlocks.DoublePlantOnTop;
 import net.dusty_dusty.cts_compats.common.block.onTopBlocks.PetalBlockOnTop;
@@ -49,7 +48,7 @@ public class BOPRegistry extends AbstractRegistry {
 //    public static final RegistryObject<Block> ORIGIN_GRASS_SLAB = INSTANCE.registerBlock( "origin_grass_slab",
 //            () -> new GrassSlabBlock( BOPBlocks.ORIGIN_GRASS_BLOCK.get() ) );
 
-    // TODO: mayPlaceOn mixins so that the plants place properly :annoyed:
+    // TODO: canSurvive functions so that the plants place properly :annoyed:
     // Overworld On Top Plants
         // Foliage
     public static final RegistryObject<Block> SPROUT_ON_TOP = INSTANCE.registerBlockCutout( "sprout_on_top",
