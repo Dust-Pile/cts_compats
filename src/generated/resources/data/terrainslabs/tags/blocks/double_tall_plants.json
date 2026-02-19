@@ -1,18 +1,14 @@
 {
   "values": [
-    "projectvibrantjourneys:sea_oats_on",
+    "minecraft:tall_grass",
+    "minecraft:large_fern",
+    "minecraft:pitcher_plant",
+    "projectvibrantjourneys:sea_oats",
     "projectvibrantjourneys:cattail",
     "projectvibrantjourneys:reeds",
     "projectvibrantjourneys:watergrass",
     "biomesoplenty:sea_oats",
     "biomesoplenty:barley",
-    "biomesoplenty:goldenrod",
-    "biomesoplenty:tall_lavender",
-    "biomesoplenty:blue_hydrangea",
-    "biomesoplenty:icy_iris",
-    "biomesoplenty:cattail",
-    "biomesoplenty:reed",
-    "biomesoplenty:watergrass",
     "biomesoplenty:eyebulb",
     "biomesoplenty:brimstone_cluster"
   ]
