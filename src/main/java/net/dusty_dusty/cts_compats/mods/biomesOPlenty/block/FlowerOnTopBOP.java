@@ -2,16 +2,23 @@ package net.dusty_dusty.cts_compats.mods.biomesOPlenty.block;
 
 import biomesoplenty.api.block.BOPBlocks;
 import biomesoplenty.common.block.FlowerBlockBOP;
+import net.countered.terrainslabs.block.interfaces.IBlockCopy;
+import net.dusty_dusty.cts_compats.common.block.interfaces.BlockCopyWrapper;
 import net.dusty_dusty.cts_compats.common.block.onTopBlocks.FlowerBlockOnTop;
 import net.minecraft.core.BlockPos;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class FlowerOnTopBOP extends FlowerBlockOnTop {
     protected static final VoxelShape SHORT = Block.box(2.0F, 0.0F, 2.0F, 14.0F, 6.0F, 14.0F);
@@ -27,6 +34,27 @@ public class FlowerOnTopBOP extends FlowerBlockOnTop {
         stewEffectDuration = ( (FlowerBlockBOP) originalBlock ).getEffectDuration();
     }
 
+    public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
+        Block ground = worldIn.getBlockState(pos.below()).getBlock();
+        if ( !( ground instanceof SlabBlock && ground instanceof IBlockCopy) ) {
+            return false;
+        }
+
+        Block block = new BlockCopyWrapper( (IBlockCopy) state.getBlock() ).getOriginBlock();
+        BlockState blockState = block.withPropertiesOf(state);
+        ground = new BlockCopyWrapper( (IBlockCopy) ground ).getOriginBlock();
+
+        if (block == BOPBlocks.WILDFLOWER.get()) {
+            return ground == Blocks.SAND || ground == Blocks.RED_SAND || ground == BOPBlocks.WHITE_SAND.get()
+                    || ground == BOPBlocks.ORANGE_SAND.get() || ground == BOPBlocks.BLACK_SAND.get()
+                    || blockState.is(BlockTags.DIRT) || blockState.is(Blocks.FARMLAND);
+        } else {
+            return ground == Blocks.NETHERRACK || ground == Blocks.SOUL_SAND || ground == Blocks.SOUL_SOIL
+                    || ground == Blocks.CRIMSON_NYLIUM || ground == Blocks.WARPED_NYLIUM
+                    || blockState.is(BlockTags.DIRT) || blockState.is(Blocks.FARMLAND);
+        }
+    }
+
     @Override
     public @NotNull VoxelShape getShape(BlockState state, @NotNull BlockGetter worldIn, @NotNull BlockPos pos, @NotNull CollisionContext selectionContext) {
         VoxelShape shape = NORMAL;
@@ -40,6 +68,11 @@ public class FlowerOnTopBOP extends FlowerBlockOnTop {
 
         Vec3 vec3 = state.getOffset(worldIn, pos);
         return shape.move(vec3.x, vec3.y, vec3.z);
+    }
+
+    @Override
+    public @Nullable PlacementRule getPlacementRule() {
+        return PlacementRule.CUSTOM;
     }
 
     @Override

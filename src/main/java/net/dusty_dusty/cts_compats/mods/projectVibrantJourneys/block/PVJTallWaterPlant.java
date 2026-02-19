@@ -8,6 +8,6 @@ import java.util.List;
 
 public class PVJTallWaterPlant extends DoubleWaterPlantOnTop {
     public PVJTallWaterPlant( Block originalBlock ) {
-        super( originalBlock, PVJWatersidePlant.WATER_PLANT_PLACEABLE );
+        super( originalBlock, BlockCheckWrapper.WATER_PLANT_PLACEABLE );
     }
 }

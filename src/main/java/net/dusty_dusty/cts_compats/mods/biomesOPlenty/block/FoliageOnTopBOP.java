@@ -1,14 +1,20 @@
 package net.dusty_dusty.cts_compats.mods.biomesOPlenty.block;
 
 import biomesoplenty.api.block.BOPBlocks;
+import net.countered.terrainslabs.block.interfaces.IBlockCopy;
+import net.dusty_dusty.cts_compats.common.block.interfaces.BlockCopyWrapper;
 import net.dusty_dusty.cts_compats.common.block.onTopBlocks.BushBlockOnTop;
 import net.minecraft.core.BlockPos;
 import net.minecraft.stats.Stats;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -33,6 +39,35 @@ public class FoliageOnTopBOP extends BushBlockOnTop implements IPlantable {
         } else {
             super.playerDestroy(worldIn, player, pos, state, te, stack);
         }
+    }
 
+    public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
+        Block ground = worldIn.getBlockState(pos.below()).getBlock();
+        if ( !( ground instanceof SlabBlock && ground instanceof IBlockCopy ) ) {
+            return false;
+        }
+
+        Block block = new BlockCopyWrapper( (IBlockCopy) state.getBlock() ).getOriginBlock();
+        BlockState blockState = block.withPropertiesOf(state);
+        ground = new BlockCopyWrapper( (IBlockCopy) ground ).getOriginBlock();
+
+        if (block == BOPBlocks.SPROUT.get()) {
+            return true;
+        } else if (block == BOPBlocks.DUNE_GRASS.get()) {
+            return ground == Blocks.SAND || ground == Blocks.RED_SAND || ground == BOPBlocks.WHITE_SAND.get()
+                    || ground == BOPBlocks.ORANGE_SAND.get() || ground == BOPBlocks.BLACK_SAND.get();
+        } else if (block != BOPBlocks.DESERT_GRASS.get() && block != BOPBlocks.DEAD_GRASS.get()) {
+            return super.canSurvive( blockState, worldIn, pos);
+        } else {
+            return ground == BOPBlocks.DRIED_SALT.get() || ground == Blocks.GRAVEL || ground == Blocks.SAND
+                    || ground == Blocks.RED_SAND || ground == BOPBlocks.WHITE_SAND.get()
+                    || ground == BOPBlocks.ORANGE_SAND.get() || ground == BOPBlocks.BLACK_SAND.get()
+                    || ground == Blocks.NETHERRACK || blockState.is(BlockTags.DIRT) || blockState.is(Blocks.FARMLAND);
+        }
+    }
+
+    @Override
+    public PlacementRule getPlacementRule() {
+        return PlacementRule.CUSTOM;
     }
 }
