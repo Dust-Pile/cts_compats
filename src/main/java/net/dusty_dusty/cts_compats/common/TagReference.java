@@ -12,7 +12,7 @@ public final class TagReference {
     private static final ResourceKey<Registry<Block>> blocksKey = ForgeRegistries.BLOCKS.getRegistryKey();
 
     public static final TagKey<Block> TALL_FLOWERS = TagKey.create( blocksKey,
-            ResourceLocation.fromNamespaceAndPath( "minecraft", "tall_flowers") );
-    public static final TagKey<Block> DOUBLE_TALL_PLANTS = TagKey.create( blocksKey,
-            ResourceLocation.fromNamespaceAndPath( TerrainSlabs.MOD_ID, "double_tall_plants" ) );
+            ResourceLocation.fromNamespaceAndPath( "minecraft", "tall_flowers" ) );
+    public static final TagKey<Block> TALL_DECORATIONS = TagKey.create( blocksKey,
+            ResourceLocation.fromNamespaceAndPath( TerrainSlabs.MOD_ID, "tall_decorations" ) );
 }

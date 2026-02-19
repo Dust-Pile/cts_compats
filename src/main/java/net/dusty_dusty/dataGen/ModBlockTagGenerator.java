@@ -25,7 +25,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
 
     @Override
     protected void addTags( HolderLookup.Provider pProvider ) {
-        IntrinsicTagAppender<Block> tagAppender = this.tag( TagReference.DOUBLE_TALL_PLANTS );
+        IntrinsicTagAppender<Block> tagAppender = this.tag( TagReference.TALL_DECORATIONS);
         RegistryManager.forEachRegistry( registry -> {
             registry.getRegistryBlocks().forEach( blockRegister -> {
                 Block block = blockRegister.get();
