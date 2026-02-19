@@ -10,7 +10,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class DoubleWatersidePlantOnTop extends DoubleWaterPlantOnTop {
+public class DoubleWatersidePlantOnTop extends DoublePlantOnTop {
     private final boolean IS_EXCLUSIVE;
 
     public DoubleWatersidePlantOnTop( Block originalBlock, boolean isExclusive ) {
@@ -30,7 +30,8 @@ public class DoubleWatersidePlantOnTop extends DoubleWaterPlantOnTop {
            return false;
        }
 
-       return isWaterlogged( pLevel.getBlockState( pPos.below() ) )
+       return pState.getValue( BlockStateProperties.WATERLOGGED )
+               || isWaterlogged( pLevel.getBlockState( pPos.below() ) )
 
                || isWaterlogged( pLevel.getBlockState( pPos.north() ) )
                || isWaterlogged( pLevel.getBlockState( pPos.south() ) )
@@ -43,7 +44,7 @@ public class DoubleWatersidePlantOnTop extends DoubleWaterPlantOnTop {
                || isWaterlogged( pLevel.getBlockState( pPos.below().west() ) );
     }
 
-    private boolean isWaterlogged( BlockState state ) {
+    boolean isWaterlogged( BlockState state ) {
         return state.hasProperty( BlockStateProperties.WATERLOGGED )
                 && state.getValue( BlockStateProperties.WATERLOGGED );
     }

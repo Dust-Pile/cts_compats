@@ -1,6 +1,7 @@
 package net.dusty_dusty.cts_compats.mods.projectVibrantJourneys;
 
 import dev.orderedchaos.projectvibrantjourneys.core.registry.PVJBlocks;
+import net.dusty_dusty.cts_compats.common.BlockCheckWrapper;
 import net.dusty_dusty.cts_compats.common.block.onTopBlocks.DoublePlantOnTop;
 import net.dusty_dusty.cts_compats.common.block.onTopBlocks.PetalBlockOnTop;
 import net.dusty_dusty.cts_compats.common.registry.AbstractRegistry;
@@ -37,13 +38,13 @@ public class PVJRegistry extends AbstractRegistry {
 
     // Tall Plants
     public static final RegistryObject<Block> SEA_OATS_ON_TOP = INSTANCE.registerBlock( "vibrant_sea_oats_on_top",
-            () -> new DoublePlantOnTop( PVJBlocks.SEA_OATS.get() ) );
+            () -> new DoublePlantOnTop( PVJBlocks.SEA_OATS.get(), BlockCheckWrapper.SAND_AND_DIRT) );
     public static final RegistryObject<Block> CATTAIL_ON_TOP = INSTANCE.registerBlock( "vibrant_cattail_on_top",
-            () -> new DoublePlantOnTop( PVJBlocks.CATTAIL.get() ) );
+            () -> new PVJWatersidePlant( PVJBlocks.CATTAIL.get() ) );
     public static final RegistryObject<Block> REEDS_ON_TOP = INSTANCE.registerBlock( "vibrant_reeds_on_top",
-            () -> new DoublePlantOnTop( PVJBlocks.REEDS.get() ) );
+            () -> new PVJWatersidePlant( PVJBlocks.REEDS.get() ) );
     public static final RegistryObject<Block> WATERGRASS_ON_TOP = INSTANCE.registerBlock( "vibrant_watergrass_on_top",
-            () -> new DoublePlantOnTop( PVJBlocks.WATERGRASS.get() ) );
+            () -> new PVJTallWaterPlant( PVJBlocks.WATERGRASS.get() ) );
 
     // Fallen Leaves
     public static final RegistryObject<Block> FALLEN_LEAVES_ON_TOP = INSTANCE.registerBlock( "fallen_leaves_on_top",
