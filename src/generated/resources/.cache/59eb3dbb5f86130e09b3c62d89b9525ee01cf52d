@@ -1,4 +1,4 @@
-// 1.20.1	2026-02-20T09:41:55.5601815	Loot Tables
+// 1.20.1	2026-02-20T13:09:31.6389226	Loot Tables
 5489944e615937ddb9973b14b915112c218ecad5 data/biomesoplenty/loot_tables/blocks/barley.json
 373615e35766b8d7aa8b96aa15d93d801dd88d89 data/biomesoplenty/loot_tables/blocks/blackstone_bulb.json
 550f74a7a7d800c31e14bf32a6b4044b4dda22df data/biomesoplenty/loot_tables/blocks/blackstone_spines.json
@@ -106,7 +106,7 @@ e0ef2d5ba25c7bfd5ce8e58e66a47087d523b2da data/cts_compats/loot_tables/blocks/sea
 f2df2afbd08824e130f2b92135d9cda22fc77620 data/cts_compats/loot_tables/blocks/small_cactus_on_top.json
 bfaa9dda2a36c7737460a24318aa80e64a29f781 data/cts_compats/loot_tables/blocks/sprout_on_top.json
 17696e3c9ce40e97fb6679db67d60bfa008dbc8f data/cts_compats/loot_tables/blocks/sunflower_on_top.json
-d8c1e6f789387e7ce01d2f0dd16cbf708e9aba15 data/cts_compats/loot_tables/blocks/sweet_berry_bush_on_top.json
+92668f0c6ee57dba08c7b2cf66ad649fb3e5636b data/cts_compats/loot_tables/blocks/sweet_berry_bush_on_top.json
 45532dabfc5b1ccc53afaa75260183db1537e54a data/cts_compats/loot_tables/blocks/tall_grass_on_top.json
 67bbf3725d35186f7fcbeedaed3ea2cfa6252087 data/cts_compats/loot_tables/blocks/tall_lavender_on_top.json
 4869eacac3e37a25561c4371119c9cd43b218179 data/cts_compats/loot_tables/blocks/toadstool_on_top.json

@@ -19,7 +19,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.RegistryObject;
 import org.slf4j.Logger;
 
-@Mod(CTSCompats.MODID)
+@Mod( CTSCompats.MODID )
 public final class CTSCompats
 {
     public static final String MODID = "cts_compats";
