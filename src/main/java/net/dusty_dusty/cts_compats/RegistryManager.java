@@ -4,6 +4,7 @@ import net.dusty_dusty.cts_compats.common.registry.IColorRegistry;
 import net.dusty_dusty.cts_compats.common.registry.IRegistry;
 import net.dusty_dusty.cts_compats.mods.biomesOPlenty.BOPRegistry;
 import net.dusty_dusty.cts_compats.mods.vanilla.VanillaRegistry;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -13,10 +14,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
@@ -58,7 +56,16 @@ public final class RegistryManager {
         INSTANCE.REGISTRIES.forEach( consumer );
     }
     public static void forEachRegistryAndID( final BiConsumer<String, IRegistry> biConsumer ) {
-        LOADED_MODS.forEach( biConsumer::accept );
+        LOADED_MODS.forEach( biConsumer );
+    }
+    public static List<Block> getAllBlocks() {
+        List<Block> blocks = new ArrayList<>();
+        forEachRegistry( registry -> {
+            registry.getRegistryBlocks().forEach( blockRegister -> {
+                blocks.add( blockRegister.get() );
+            });
+        });
+        return blocks;
     }
 
     public boolean register( String modId, Supplier<IRegistry> registrySupplier ) {

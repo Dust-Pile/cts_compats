@@ -96,12 +96,6 @@ dependencies {
 
     // Other
     runtimeOnly "curse.maven:terralith-513688:5512076"
-
-    // NOTE: mixins no worky ;-;
-//    mixin {
-//        add sourceSets.main, "mixins.cts_compats.refmap.json"
-//        config "mixins.cts_compats.json"
-//    }
 }
 
 tasks.named('processResources', ProcessResources).configure {
