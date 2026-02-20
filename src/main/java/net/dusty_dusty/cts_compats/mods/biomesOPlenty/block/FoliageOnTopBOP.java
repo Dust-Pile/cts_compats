@@ -3,6 +3,7 @@ package net.dusty_dusty.cts_compats.mods.biomesOPlenty.block;
 import biomesoplenty.api.block.BOPBlocks;
 import net.countered.terrainslabs.block.interfaces.IBlockCopy;
 import net.dusty_dusty.cts_compats.common.block.interfaces.BlockCopyWrapper;
+import net.dusty_dusty.cts_compats.common.block.interfaces.IBlockCopyForge;
 import net.dusty_dusty.cts_compats.common.block.onTopBlocks.BushBlockOnTop;
 import net.minecraft.core.BlockPos;
 import net.minecraft.stats.Stats;
@@ -68,6 +69,14 @@ public class FoliageOnTopBOP extends BushBlockOnTop implements IPlantable {
 
     @Override
     public PlacementRule getPlacementRule() {
-        return PlacementRule.CUSTOM;
+        Block block = ( (IBlockCopyForge) this ).getOriginBlock();
+        if ( block == BOPBlocks.SPROUT.get()
+                || block == BOPBlocks.DUNE_GRASS.get()
+                || block == BOPBlocks.DESERT_GRASS.get()
+                || block == BOPBlocks.DEAD_GRASS.get()
+        ) {
+            return PlacementRule.CUSTOM;
+        }
+        return PlacementRule.DEFAULT;
     }
 }

@@ -65,7 +65,7 @@ public class BOPRegistry extends AbstractRegistry {
     public static final RegistryObject<Block> SPROUT_ON_TOP = INSTANCE.registerBlockCutout( "sprout_on_top",
             () -> new FoliageOnTopBOP( BOPBlocks.SPROUT.get() ) );
     public static final RegistryObject<Block> BUSH_ON_TOP = INSTANCE.registerBlockCutout( "bush_on_top",
-            () -> new BushBlockOnTop( BOPBlocks.BUSH.get(), IAssignable.AssignUtil.FULL_BLOCK_ON_SLAB ) );
+            () -> new FoliageOnTopBOP( BOPBlocks.BUSH.get() ) );
     public static final RegistryObject<Block> DUNE_GRASS_ON_TOP = INSTANCE.registerBlockCutout( "dune_grass_on_top",
             () -> new FoliageOnTopBOP( BOPBlocks.DUNE_GRASS.get() ) );
     public static final RegistryObject<Block> DEAD_GRASS_ON_TOP = INSTANCE.registerBlockCutout( "dead_grass_on_top",
