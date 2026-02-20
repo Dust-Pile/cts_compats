@@ -14,16 +14,20 @@ import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
 import net.minecraft.world.level.storage.loot.entries.LootTableReference;
+import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.*;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
+import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.minecraftforge.registries.RegistryObject;
 import org.jetbrains.annotations.NotNull;
 
@@ -90,6 +94,11 @@ public final class ModBlockLootTables extends BlockLootSubProvider {
                     continue;
                 }
 
+                if ( block.equals( VanillaRegistry.SWEET_BERRY_BUSH_ON_TOP.get() ) ) {
+                    this.add( block, berryBushBuilder( block ).setRandomSequence( parentLocation ) );
+                    continue;
+                }
+
                 this.add( block, simpleReference( parentLocation ) );
             }
         } );
@@ -127,8 +136,7 @@ public final class ModBlockLootTables extends BlockLootSubProvider {
 
     LootTable.Builder createPetalsDrops( Block pPetalBlock, Item lootItem ) {
         return LootTable.lootTable().withPool( simplePool().add( this.applyExplosionDecay(
-                pPetalBlock, LootItem.lootTableItem( lootItem ).apply(
-                        IntStream.rangeClosed(1, 4).boxed().toList(),
+                pPetalBlock, LootItem.lootTableItem( lootItem ).apply( IntStream.rangeClosed(1, 4).boxed().toList(),
                         (numPetals) -> SetItemCountFunction.setCount(ConstantValue
                                 .exactly( (float) numPetals ) )
                                 .when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(pPetalBlock)
@@ -142,5 +150,23 @@ public final class ModBlockLootTables extends BlockLootSubProvider {
 
     static LootPool.Builder simplePool() {
         return LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F));
+    }
+
+    static LootTable.Builder berryBushBuilder(Block block ) {
+        return LootTable.lootTable().withPool( simplePool().when( ExplosionCondition.survivesExplosion() )
+                .add( LootItem.lootTableItem( ( (IBlockCopyForge) block ).getOriginalItem() ) )
+                .when( new LootItemBlockStatePropertyCondition.Builder( block ).setProperties(
+                        StatePropertiesPredicate.Builder.properties().hasProperty(
+                                BlockStateProperties.AGE_3, 3 ) ) )
+                .apply( SetItemCountFunction.setCount( UniformGenerator.between( 2.0F, 3.0F ) ) )
+                .apply(ApplyBonusCount.addUniformBonusCount( Enchantments.BLOCK_FORTUNE, 1 ) )
+        ).withPool( simplePool().when( ExplosionCondition.survivesExplosion() )
+                .add( LootItem.lootTableItem( ( (IBlockCopyForge) block ).getOriginalItem() ) )
+                .when( new LootItemBlockStatePropertyCondition.Builder( block ).setProperties(
+                        StatePropertiesPredicate.Builder.properties().hasProperty(
+                                BlockStateProperties.AGE_3, 2 ) ) )
+                .apply( SetItemCountFunction.setCount( UniformGenerator.between( 1.0F, 2.0F ) ) )
+                .apply(ApplyBonusCount.addUniformBonusCount( Enchantments.BLOCK_FORTUNE, 1 ) )
+        );
     }
 }
