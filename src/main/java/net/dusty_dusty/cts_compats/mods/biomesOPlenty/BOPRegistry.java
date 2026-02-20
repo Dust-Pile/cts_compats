@@ -3,6 +3,7 @@ package net.dusty_dusty.cts_compats.mods.biomesOPlenty;
 import biomesoplenty.api.block.BOPBlocks;
 import biomesoplenty.init.ModTags;
 import net.dusty_dusty.cts_compats.common.BlockCheckWrapper;
+import net.dusty_dusty.cts_compats.common.block.interfaces.IAssignable;
 import net.dusty_dusty.cts_compats.common.block.onTopBlocks.*;
 import net.dusty_dusty.cts_compats.common.block.CustomSlabBlock;
 import net.dusty_dusty.cts_compats.common.registry.AbstractRegistry;
@@ -59,16 +60,12 @@ public class BOPRegistry extends AbstractRegistry {
     public static final RegistryObject<Block> DRIED_SALT_SLAB = INSTANCE.registerBlock( "dried_salt_slab",
             () -> new DriedSaltSlab( BOPBlocks.DRIED_SALT.get() ) );
 
-    // TODO: Fix the grass
-//    public static final RegistryObject<Block> ORIGIN_GRASS_SLAB = INSTANCE.registerBlock( "origin_grass_slab",
-//            () -> new GrassSlabBlock( BOPBlocks.ORIGIN_GRASS_BLOCK.get() ) );
-
     // Overworld On Top Plants
         // Foliage
     public static final RegistryObject<Block> SPROUT_ON_TOP = INSTANCE.registerBlockCutout( "sprout_on_top",
             () -> new FoliageOnTopBOP( BOPBlocks.SPROUT.get() ) );
     public static final RegistryObject<Block> BUSH_ON_TOP = INSTANCE.registerBlockCutout( "bush_on_top",
-            () -> new FoliageOnTopBOP( BOPBlocks.BUSH.get() ) );
+            () -> new BushBlockOnTop( BOPBlocks.BUSH.get(), IAssignable.AssignUtil.FULL_BLOCK_ON_SLAB ) );
     public static final RegistryObject<Block> DUNE_GRASS_ON_TOP = INSTANCE.registerBlockCutout( "dune_grass_on_top",
             () -> new FoliageOnTopBOP( BOPBlocks.DUNE_GRASS.get() ) );
     public static final RegistryObject<Block> DEAD_GRASS_ON_TOP = INSTANCE.registerBlockCutout( "dead_grass_on_top",
