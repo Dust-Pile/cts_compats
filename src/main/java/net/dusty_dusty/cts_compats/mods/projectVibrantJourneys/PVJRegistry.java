@@ -6,6 +6,7 @@ import net.dusty_dusty.cts_compats.common.block.onTopBlocks.DoublePlantOnTop;
 import net.dusty_dusty.cts_compats.common.block.onTopBlocks.PetalBlockOnTop;
 import net.dusty_dusty.cts_compats.common.registry.AbstractRegistry;
 import net.dusty_dusty.cts_compats.common.registry.IColorRegistry;
+import net.dusty_dusty.cts_compats.common.registry.IRegistry;
 import net.dusty_dusty.cts_compats.mods.projectVibrantJourneys.block.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.RegistryObject;
@@ -14,7 +15,11 @@ import java.util.Optional;
 
 @SuppressWarnings("unused")
 public class PVJRegistry extends AbstractRegistry {
-    private static final PVJRegistry INSTANCE = new PVJRegistry();
+    private static final PVJRegistry INSTANCE = new PVJRegistry( IRegistry.PVJ_MODID );
+    protected PVJRegistry(String modId) {
+        super(modId);
+    }
+
     public static PVJRegistry getInstance() {
         return INSTANCE;
     }

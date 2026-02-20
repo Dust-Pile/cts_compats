@@ -18,6 +18,15 @@ import static net.dusty_dusty.cts_compats.CTSCompats.MODID;
 public abstract class AbstractRegistry implements IRegistry {
     protected final DeferredRegister<Block> COMPAT_BLOCKS = DeferredRegister.create( ForgeRegistries.BLOCKS, MODID );
     protected final DeferredRegister<Item> COMPAT_ITEMS = DeferredRegister.create( ForgeRegistries.ITEMS, MODID );
+    protected final String REGISTRY_ID;
+
+    protected AbstractRegistry ( String modId ) {
+        REGISTRY_ID = modId;
+    }
+
+    public String getModID() {
+        return this.REGISTRY_ID;
+    }
 
     @SuppressWarnings("unchecked")
     protected <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block ) {

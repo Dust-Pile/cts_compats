@@ -15,7 +15,11 @@ import java.util.Optional;
 
 @SuppressWarnings({"unused"})
 public class VanillaRegistry extends AbstractRegistry {
-    private static final VanillaRegistry INSTANCE = new VanillaRegistry();
+    private static final VanillaRegistry INSTANCE = new VanillaRegistry( "minecraft" );
+    protected VanillaRegistry(String modId) {
+        super(modId);
+    }
+
     public static AbstractRegistry getInstance() {
         return INSTANCE;
     }

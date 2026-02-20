@@ -16,6 +16,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
     @Override
     protected void generate() {
 
+
     }
 
 //    @Override
@@ -23,3 +24,20 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 //        return super.getKnownBlocks();
 //    }
 }
+
+/**
+ * {
+ *   "type": "minecraft:block",
+ *   "pools": [
+ *     {
+ *       "rolls": 1,
+ *       "entries": [
+ *         {
+ *           "type": "minecraft:loot_table",
+ *           "name": "*"
+ *         }
+ *       ]
+ *     }
+ *   ]
+ * }
+ */

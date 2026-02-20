@@ -15,10 +15,18 @@ import java.util.function.Supplier;
 public abstract class AbstractVersionRouter implements IRegistry {
     private final Map<String, Supplier<IRegistry>> VERSION_FILTER;
     final IRegistry REGISTRY;
+    protected final String REGISTRY_ID;
 
-    protected AbstractVersionRouter( String modid, Map<String, Supplier<IRegistry>> versionFilter ) {
+    @Override
+    public String getModID() {
+        return REGISTRY_ID;
+    }
+
+    // TODO: Reformat to allow multiple registries
+    protected AbstractVersionRouter( String modId, Map<String, Supplier<IRegistry>> versionFilter ) {
         VERSION_FILTER = versionFilter;
-        REGISTRY = getRegistryFromVersion( modid, RegistryManager.LOADED_MODS.get( modid ) );
+        REGISTRY = getRegistryFromVersion( modId, RegistryManager.getVersion( modId ) );
+        REGISTRY_ID = modId;
     }
 
     private IRegistry getRegistryFromVersion( String modid, String version ) {
