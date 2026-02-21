@@ -68,9 +68,9 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 
 repositories {
     // See https://docs.gradle.org/current/userguide/declaring_repositories.html#sub:flat_dir_resolver
-//    flatDir {
-//        dir 'libs'
-//    }
+    flatDir {
+        dir 'libs'
+    }
 
     maven { url = "https://cursemaven.com" }
     maven { url = "https://api.modrinth.com/maven" }
@@ -84,8 +84,7 @@ dependencies {
     // Core Mods
     runtimeOnly fg.deobf("curse.maven:sinytra-connector-890127:7241800")
     runtimeOnly fg.deobf("curse.maven:forgified-fabric-api-889079:6885853")
-        // implementation fileTree(dir: 'libs', include: '*.jar')
-    implementation fg.deobf("curse.maven:countereds-terrain-slabs-1125437:7572554")
+    implementation fg.deobf("curse.maven:countereds-terrain-slabs-1125437:7659278")
 
     // Compat Dependencies
     runtimeOnly fg.deobf("curse.maven:terrablender-563928:6290448")
@@ -94,18 +93,11 @@ dependencies {
     implementation fg.deobf("curse.maven:project-vibrant-journeys-300297:6841170")
     implementation fg.deobf("curse.maven:biomes-o-plenty-220318:4617259")
 
-    // Other
+    // Helpers
     runtimeOnly "curse.maven:terralith-513688:5512076"
-
-    // NOTE: runData does not work when mixins are loaded
-//    mixin {
-//        add sourceSets.main, "mixins.cts_compats.refmap.json"
-//        config "mixins.cts_compats.json"
-//
-//        debug.verbose = true
-//        debug.export = true
-//        dumpTargetOnFailure = true
-//    }
+    runtimeOnly fg.deobf("curse.maven:jade-324717:6855440")
+    runtimeOnly fg.deobf("curse.maven:jei-238222:6600311")
+    runtimeOnly fg.deobf("curse.maven:embeddium-908741:5681725")
 }
 
 tasks.named('processResources', ProcessResources).configure {

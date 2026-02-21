@@ -39,7 +39,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
         RegistryManager.forEachRegistry( registry -> {
             for ( RegistryObject<Block> entry : registry.getRegistryBlocks() ) {
                 Block block = entry.get();
-                LOGGER.info( "Auto Generating files for {} if applicable", block );
                 if ( block instanceof IOnTopCopy onTopCopy ) {
                     simpleBlockCopy( onTopCopy );
                 } else if ( block instanceof ISlabCopy slabCopy && slabCopy instanceof SlabBlock &&
@@ -120,7 +119,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
             Resource modelJson = existingFileHelper.getResource( loc, PackType.CLIENT_RESOURCES, ".json", prefix);
             return GsonHelper.parse( modelJson.openAsReader() );
         } catch ( IOException e ) {
-            LOGGER.warn( "CTS_COMPATS: {}", e.toString() );
+            LOGGER.warn( e.toString() );
             return null;
         }
     }

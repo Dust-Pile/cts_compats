@@ -1,6 +1,7 @@
 package net.dusty_dusty.cts_compats.mods.biomesOPlenty.block;
 
 import net.dusty_dusty.cts_compats.common.block.onTopBlocks.BasicOnTopBlock;
+import net.dusty_dusty.cts_compats.mods.biomesOPlenty.BOPRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.util.RandomSource;
@@ -22,7 +23,7 @@ public class BrimstoneFumaroleOnTop extends BasicOnTopBlock {
     protected static final VoxelShape FULL_SHAPE;
 
     public BrimstoneFumaroleOnTop( Block originalBlock ) {
-        super( originalBlock, FULL_SHAPE );
+        super( originalBlock, FULL_SHAPE, BOPRegistry.PlaceType.BRIMSTONE );
     }
 
     public void stepOn(@NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState state, Entity entity) {

@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "projectvibrantjourneys:block/reeds_lower"
+    },
+    "half=upper": {
+      "model": "projectvibrantjourneys:block/reeds_upper"
+    }
+  }
+}

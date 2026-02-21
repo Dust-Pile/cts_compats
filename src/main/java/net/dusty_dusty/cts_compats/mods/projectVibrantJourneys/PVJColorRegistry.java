@@ -9,15 +9,19 @@ import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 public class PVJColorRegistry extends AbstractColorRegistry {
 
     public void onColorHandlerEventBlock( RegisterColorHandlersEvent.Block event ) {
-        event.register(getGrassColor(), PVJRegistry.SHORTER_GRASS_ON_TOP.get());
         event.register(getFoliageColor(), PVJRegistry.FALLEN_LEAVES_ON_TOP.get());
-        // Block Only
-        event.register(getGrassColor(), PVJRegistry.BLUE_WILDFLOWERS_ON_TOP.get());
-        event.register(getGrassColor(), PVJRegistry.ORANGE_WILDFLOWERS_ON_TOP.get());
-        event.register(getGrassColor(), PVJRegistry.PURPLE_WILDFLOWERS_ON_TOP.get());
-        event.register(getGrassColor(), PVJRegistry.YELLOW_WILDFLOWERS_ON_TOP.get());
-        event.register(getGrassColor(), PVJRegistry.WHITE_WILDFLOWERS_ON_TOP.get());
-        event.register(getGrassColor(), PVJRegistry.MIXED_WILDFLOWERS_ON_TOP.get());
+        
+        event.register( getGrassColor(),
+                PVJRegistry.BLUE_WILDFLOWERS_ON_TOP.get(),
+                PVJRegistry.ORANGE_WILDFLOWERS_ON_TOP.get(),
+                PVJRegistry.PURPLE_WILDFLOWERS_ON_TOP.get(),
+                PVJRegistry.YELLOW_WILDFLOWERS_ON_TOP.get(),
+                PVJRegistry.WHITE_WILDFLOWERS_ON_TOP.get(),
+                PVJRegistry.MIXED_WILDFLOWERS_ON_TOP.get(),
+
+                PVJRegistry.SHORTER_GRASS_ON_TOP.get(),
+                PVJRegistry.WATERGRASS_ON_TOP.get()
+        );
     }
 
     public void onColorHandlerEventItem( RegisterColorHandlersEvent.Item event ) {
@@ -26,11 +30,9 @@ public class PVJColorRegistry extends AbstractColorRegistry {
         event.register((itemstack, tintIndex) -> {
             BlockState state = Blocks.OAK_LEAVES.defaultBlockState();
             return blockColors.getColor(state, null, null, tintIndex);
-        }, PVJRegistry.FALLEN_LEAVES_ON_TOP.get());
-
-        event.register( (itemstack, tintIndex) -> {
-            BlockState state = Blocks.OAK_LEAVES.defaultBlockState();
-            return blockColors.getColor(state, null, null, tintIndex);
-        }, PVJRegistry.SHORTER_GRASS_ON_TOP.get() );
+        },
+                PVJRegistry.FALLEN_LEAVES_ON_TOP.get(),
+                PVJRegistry.SHORTER_GRASS_ON_TOP.get()
+        );
     }
 }

@@ -82,7 +82,6 @@ public record BlockStateCopyUtil( ExistingFileHelper existingFileHelper ) {
             JsonArray stateArray = modelOrModels.getAsJsonArray();
             for ( int i = 0; i < stateArray.size(); i++ ) {
                 JsonObject aModel = stateArray.get( i ).getAsJsonObject();
-                LOGGER.info(aModel.get("model").getAsString());
                 builder.modelFile(new BlockModelBuilder(ResourceLocation.parse(aModel.get("model").getAsString()), existingFileHelper))
                         .rotationX(getOrDefault(() -> aModel.get("x").getAsInt(), 0))
                         .rotationY(getOrDefault(() -> aModel.get("y").getAsInt(), 0))
@@ -139,7 +138,7 @@ public record BlockStateCopyUtil( ExistingFileHelper existingFileHelper ) {
                     tempVals.add( tempState.getValue( valString ).get() );
                 }
             } catch (Exception e) {
-                LOGGER.error("CTS_COMPATS: {}", e.toString());
+                LOGGER.error( e.toString() );
             }
 
             state = tempState;

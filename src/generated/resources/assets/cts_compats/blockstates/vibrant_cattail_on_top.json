@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "projectvibrantjourneys:block/cattail_lower"
+    },
+    "half=upper": {
+      "model": "projectvibrantjourneys:block/cattail_upper"
+    }
+  }
+}

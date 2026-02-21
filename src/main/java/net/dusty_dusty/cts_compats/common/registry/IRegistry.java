@@ -11,6 +11,8 @@ public interface IRegistry {
     String PVJ_MODID = "projectvibrantjourneys";
     String BOP_MODID = "biomesoplenty";
 
+    String getModID();
+
     void assign();
 
     void register( IEventBus modEventBus );

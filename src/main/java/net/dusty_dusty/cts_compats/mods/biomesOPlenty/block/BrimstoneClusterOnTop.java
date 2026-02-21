@@ -2,6 +2,7 @@ package net.dusty_dusty.cts_compats.mods.biomesOPlenty.block;
 
 import biomesoplenty.init.ModTags;
 import net.dusty_dusty.cts_compats.common.block.onTopBlocks.DoublePlantOnTop;
+import net.dusty_dusty.cts_compats.mods.biomesOPlenty.BOPRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.level.BlockGetter;
@@ -21,7 +22,7 @@ public class BrimstoneClusterOnTop extends DoublePlantOnTop {
     protected static final VoxelShape SHAPE_TOP = Block.box(6.0F, -8.0F, 6.0F, 10.0F, 0.0F, 10.0F);
 
     public BrimstoneClusterOnTop(Block originalBlock) {
-        super(originalBlock);
+        super( originalBlock, BOPRegistry.PlaceType.BRIMSTONE );
     }
 
     @Override
