@@ -2,6 +2,8 @@ package net.dusty_dusty.cts_compats.common.block;
 
 import net.countered.terrainslabs.block.interfaces.IBlockCopy;
 import net.dusty_dusty.cts_compats.common.block.interfaces.BlockCopyWrapper;
+import net.dusty_dusty.cts_compats.common.block.interfaces.IDuelSlab;
+import net.dusty_dusty.cts_compats.common.block.interfaces.ISlabCopy;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -48,7 +50,8 @@ public class SandSlabBlock extends CustomSlabBlock implements Fallable {
     // TODO: Implement IDuelSlab Capability
     private boolean canFallThrough( BlockState state ) {
         return FallingBlock.isFree( state )
-                || ( state.is( this ) && state.getValue( TYPE ).equals( SlabType.BOTTOM ) );
+                || ( ( state.is( this ) || IDuelSlab.areDuel( this, state.getBlock() ) )
+                && state.getValue( TYPE ).equals( SlabType.BOTTOM ) );
     }
 
     @Override
@@ -75,37 +78,32 @@ public class SandSlabBlock extends CustomSlabBlock implements Fallable {
         getOriginBlock().animateTick( pState, pLevel, pPos, pRandom );
     }
 
-    // TODO: Implement IDuelSlab Capability (Maybe)
     @Override
     public void onBrokenAfterFall(Level world, @NotNull BlockPos pos, FallingBlockEntity fallingBlockEntity) {
         BlockState fallingBlockState = fallingBlockEntity.getBlockState();
         BlockState landedOnBlockState = world.getBlockState(pos);
 
         //No need to check state, would only trigger on bottom slab
-        if ( landedOnBlockState.is(this) ) {
-            Block originBlock = new BlockCopyWrapper((IBlockCopy) fallingBlockState.getBlock()).getOriginBlock();
+        if ( landedOnBlockState.is(this) || IDuelSlab.areDuel( landedOnBlockState, fallingBlockState ) ) {
 
             if (fallingBlockState.getValue(TYPE).equals(SlabType.DOUBLE)) {
                 BlockState aboveState = world.getBlockState(pos.above());
                 if (!(aboveState.is(BlockTags.REPLACEABLE) || aboveState.isAir() || aboveState.is(Blocks.WATER))) {
                     popResource(world, pos, new ItemStack(this.getOriginalItem()));
+                    placeStackingSlab( world, pos, this, landedOnBlockState );
                     return;
                 }
 
-                world.setBlockAndUpdate(pos.above(), this.withPropertiesOf(landedOnBlockState)
-                        .setValue(TYPE, SlabType.BOTTOM) );
+                if ( this instanceof IDuelSlab duelSlab ) {
+                    placeStackingSlab( world, pos, duelSlab.getDuel(), landedOnBlockState );
+                } else {
+                    placeStackingSlab( world, pos, this, landedOnBlockState );
+                }
 
-                if ( landedOnBlockState.getValue(GENERATED) ) {
-                    world.setBlockAndUpdate(pos, originBlock.withPropertiesOf( landedOnBlockState ) );
-                } else {
-                    world.setBlockAndUpdate(pos, this.defaultBlockState().setValue(TYPE, SlabType.DOUBLE));
-                }
+                world.setBlockAndUpdate(pos.above(), this.withPropertiesOf( landedOnBlockState )
+                        .setValue(TYPE, SlabType.BOTTOM) );
             } else {
-                if ( landedOnBlockState.getValue(GENERATED) ) {
-                    world.setBlockAndUpdate(pos, originBlock.withPropertiesOf(landedOnBlockState));
-                } else {
-                    world.setBlockAndUpdate(pos, this.defaultBlockState().setValue(TYPE, SlabType.DOUBLE));
-                }
+                placeStackingSlab( world, pos, this, landedOnBlockState );
             }
             return;
         }
@@ -115,6 +113,14 @@ public class SandSlabBlock extends CustomSlabBlock implements Fallable {
             popResource(world, pos, new ItemStack(this.getOriginalItem(), 2));
         } else {
             popResource(world, pos, new ItemStack(this.getOriginalItem()));
+        }
+    }
+
+    private void placeStackingSlab(Level world, BlockPos pos, Block fallingSlab, BlockState landedOnBlockState ) {
+        if ( landedOnBlockState.getValue(GENERATED) ) {
+            world.setBlockAndUpdate(pos, ( (ISlabCopy) fallingSlab ).getOriginBlock().withPropertiesOf(landedOnBlockState));
+        } else {
+            world.setBlockAndUpdate(pos, fallingSlab.defaultBlockState().setValue(TYPE, SlabType.DOUBLE));
         }
     }
 

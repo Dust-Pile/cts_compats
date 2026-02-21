@@ -1,10 +1,15 @@
 package net.dusty_dusty.cts_compats.common.block.interfaces;
 
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
 
 public interface IDuelSlab extends ISlabCopy {
 
     Block getDuel();
+
+    default Block getDuelOriginBlock() {
+        return getDuelSlab().getOriginBlock();
+    }
 
     default ISlabCopy getDuelSlab() {
         return (ISlabCopy) getDuel();
@@ -21,6 +26,9 @@ public interface IDuelSlab extends ISlabCopy {
             return duel.getDuelSlab().equals( block );
         }
         return false;
+    }
+    static boolean areDuel( BlockState state, BlockState state2 ) {
+        return areDuel( state.getBlock(), state2.getBlock() );
     }
 
 }

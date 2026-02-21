@@ -8,10 +8,13 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.item.FallingBlockEntity;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.SlabType;
 import net.minecraft.world.level.lighting.LightEngine;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.PlantType;
@@ -59,6 +62,13 @@ public class MossyBlackSandSlab extends SandSlabBlock implements IDuelSlab {
 
             level.setBlockAndUpdate( pos, ( BOPRegistry.BLACK_SAND_SLAB.get() ).withPropertiesOf( state ) );
         }
+    }
 
+    @Override
+    public void onLand(@NotNull Level world, @NotNull BlockPos pos, BlockState fallingBlockState, @NotNull BlockState currentStateInPos, @NotNull FallingBlockEntity fallingBlockEntity) {
+        super.onLand( world, pos, fallingBlockState, currentStateInPos, fallingBlockEntity );
+        if ( world.getBlockState( pos.below() ).is( this.getOriginBlock() ) ) {
+            world.setBlockAndUpdate( pos.below(), this.getDuel().defaultBlockState() );
+        }
     }
 }
