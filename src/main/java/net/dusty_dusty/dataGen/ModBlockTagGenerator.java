@@ -59,6 +59,7 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
                 VanillaRegistry.DRIPSTONE_SLAB.get()
         );
 
+        // TODO: Tool requirement tags!!!
         // TODO: Replaceable tag!!!
 
         RegistryManager.forEachRegistry( registry -> {
