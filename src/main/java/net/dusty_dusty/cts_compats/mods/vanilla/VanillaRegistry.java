@@ -6,6 +6,7 @@ import net.dusty_dusty.cts_compats.common.registry.AbstractRegistry;
 import net.dusty_dusty.cts_compats.common.registry.IColorRegistry;
 import net.dusty_dusty.cts_compats.mods.vanilla.block.SweetBerryBushOnTop;
 import net.dusty_dusty.cts_compats.mods.vanilla.block.WitherRoseOnTop;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -40,6 +41,16 @@ public class VanillaRegistry extends AbstractRegistry {
             INSTANCE.registerBlock( "large_fern_on_top", () -> new DoublePlantOnTop( Blocks.LARGE_FERN ) );
     public static final RegistryObject<Block> SWEET_BERRY_BUSH_ON_TOP =
             INSTANCE.registerBlock( "sweet_berry_bush_on_top", () -> new SweetBerryBushOnTop( Blocks.SWEET_BERRY_BUSH ) );
+
+    // Light Sources
+    public static final RegistryObject<Block> TORCH_ON_TOP =
+            INSTANCE.registerBlock( "torch_on_top", () -> new TorchOnTop( Blocks.TORCH, ParticleTypes.FLAME ) );
+    public static final RegistryObject<Block> SOUL_TORCH_ON_TOP =
+            INSTANCE.registerBlock( "soul_torch_on_top", () -> new TorchOnTop( Blocks.SOUL_TORCH, ParticleTypes.SOUL ) );
+    public static final RegistryObject<Block> LANTERN_ON_TOP =
+            INSTANCE.registerBlock( "lantern_on_top", () -> new LanternOnTop( Blocks.LANTERN ) );
+    public static final RegistryObject<Block> SOUL_LANTERN_ON_TOP =
+            INSTANCE.registerBlock( "soul_lantern_on_top", () -> new LanternOnTop( Blocks.SOUL_LANTERN ) );
 
     // Fungus
     public static final VoxelShape fungusShape = Block.box(4.0D, -8.0D, 4.0D, 12.0D, 1.0D, 12.0D);
