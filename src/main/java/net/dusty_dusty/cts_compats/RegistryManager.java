@@ -68,7 +68,8 @@ public final class RegistryManager {
         return blocks;
     }
 
-    public boolean register( String modId, Supplier<IRegistry> registrySupplier ) {
+    @SuppressWarnings("UnusedReturnValue")
+    public boolean register(String modId, Supplier<IRegistry> registrySupplier ) {
         return runModCompat( modId, () -> register( modId, registrySupplier.get() ) );
     }
     private void register( String modId, IRegistry registry ) {
