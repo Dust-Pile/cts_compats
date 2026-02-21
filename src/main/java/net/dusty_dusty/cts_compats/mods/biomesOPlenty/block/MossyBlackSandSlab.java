@@ -68,7 +68,7 @@ public class MossyBlackSandSlab extends SandSlabBlock implements IDuelSlab {
     public void onLand(@NotNull Level world, @NotNull BlockPos pos, BlockState fallingBlockState, @NotNull BlockState currentStateInPos, @NotNull FallingBlockEntity fallingBlockEntity) {
         super.onLand( world, pos, fallingBlockState, currentStateInPos, fallingBlockEntity );
         if ( world.getBlockState( pos.below() ).is( this.getOriginBlock() ) ) {
-            world.setBlockAndUpdate( pos.below(), this.getDuel().defaultBlockState() );
+            world.setBlockAndUpdate( pos.below(), this.getDuelOriginBlock().defaultBlockState() );
         }
     }
 }
