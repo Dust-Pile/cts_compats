@@ -84,8 +84,7 @@ dependencies {
     // Core Mods
     runtimeOnly fg.deobf("curse.maven:sinytra-connector-890127:7241800")
     runtimeOnly fg.deobf("curse.maven:forgified-fabric-api-889079:6885853")
-    implementation fileTree(dir: 'libs', include: '*.jar')
-        // implementation fg.deobf("curse.maven:countereds-terrain-slabs-1125437:7572554")
+    implementation fg.deobf("curse.maven:countereds-terrain-slabs-1125437:7659278")
 
     // Compat Dependencies
     runtimeOnly fg.deobf("curse.maven:terrablender-563928:6290448")
