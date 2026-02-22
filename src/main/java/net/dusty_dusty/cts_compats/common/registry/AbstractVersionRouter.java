@@ -152,7 +152,7 @@ public abstract class AbstractVersionRouter implements IRegistry {
             this.upperBound = upperBound;
             this.isLowerInclusive = isLowerInclusive;
             this.isUpperInclusive = isUpperInclusive;
-            if ( lowerBound.compareTo( upperBound ) > -1 ) {
+            if ( lowerBound.compareTo( upperBound ) > -1 && !( lowerBound.matchesAll || upperBound.matchesAll ) ) {
                 throw new IllegalArgumentException( "Lower bound " + lowerBound
                         + " of a VersionFilter must be less than upper bound " + upperBound );
             }
