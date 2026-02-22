@@ -1,5 +1,6 @@
 package net.dusty_dusty.cts_compats;
 
+import net.dusty_dusty.cts_compats.common.registry.Version;
 import net.dusty_dusty.cts_compats.common.registry.IColorRegistry;
 import net.dusty_dusty.cts_compats.common.registry.IRegistry;
 import net.dusty_dusty.cts_compats.mods.biomesOPlenty.registry.BOPBaseRegistry;
@@ -20,7 +21,6 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 import static net.dusty_dusty.cts_compats.CTSCompats.LOGGER;
-import static net.dusty_dusty.cts_compats.common.registry.AbstractVersionRouter.Version;
 
 public final class RegistryManager {
     final IEventBus MOD_EVENT_BUS;

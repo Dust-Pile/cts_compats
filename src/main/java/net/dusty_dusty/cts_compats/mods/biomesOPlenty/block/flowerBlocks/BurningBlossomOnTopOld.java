@@ -1,4 +1,4 @@
-package net.dusty_dusty.cts_compats.mods.biomesOPlenty.block;
+package net.dusty_dusty.cts_compats.mods.biomesOPlenty.block.flowerBlocks;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -10,8 +10,8 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 
-public class BurningBlossomOnTop extends FlowerOnTopBOP {
-    public BurningBlossomOnTop(Block originalBlock) {
+public class BurningBlossomOnTopOld extends FlowerOnTopOldBOP {
+    public BurningBlossomOnTopOld(Block originalBlock) {
         super(originalBlock);
     }
 

@@ -10,11 +10,10 @@ import net.dusty_dusty.cts_compats.common.registry.IColorRegistry;
 import net.dusty_dusty.cts_compats.common.registry.IRegistry;
 import net.dusty_dusty.cts_compats.mods.biomesOPlenty.BOPColorRegistry;
 import net.dusty_dusty.cts_compats.mods.biomesOPlenty.block.*;
+import net.dusty_dusty.cts_compats.mods.biomesOPlenty.block.flowerBlocks.FlowerOnTopBOPUtil;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.ArrayList;
@@ -25,7 +24,7 @@ import java.util.function.Supplier;
 public class BOPBaseRegistry extends AbstractRegistry {
     protected static final BOPBaseRegistry INSTANCE = new BOPBaseRegistry( IRegistry.BOP_MODID );
     private static final ArrayList<RegistryObject<Block>> cutoutRender = new ArrayList<>();
-    protected BOPBaseRegistry(String modId) {
+    protected BOPBaseRegistry( String modId ) {
         super(modId);
     }
 
@@ -83,6 +82,27 @@ public class BOPBaseRegistry extends AbstractRegistry {
             () -> new PetalBlockOnTop( IRegistry.getBlock( BOPBlocks.CLOVER ) ) );
     public static final RegistryObject<Block> WHITE_PETALS_ON_TOP = INSTANCE.registerBlockCutout( "white_petals_on_top",
             () -> new PetalBlockOnTop( IRegistry.getBlock( BOPBlocks.WHITE_PETALS ) ) );
+        // Flowers
+    public static final RegistryObject<Block> ROSE_ON_TOP = INSTANCE.registerBlockCutout( "rose_on_top",
+            () -> FlowerOnTopBOPUtil.newFlowerBlock( IRegistry.getBlock( BOPBlocks.ROSE ) ) );
+    public static final RegistryObject<Block> PINK_DAFFODIL_ON_TOP = INSTANCE.registerBlockCutout( "pink_daffodil_on_top",
+            () -> FlowerOnTopBOPUtil.newFlowerBlock( IRegistry.getBlock( BOPBlocks.PINK_DAFFODIL ) ) );
+    public static final RegistryObject<Block> PINK_HIBISCUS_ON_TOP = INSTANCE.registerBlockCutout( "pink_hibiscus_on_top",
+            () -> FlowerOnTopBOPUtil.newFlowerBlock( IRegistry.getBlock( BOPBlocks.PINK_HIBISCUS ) ) );
+    public static final RegistryObject<Block> LAVENDER_ON_TOP = INSTANCE.registerBlockCutout( "lavender_on_top",
+            () -> FlowerOnTopBOPUtil.newFlowerBlock( IRegistry.getBlock( BOPBlocks.LAVENDER ) ) );
+    public static final RegistryObject<Block> VIOLET_ON_TOP = INSTANCE.registerBlockCutout( "violet_on_top",
+            () -> FlowerOnTopBOPUtil.newFlowerBlock( IRegistry.getBlock( BOPBlocks.VIOLET ) ) );
+    public static final RegistryObject<Block> ORANGE_COSMOS_ON_TOP = INSTANCE.registerBlockCutout( "orange_cosmos_on_top",
+            () -> FlowerOnTopBOPUtil.newFlowerBlock( IRegistry.getBlock( BOPBlocks.ORANGE_COSMOS ) ) );
+    public static final RegistryObject<Block> WILDFLOWER_ON_TOP = INSTANCE.registerBlockCutout( "wildflower_on_top",
+            () -> FlowerOnTopBOPUtil.newFlowerBlock( IRegistry.getBlock( BOPBlocks.WILDFLOWER ) ) );
+    public static final RegistryObject<Block> WILTED_LILY_ON_TOP = INSTANCE.registerBlockCutout( "wilted_lily_on_top",
+            () -> FlowerOnTopBOPUtil.newFlowerBlock( IRegistry.getBlock( BOPBlocks.WILTED_LILY ) ) );
+    public static final RegistryObject<Block> GLOWFLOWER_ON_TOP = INSTANCE.registerBlockCutout( "glowflower_on_top",
+            () -> FlowerOnTopBOPUtil.newFlowerBlock( IRegistry.getBlock( BOPBlocks.GLOWFLOWER ) ) );
+    public static final RegistryObject<Block> BURNING_BLOSSOM_ON_TOP = INSTANCE.registerBlockCutout( "burning_blossom_on_top",
+            () -> FlowerOnTopBOPUtil.newBurningBlossomOnTop( IRegistry.getBlock( BOPBlocks.BURNING_BLOSSOM ) ) );
         // Tall plants / flowers
     public static final RegistryObject<Block> SEA_OATS_ON_TOP = INSTANCE.registerBlockCutout( "sea_oats_on_top",
             () -> new SeaOatBOP( IRegistry.getBlock( BOPBlocks.SEA_OATS ) ) );
