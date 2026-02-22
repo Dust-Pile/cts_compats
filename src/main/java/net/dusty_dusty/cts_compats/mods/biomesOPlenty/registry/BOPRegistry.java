@@ -20,14 +20,14 @@ import java.util.Optional;
 import java.util.function.Supplier;
 
 @SuppressWarnings("unused")
-public class BOPBaseRegistry extends AbstractRegistry {
-    private static final BOPBaseRegistry INSTANCE = new BOPBaseRegistry( IRegistry.BOP_MODID );
+public class BOPRegistry extends AbstractRegistry {
+    private static final BOPRegistry INSTANCE = new BOPRegistry( IRegistry.BOP_MODID );
     private static final ArrayList<RegistryObject<Block>> cutoutRender = new ArrayList<>();
-    protected BOPBaseRegistry(String modId) {
+    protected BOPRegistry(String modId) {
         super(modId);
     }
 
-    public static BOPBaseRegistry getInstance() {
+    public static BOPRegistry getInstance() {
         return INSTANCE;
     }
 

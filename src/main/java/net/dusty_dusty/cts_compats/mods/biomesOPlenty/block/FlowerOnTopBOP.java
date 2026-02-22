@@ -36,22 +36,22 @@ public class FlowerOnTopBOP extends FlowerBlockOnTop {
 
     public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
         Block ground = worldIn.getBlockState(pos.below()).getBlock();
-        if ( !( ground instanceof SlabBlock && ground instanceof IBlockCopy) ) {
+        if ( !( ground instanceof SlabBlock && ground instanceof IBlockCopy slab ) ) {
             return false;
         }
 
-        Block block = new BlockCopyWrapper( (IBlockCopy) state.getBlock() ).getOriginBlock();
-        BlockState blockState = block.withPropertiesOf(state);
-        ground = new BlockCopyWrapper( (IBlockCopy) ground ).getOriginBlock();
+        Block block = this.getOriginBlock();
+        ground = new BlockCopyWrapper( slab ).getOriginBlock();
+        BlockState groundState = ground.defaultBlockState();
 
         if (block == BOPBlocks.WILDFLOWER.get()) {
             return ground == Blocks.SAND || ground == Blocks.RED_SAND || ground == BOPBlocks.WHITE_SAND.get()
                     || ground == BOPBlocks.ORANGE_SAND.get() || ground == BOPBlocks.BLACK_SAND.get()
-                    || blockState.is(BlockTags.DIRT) || blockState.is(Blocks.FARMLAND);
+                    || groundState.is(BlockTags.DIRT) || groundState.is(Blocks.FARMLAND);
         } else {
             return ground == Blocks.NETHERRACK || ground == Blocks.SOUL_SAND || ground == Blocks.SOUL_SOIL
                     || ground == Blocks.CRIMSON_NYLIUM || ground == Blocks.WARPED_NYLIUM
-                    || blockState.is(BlockTags.DIRT) || blockState.is(Blocks.FARMLAND);
+                    || groundState.is(BlockTags.DIRT) || groundState.is(Blocks.FARMLAND );
         }
     }
 

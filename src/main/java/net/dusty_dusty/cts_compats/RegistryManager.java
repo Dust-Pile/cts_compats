@@ -2,7 +2,7 @@ package net.dusty_dusty.cts_compats;
 
 import net.dusty_dusty.cts_compats.common.registry.IColorRegistry;
 import net.dusty_dusty.cts_compats.common.registry.IRegistry;
-import net.dusty_dusty.cts_compats.mods.biomesOPlenty.registry.BOPBaseRegistry;
+import net.dusty_dusty.cts_compats.mods.biomesOPlenty.registry.BOPRegistry;
 import net.dusty_dusty.cts_compats.mods.vanilla.VanillaRegistry;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.api.distmarker.Dist;
@@ -86,7 +86,7 @@ public final class RegistryManager {
 
     @SuppressWarnings("Convert2MethodRef") // Method Reference loads class. Unacceptable.
     private void clientSetup(final FMLClientSetupEvent event) {
-        runModCompat( IRegistry.BOP_MODID, () -> BOPBaseRegistry.setRenderTypes() );
+        runModCompat( IRegistry.BOP_MODID, () -> BOPRegistry.setRenderTypes() );
     }
 
     @Mod.EventBusSubscriber( modid = CTSCompats.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)

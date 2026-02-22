@@ -6,7 +6,7 @@ import net.dusty_dusty.cts_compats.common.block.interfaces.BlockCopyWrapper;
 import net.dusty_dusty.cts_compats.common.block.interfaces.IBlockCopyForge;
 import net.dusty_dusty.cts_compats.common.block.onTopBlocks.PetalBlockOnTop;
 import net.dusty_dusty.cts_compats.common.registry.IRegistry;
-import net.dusty_dusty.cts_compats.mods.biomesOPlenty.registry.BOPBaseRegistry;
+import net.dusty_dusty.cts_compats.mods.biomesOPlenty.registry.BOPRegistry;
 import net.dusty_dusty.cts_compats.mods.projectVibrantJourneys.PVJRegistry;
 import net.dusty_dusty.cts_compats.mods.vanilla.VanillaRegistry;
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
@@ -69,7 +69,7 @@ public final class ModBlockLootTables extends BlockLootSubProvider {
 
                 if ( originBlock instanceof TallFlowerBlock || ( modId.equals( IRegistry.PVJ_MODID )
                         && originBlock instanceof DoublePlantBlock && !block.equals( PVJRegistry.WATERGRASS_ON_TOP.get() ) )
-                        || block.equals( BOPBaseRegistry.CATTAIL_ON_TOP.get() )
+                        || block.equals( BOPRegistry.CATTAIL_ON_TOP.get() )
                         || block.equals( VanillaRegistry.PITCHER_PLANT_ON_TOP.get() )
                 ) {
                     this.add( block, tallPlantBuilder( block, simplePool(), LootItem.lootTableItem( originBlock.asItem() ) )
@@ -78,8 +78,8 @@ public final class ModBlockLootTables extends BlockLootSubProvider {
                 }
 
                 if ( originBlock instanceof DoublePlantBlock
-                        && !block.equals( BOPBaseRegistry.BRIMSTONE_CLUSTER_ON_TOP.get() )
-                        && !block.equals( BOPBaseRegistry.EYEBULB_ON_TOP.get() )
+                        && !block.equals( BOPRegistry.BRIMSTONE_CLUSTER_ON_TOP.get() )
+                        && !block.equals( BOPRegistry.EYEBULB_ON_TOP.get() )
                 ) {
                     LootTable.Builder builder = shearableTallPlantBuilder( block, originBlock.asItem() )
                             .setRandomSequence( parentLocation );

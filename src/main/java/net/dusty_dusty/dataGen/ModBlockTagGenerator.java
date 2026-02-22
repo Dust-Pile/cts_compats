@@ -6,7 +6,7 @@ import net.dusty_dusty.cts_compats.common.TagReference;
 import net.dusty_dusty.cts_compats.common.block.interfaces.IBlockCopyForge;
 import net.dusty_dusty.cts_compats.common.block.onTopBlocks.DoubleFlowerOnTop;
 import net.dusty_dusty.cts_compats.common.block.onTopBlocks.DoublePlantOnTop;
-import net.dusty_dusty.cts_compats.mods.biomesOPlenty.registry.BOPBaseRegistry;
+import net.dusty_dusty.cts_compats.mods.biomesOPlenty.registry.BOPRegistry;
 import net.dusty_dusty.cts_compats.mods.vanilla.VanillaRegistry;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -33,28 +33,28 @@ public class ModBlockTagGenerator extends BlockTagsProvider {
         // IntrinsicTagAppender<Block> mineable_hoe = this.tag(BlockTags.MINEABLE_WITH_HOE );
 
         this.tag( BlockTags.MINEABLE_WITH_PICKAXE ).add(
-                BOPBaseRegistry.BRIMSTONE_SLAB.get(),
-                BOPBaseRegistry.BRIMSTONE_BUD_ON_TOP.get(),
-                BOPBaseRegistry.DRIED_SALT_SLAB.get(),
-                BOPBaseRegistry.BRIMSTONE_FUMAROLE_ON_TOP.get(),
+                BOPRegistry.BRIMSTONE_SLAB.get(),
+                BOPRegistry.BRIMSTONE_BUD_ON_TOP.get(),
+                BOPRegistry.DRIED_SALT_SLAB.get(),
+                BOPRegistry.BRIMSTONE_FUMAROLE_ON_TOP.get(),
 
                 VanillaRegistry.DRIPSTONE_SLAB.get()
         );
         this.tag(BlockTags.MINEABLE_WITH_AXE ).add(
-                BOPBaseRegistry.FLESH_SLAB.get(),
-                BOPBaseRegistry.POROUS_FLESH_SLAB.get(),
-                BOPBaseRegistry.EYEBULB_ON_TOP.get()
+                BOPRegistry.FLESH_SLAB.get(),
+                BOPRegistry.POROUS_FLESH_SLAB.get(),
+                BOPRegistry.EYEBULB_ON_TOP.get()
         );
         this.tag(BlockTags.MINEABLE_WITH_SHOVEL ).add(
-                BOPBaseRegistry.MOSSY_BLACK_SAND_SLAB.get(),
-                BOPBaseRegistry.BLACK_SAND_SLAB.get(),
-                BOPBaseRegistry.ORANGE_SAND_SLAB.get(),
-                BOPBaseRegistry.WHITE_SAND_SLAB.get()
+                BOPRegistry.MOSSY_BLACK_SAND_SLAB.get(),
+                BOPRegistry.BLACK_SAND_SLAB.get(),
+                BOPRegistry.ORANGE_SAND_SLAB.get(),
+                BOPRegistry.WHITE_SAND_SLAB.get()
         );
 
         this.tag( Tags.Blocks.NEEDS_WOOD_TOOL ).add(
-                BOPBaseRegistry.BRIMSTONE_FUMAROLE_ON_TOP.get(),
-                BOPBaseRegistry.BRIMSTONE_SLAB.get(),
+                BOPRegistry.BRIMSTONE_FUMAROLE_ON_TOP.get(),
+                BOPRegistry.BRIMSTONE_SLAB.get(),
 
                 VanillaRegistry.DRIPSTONE_SLAB.get()
         );
