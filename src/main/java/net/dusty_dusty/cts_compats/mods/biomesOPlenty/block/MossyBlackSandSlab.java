@@ -2,8 +2,7 @@ package net.dusty_dusty.cts_compats.mods.biomesOPlenty.block;
 
 import net.dusty_dusty.cts_compats.common.block.SandSlabBlock;
 import net.dusty_dusty.cts_compats.common.block.interfaces.IDuelSlab;
-import net.dusty_dusty.cts_compats.common.block.interfaces.ISlabCopy;
-import net.dusty_dusty.cts_compats.mods.biomesOPlenty.BOPRegistry;
+import net.dusty_dusty.cts_compats.mods.biomesOPlenty.registry.BOPBaseRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -14,7 +13,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.SlabType;
 import net.minecraft.world.level.lighting.LightEngine;
 import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.PlantType;
@@ -34,7 +32,7 @@ public class MossyBlackSandSlab extends SandSlabBlock implements IDuelSlab {
 
     @Override
     public Block getDuel() {
-        return BOPRegistry.BLACK_SAND_SLAB.get();
+        return BOPBaseRegistry.BLACK_SAND_SLAB.get();
     }
 
     public boolean canSustainPlant(@NotNull BlockState state, @NotNull BlockGetter world, BlockPos pos, @NotNull Direction facing, IPlantable plantable) {
@@ -60,7 +58,7 @@ public class MossyBlackSandSlab extends SandSlabBlock implements IDuelSlab {
                 return;
             }
 
-            level.setBlockAndUpdate( pos, ( BOPRegistry.BLACK_SAND_SLAB.get() ).withPropertiesOf( state ) );
+            level.setBlockAndUpdate( pos, ( BOPBaseRegistry.BLACK_SAND_SLAB.get() ).withPropertiesOf( state ) );
         }
     }
 

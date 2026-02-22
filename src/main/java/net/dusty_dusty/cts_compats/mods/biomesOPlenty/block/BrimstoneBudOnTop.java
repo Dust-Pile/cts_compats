@@ -1,21 +1,20 @@
 package net.dusty_dusty.cts_compats.mods.biomesOPlenty.block;
 
 import net.dusty_dusty.cts_compats.common.block.onTopBlocks.BasicOnTopBlock;
-import net.dusty_dusty.cts_compats.mods.biomesOPlenty.BOPRegistry;
+import net.dusty_dusty.cts_compats.mods.biomesOPlenty.registry.BOPBaseRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
 @SuppressWarnings("deprecation")
 public class BrimstoneBudOnTop extends BasicOnTopBlock {
     public BrimstoneBudOnTop( Block originalBlock ) {
         super( originalBlock, Block.box( 2.0F, -8.0F, 2.0F, 14.0F, -5.0F, 14.0F ),
-                BOPRegistry.PlaceType.BRIMSTONE
+                BOPBaseRegistry.PlaceType.BRIMSTONE
         );
     }
 

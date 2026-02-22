@@ -1,14 +1,14 @@
-package net.dusty_dusty.cts_compats.mods.biomesOPlenty;
+package net.dusty_dusty.cts_compats.mods.biomesOPlenty.registry;
 
 import biomesoplenty.api.block.BOPBlocks;
 import biomesoplenty.init.ModTags;
 import net.dusty_dusty.cts_compats.common.BlockCheckWrapper;
-import net.dusty_dusty.cts_compats.common.block.interfaces.IAssignable;
 import net.dusty_dusty.cts_compats.common.block.onTopBlocks.*;
 import net.dusty_dusty.cts_compats.common.block.CustomSlabBlock;
 import net.dusty_dusty.cts_compats.common.registry.AbstractRegistry;
 import net.dusty_dusty.cts_compats.common.registry.IColorRegistry;
 import net.dusty_dusty.cts_compats.common.registry.IRegistry;
+import net.dusty_dusty.cts_compats.mods.biomesOPlenty.BOPColorRegistry;
 import net.dusty_dusty.cts_compats.mods.biomesOPlenty.block.*;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -20,14 +20,14 @@ import java.util.Optional;
 import java.util.function.Supplier;
 
 @SuppressWarnings("unused")
-public class BOPRegistry extends AbstractRegistry {
-    private static final BOPRegistry INSTANCE = new BOPRegistry( IRegistry.BOP_MODID );
+public class BOPBaseRegistry extends AbstractRegistry {
+    private static final BOPBaseRegistry INSTANCE = new BOPBaseRegistry( IRegistry.BOP_MODID );
     private static final ArrayList<RegistryObject<Block>> cutoutRender = new ArrayList<>();
-    protected BOPRegistry(String modId) {
+    protected BOPBaseRegistry(String modId) {
         super(modId);
     }
 
-    public static BOPRegistry getInstance() {
+    public static BOPBaseRegistry getInstance() {
         return INSTANCE;
     }
 

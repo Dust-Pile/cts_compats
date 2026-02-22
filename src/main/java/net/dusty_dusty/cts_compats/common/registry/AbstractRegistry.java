@@ -52,7 +52,10 @@ public abstract class AbstractRegistry implements IRegistry {
                 ( (IAssignable) block ).assign();
             }
         });
+        assignExtras();
     }
+
+    protected void assignExtras() {}
 
     public Collection<RegistryObject<Block>> getRegistryBlocks() {
         return COMPAT_BLOCKS.getEntries();
