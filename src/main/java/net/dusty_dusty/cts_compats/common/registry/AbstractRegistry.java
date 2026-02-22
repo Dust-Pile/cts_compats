@@ -1,5 +1,6 @@
 package net.dusty_dusty.cts_compats.common.registry;
 
+import net.dusty_dusty.cts_compats.CTSCompats;
 import net.dusty_dusty.cts_compats.common.block.interfaces.IAssignable;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -48,7 +49,9 @@ public abstract class AbstractRegistry implements IRegistry {
     public void assign() {
         this.COMPAT_BLOCKS.getEntries().forEach( entry -> {
             Block block = entry.get();
+            CTSCompats.LOGGER.info( block.getDescriptionId() );
             if ( block instanceof IAssignable) {
+                CTSCompats.LOGGER.info( block.getDescriptionId() );
                 ( (IAssignable) block ).assign();
             }
         });

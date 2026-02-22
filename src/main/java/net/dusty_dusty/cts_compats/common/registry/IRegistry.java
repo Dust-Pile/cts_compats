@@ -20,4 +20,15 @@ public interface IRegistry {
     Collection<RegistryObject<Block>> getRegistryBlocks();
 
     Optional<IColorRegistry> getColorRegistry();
+
+    static Block getBlock( Object object ) {
+        if ( object instanceof Block block ) {
+            return block;
+        } else if ( object instanceof RegistryObject<?> register ) {
+            if ( register.get() instanceof Block block ) {
+                return block;
+            }
+        }
+        throw new IllegalArgumentException( "Object " + object + " is not a block or block registry object." );
+    }
 }

@@ -92,12 +92,17 @@ dependencies {
     // Compats Mods
     implementation fg.deobf("curse.maven:project-vibrant-journeys-300297:6841170")
     implementation fg.deobf("curse.maven:biomes-o-plenty-220318:4617259")
+    // implementation fg.deobf("curse.maven:biomes-o-plenty-220318:6364065")
 
     // Helpers
     runtimeOnly "curse.maven:terralith-513688:5512076"
     runtimeOnly fg.deobf("curse.maven:jade-324717:6855440")
     runtimeOnly fg.deobf("curse.maven:jei-238222:6600311")
     runtimeOnly fg.deobf("curse.maven:embeddium-908741:5681725")
+
+    constraints {
+
+    }
 }
 
 tasks.named('processResources', ProcessResources).configure {
