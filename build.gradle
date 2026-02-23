@@ -93,8 +93,8 @@ dependencies {
     // Compats Mods
     implementation fg.deobf("curse.maven:project-vibrant-journeys-300297:6841170")
     compileOnly fileTree(dir: 'libs', include: '*.jar')
-    // runtimeOnly fg.deobf("curse.maven:biomes-o-plenty-220318:4617259")
-    runtimeOnly fg.deobf("curse.maven:biomes-o-plenty-220318:6364065")
+    runtimeOnly fg.deobf("curse.maven:biomes-o-plenty-220318:4617259")
+    // runtimeOnly fg.deobf("curse.maven:biomes-o-plenty-220318:6364065")
 
     // Helpers
     runtimeOnly "curse.maven:terralith-513688:5512076"

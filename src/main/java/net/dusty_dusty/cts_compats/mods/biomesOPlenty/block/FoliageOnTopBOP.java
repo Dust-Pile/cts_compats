@@ -1,10 +1,9 @@
 package net.dusty_dusty.cts_compats.mods.biomesOPlenty.block;
 
-import net.dusty_dusty.cts_compats.mods.biomesOPlenty.BOPReference;
+import net.dusty_dusty.cts_compats.mods.biomesOPlenty.registry.BOPReference;
 import net.countered.terrainslabs.block.interfaces.IBlockCopy;
 import net.dusty_dusty.cts_compats.common.block.interfaces.BlockCopyWrapper;
 import net.dusty_dusty.cts_compats.common.block.onTopBlocks.BushBlockOnTop;
-import net.dusty_dusty.cts_compats.common.registry.IRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.stats.Stats;
 import net.minecraft.tags.BlockTags;

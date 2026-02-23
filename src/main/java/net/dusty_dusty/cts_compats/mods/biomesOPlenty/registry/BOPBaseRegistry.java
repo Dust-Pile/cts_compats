@@ -1,6 +1,5 @@
 package net.dusty_dusty.cts_compats.mods.biomesOPlenty.registry;
 
-import net.dusty_dusty.cts_compats.mods.biomesOPlenty.BOPReference;
 import biomesoplenty.init.ModTags;
 import net.dusty_dusty.cts_compats.common.BlockCheckWrapper;
 import net.dusty_dusty.cts_compats.common.block.onTopBlocks.*;

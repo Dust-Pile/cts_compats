@@ -1,7 +1,7 @@
 package net.dusty_dusty.cts_compats.mods.biomesOPlenty.block;
 
 import net.dusty_dusty.cts_compats.common.block.onTopBlocks.BasicOnTopBlock;
-import net.dusty_dusty.cts_compats.mods.biomesOPlenty.BOPReference;
+import net.dusty_dusty.cts_compats.mods.biomesOPlenty.registry.BOPReference;
 import net.dusty_dusty.cts_compats.mods.biomesOPlenty.registry.BOPBaseRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

@@ -1,6 +1,6 @@
 package net.dusty_dusty.cts_compats.mods.biomesOPlenty.block.flowerBlocks;
 
-import net.dusty_dusty.cts_compats.mods.biomesOPlenty.BOPReference;
+import net.dusty_dusty.cts_compats.mods.biomesOPlenty.registry.BOPReference;
 import net.countered.terrainslabs.block.interfaces.IBlockCopy;
 import net.dusty_dusty.cts_compats.common.block.interfaces.BlockCopyWrapper;
 import net.minecraft.core.BlockPos;
