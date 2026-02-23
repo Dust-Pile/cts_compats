@@ -17,10 +17,9 @@ public class TinyCactusOnTop extends BushBlockOnTop {
 
     @Override
     @SuppressWarnings("deprecation")
-    public void entityInside(@NotNull BlockState p_51148_, @NotNull Level p_51149_, @NotNull BlockPos p_51150_, @NotNull Entity p_51151_) {
-        if (p_51151_ instanceof Player playerEntity) {
-            playerEntity.hurt(p_51149_.damageSources().cactus(), 1.0F);
+    public void entityInside(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Entity entity) {
+        if (entity instanceof Player playerEntity) {
+            playerEntity.hurt(level.damageSources().cactus(), 1.0F);
         }
-
     }
 }

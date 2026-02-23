@@ -5,7 +5,10 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.SlabType;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
@@ -13,6 +16,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 @SuppressWarnings("OptionalUsedAsFieldOrParameterType")
 public class BlockCheckWrapper {
@@ -41,25 +46,47 @@ public class BlockCheckWrapper {
         WATER_PLANT_PLACEABLE.add( BlockTags.BIG_DRIPLEAF_PLACEABLE );
     }
 
+    public static BlockCheckWrapper ALWAYS = new BlockCheckWrapper( state -> true );
+    public static BlockCheckWrapper NEVER = new BlockCheckWrapper( state -> false );
+    public static BlockCheckWrapper DRY = new BlockCheckWrapper( state ->
+            !state.getValue( BlockStateProperties.WATERLOGGED ) || state.getValue( SlabBlock.TYPE ) != SlabType.BOTTOM
+    );
+
     private final Optional<Block> blockOption;
     private final Optional<TagKey<Block>> blockTagOption;
+    private final Optional<Function<BlockState, Boolean>> functionOption;
 
     public BlockCheckWrapper( Block block ) {
         this.blockOption = Optional.of( block );
         this.blockTagOption = Optional.empty();
+        this.functionOption = Optional.empty();
     }
     public BlockCheckWrapper( RegistryObject<Block> block ) {
         this.blockOption = Optional.of( block.get() );
         this.blockTagOption = Optional.empty();
+        this.functionOption = Optional.empty();
     }
     public BlockCheckWrapper( TagKey<Block> blockTag ) {
         this.blockTagOption = Optional.of( blockTag );
         this.blockOption = Optional.empty();
+        this.functionOption = Optional.empty();
+    }
+    public BlockCheckWrapper( Function<BlockState, Boolean> func ) {
+        this.blockTagOption = Optional.empty();;
+        this.blockOption = Optional.empty();
+        this.functionOption = Optional.of( func );
     }
 
     @SuppressWarnings("OptionalGetWithoutIsPresent")
     public boolean check( BlockState state ) {
+        if ( functionOption.isPresent() ) {
+            return functionOption.get().apply( state );
+        }
         return blockOption.map(state::is).orElseGet(() -> state.is(blockTagOption.get()));
+    }
+
+    public Group asGroup() {
+        return new Group( this );
     }
 
     public static boolean checkAll( BlockState state, List<BlockCheckWrapper> blockChecks ) {
@@ -112,6 +139,9 @@ public class BlockCheckWrapper {
         public void add( TagKey<Block> key ) {
             this.add( new BlockCheckWrapper( key ) );
         }
+        public void add( Function<BlockState, Boolean> func ) {
+            this.add( new BlockCheckWrapper( func ) );
+        }
 
         public boolean check( BlockState blockState ) {
             return checkAll( blockState, this );
@@ -126,6 +156,14 @@ public class BlockCheckWrapper {
             Group clone = this.clone();
             clone.addAll( appends );
             return clone;
+        }
+        public Group cloneAndAppend( BlockCheckWrapper wrapper ) {
+            Group clone = this.clone();
+            clone.add( wrapper );
+            return clone;
+        }
+        public Group asDry() {
+            return this.cloneAndAppend( DRY );
         }
     }
 }

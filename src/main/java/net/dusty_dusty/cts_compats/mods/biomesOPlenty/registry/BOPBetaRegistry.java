@@ -7,10 +7,12 @@ import net.dusty_dusty.cts_compats.common.block.onTopBlocks.FlowerBlockOnTop;
 import net.dusty_dusty.cts_compats.common.block.onTopBlocks.PetalBlockOnTop;
 import net.dusty_dusty.cts_compats.common.registry.IRegistry;
 import net.dusty_dusty.cts_compats.mods.biomesOPlenty.block.DoubleFlowerBOP;
+import net.dusty_dusty.cts_compats.mods.biomesOPlenty.block.FoliageOnTopBOP;
 import net.dusty_dusty.cts_compats.mods.biomesOPlenty.block.TinyCactusOnTop;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
@@ -36,12 +38,13 @@ public final class BOPBetaRegistry {
     }
 
     // On Top Things
-//    public static final RegistryObject<Block> RED_MAPLE_LEAVES_ON_TOP = INSTANCE.registerBlockCutout( "red_maple_leaves_on_top",
-//            () -> new PetalBlockOnTop( BOPBlocks.RED_MAPLE_LEAF_PILE ) );
-//    public static final RegistryObject<Block> ORANGE_MAPLE_LEAVES_ON_TOP = INSTANCE.registerBlockCutout( "orange_maple_leaves_on_top",
-//            () -> new PetalBlockOnTop( BOPBlocks.ORANGE_MAPLE_LEAF_PILE ) );
-//    public static final RegistryObject<Block> YELLOW_MAPLE_LEAVES_ON_TOP = INSTANCE.registerBlockCutout( "yellow_maple_leaves_on_top",
-//            () -> new PetalBlockOnTop( BOPBlocks.YELLOW_MAPLE_LEAF_PILE ) );
+    public static VoxelShape LEAF_PILE_SHAPE = Block.box( 0.0F, 0.0F, 0.0F, 16.0F, 4.0F, 16.0F );
+    public static final RegistryObject<Block> RED_MAPLE_LEAVES_ON_TOP = INSTANCE.registerBlockCutout( "red_maple_leaves_on_top",
+            () -> new FoliageOnTopBOP( BOPBlocks.RED_MAPLE_LEAF_PILE, LEAF_PILE_SHAPE ) );
+    public static final RegistryObject<Block> ORANGE_MAPLE_LEAVES_ON_TOP = INSTANCE.registerBlockCutout( "orange_maple_leaves_on_top",
+            () -> new FoliageOnTopBOP( BOPBlocks.ORANGE_MAPLE_LEAF_PILE, LEAF_PILE_SHAPE ) );
+    public static final RegistryObject<Block> YELLOW_MAPLE_LEAVES_ON_TOP = INSTANCE.registerBlockCutout( "yellow_maple_leaves_on_top",
+            () -> new FoliageOnTopBOP( BOPBlocks.YELLOW_MAPLE_LEAF_PILE, LEAF_PILE_SHAPE ) );
     public static final RegistryObject<Block> WILDFLOWER_ON_TOP = INSTANCE.registerBlockCutout( "wildflower_on_top",
             () -> new PetalBlockOnTop( BOPBlocks.WILDFLOWER ) );
     public static final RegistryObject<Block> WHITE_LAVENDER_ON_TOP = INSTANCE.registerBlockCutout( "white_lavender_on_top",

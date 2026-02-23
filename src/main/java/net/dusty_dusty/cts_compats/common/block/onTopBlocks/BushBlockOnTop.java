@@ -33,7 +33,7 @@ public class BushBlockOnTop extends BushBlock implements IAssignable, IOnTopCopy
         this.originalBlock = originalBlock;
         this.SHAPE = SHAPE;
     }
-    public BushBlockOnTop(Block originalBlock, VoxelShape SHAPE, List<BlockCheckWrapper> placeableTypes ) {
+    public BushBlockOnTop(Block originalBlock, VoxelShape SHAPE, List<? extends BlockCheckWrapper> placeableTypes ) {
         super( PropertiesUtil.copyAndOffsetOnTopBlockProperties( originalBlock ) );
         this.PLACEMENT_RULE = PlacementRule.CUSTOM;
         this.blockTypes.addAll( placeableTypes );

@@ -81,17 +81,17 @@ public class BOPBaseRegistry extends AbstractRegistry {
     // Overworld On Top Plants
         // Foliage
     public static final RegistryObject<Block> SPROUT_ON_TOP = INSTANCE.registerBlockCutout( "sprout_on_top",
-            () -> new FoliageOnTopBOP( BOPReference.SPROUT ) );
+            () -> new FoliageOnTopBOP( BOPReference.SPROUT, FoliageOnTopBOP.FOLIAGE_SHAPE, BlockCheckWrapper.ALWAYS.asGroup() ) );
     public static final RegistryObject<Block> BUSH_ON_TOP = INSTANCE.registerBlockCutout( "bush_on_top",
-            () -> new FoliageOnTopBOP( BOPReference.BUSH ) );
+            () -> new FoliageOnTopBOP( BOPReference.BUSH, FoliageOnTopBOP.FOLIAGE_SHAPE ) );
     public static final RegistryObject<Block> DUNE_GRASS_ON_TOP = INSTANCE.registerBlockCutout( "dune_grass_on_top",
-            () -> new FoliageOnTopBOP( BOPReference.DUNE_GRASS ) );
+            () -> new FoliageOnTopBOP( BOPReference.DUNE_GRASS, FoliageOnTopBOP.FOLIAGE_SHAPE, PlaceType.BOP_SAND ) );
     public static final RegistryObject<Block> DEAD_GRASS_ON_TOP = INSTANCE.registerBlockCutout( "dead_grass_on_top",
-            () -> new FoliageOnTopBOP( BOPReference.DEAD_GRASS ) );
+            () -> new FoliageOnTopBOP( BOPReference.DEAD_GRASS, FoliageOnTopBOP.FOLIAGE_SHAPE, FoliageOnTopBOP.DEAD_GRASS) );
     public static final RegistryObject<Block> DESERT_GRASS_ON_TOP = INSTANCE.registerBlockCutout( "desert_grass_on_top",
-            () -> new FoliageOnTopBOP( BOPReference.DESERT_GRASS ) );
+            () -> new FoliageOnTopBOP( BOPReference.DESERT_GRASS, FoliageOnTopBOP.SHORT_FOLIAGE_SHAPE, FoliageOnTopBOP.DEAD_GRASS) );
     public static final RegistryObject<Block> TUNDRA_SHRUB_ON_TOP = INSTANCE.registerBlockCutout( "tundra_shrub_on_top",
-            () -> new FoliageOnTopBOP( BOPReference.TUNDRA_SHRUB ) );
+            () -> new FoliageOnTopBOP( BOPReference.TUNDRA_SHRUB, FoliageOnTopBOP.FOLIAGE_SHAPE ) );
     public static final RegistryObject<Block> TOADSTOOL_ON_TOP = INSTANCE.registerBlockCutout( "toadstool_on_top",
             () -> new BushBlockOnTop( BOPReference.TOADSTOOL, Block.box( 5.0D, -8.0D, 5.0D, 11.0D, -2.0D, 11.0D ) ) );
         // Petals
