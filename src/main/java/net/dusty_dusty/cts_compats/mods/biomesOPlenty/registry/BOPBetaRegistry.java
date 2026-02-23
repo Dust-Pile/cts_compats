@@ -18,6 +18,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 import java.util.Optional;
 
+@SuppressWarnings("unused")
 public final class BOPBetaRegistry {
     public static BOPBaseRegistry INSTANCE = BOPBaseRegistry.getInstance();
     public static BOPBaseRegistry getInstance() {
