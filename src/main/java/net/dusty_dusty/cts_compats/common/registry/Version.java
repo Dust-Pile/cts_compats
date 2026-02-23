@@ -1,6 +1,5 @@
 package net.dusty_dusty.cts_compats.common.registry;
 
-import net.dusty_dusty.cts_compats.CTSCompats;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -9,7 +8,7 @@ import java.util.List;
 public class Version implements Comparable<Version> {
     private final String version;
     private final boolean matchesAll;
-    private final List<Integer> parts = new ArrayList<>();
+    private final List<Long> parts = new ArrayList<>();
 
     // Assumes version parts are in base 62 (all alphanumeric characters) and converts to base 10
     //   This convention allows simple handling of version strings like "1.13.5b"
@@ -40,7 +39,7 @@ public class Version implements Comparable<Version> {
             return 0;
         }
         for ( int i = 0; i < this.parts.size() && i < version.parts.size(); i++ ) {
-            int comparison = Integer.compare( this.parts.get(i), version.parts.get(i) );
+            int comparison = Long.compareUnsigned( this.parts.get(i), version.parts.get(i) );
             if ( comparison != 0 ) {
                 return comparison;
             }
@@ -51,24 +50,28 @@ public class Version implements Comparable<Version> {
         return this.parts.size() > version.parts.size() ? 1 : -1;
     }
 
-    private static int getAlphanumericNumber( String alphanumeric ) {
+    private static long getAlphanumericNumber( String alphanumeric ) {
         if ( !alphanumeric.matches( "^[a-zA-Z0-9]*$" ) ) {
             throw new IllegalArgumentException( "Version part " + alphanumeric + " is not alphanumeric." );
+        } else if ( alphanumeric.length() > 20 ) {
+            // Largest safe alphanum part is 20 characters
+            throw new ArithmeticException( "Alphanumeric strings larger than 20 characters are not safe version parts (too large)." );
         }
 
-        int sum = 0;
+        long sum = 0;
         char[] chars = alphanumeric.toCharArray();
+        int multiplier = 1;
         for ( int i = chars.length - 1; i >= 0; i-- ) {
-            int multiplier = ( chars.length - i - 1 ) * 10 * 26 * 26;
             Character aChar = (Character) chars[i];
 
             if ( aChar.toString().matches( "[a-z]" ) ) {
-                sum += ( chars[i] - 'a' + 10 ) * multiplier;
+                sum += (long) (chars[i] - 'a' + 10) * multiplier;
             } else if ( aChar.toString().matches( "[A-Z]" ) ) {
-                sum += ( chars[i] - 'A' + 10 + 26 ) * multiplier;
+                sum += (long) (chars[i] - 'A' + 10 + 26) * multiplier;
             } else {
-                sum += ( chars[i] - '0' ) * multiplier;
+                sum += (long) (chars[i] - '0') * multiplier;
             }
+            multiplier *= 10 + 26 + 26;
         }
 
         return sum;
@@ -79,24 +82,24 @@ public class Version implements Comparable<Version> {
         return this.version();
     }
 
-    public static class Filter implements Comparable<Version> {
+    public static class Range implements Comparable<Version> {
         private boolean hasBounds = false;
         private boolean isLowerInclusive = true;
         private boolean isUpperInclusive = true;
         final Version upperBound;
         final Version lowerBound;
 
-        protected Filter() {
+        protected Range() {
             lowerBound = new Version( "*" );
             upperBound = null;
         }
 
-        protected Filter( Version version ) {
+        protected Range(Version version ) {
             lowerBound = version;
             upperBound = null;
         }
 
-        protected Filter( Version lowerBound, Version upperBound, boolean isLowerInclusive, boolean isUpperInclusive ) {
+        protected Range(Version lowerBound, Version upperBound, boolean isLowerInclusive, boolean isUpperInclusive ) {
             hasBounds = true;
             this.lowerBound = lowerBound;
             this.upperBound = upperBound;
@@ -126,32 +129,32 @@ public class Version implements Comparable<Version> {
             }
         }
 
-        public static Filter acceptsAll() {
-            return new Filter();
+        public static Range acceptsAll() {
+            return new Range();
         }
 
-        public static Filter acceptsExactly( String version ) {
-            return new Filter( new Version( version ) );
+        public static Range acceptsExactly(String version ) {
+            return new Range( new Version( version ) );
         }
 
-        public static Filter acceptLaterThanInclusive( String version ) {
-            return new Filter( new Version( version ), new Version( "*" ), true, false );
+        public static Range acceptLaterThanInclusive(String version ) {
+            return new Range( new Version( version ), new Version( "*" ), true, false );
         }
 
-        public static Filter acceptLaterThanExclusive( String version ) {
-            return new Filter( new Version( version ), new Version( "*" ), false, false );
+        public static Range acceptLaterThanExclusive(String version ) {
+            return new Range( new Version( version ), new Version( "*" ), false, false );
         }
 
-        public static Filter acceptBetweenInclusive( String lowerBound, String upperBound ) {
-            return new Filter( new Version( lowerBound ), new Version( upperBound ), true, true );
+        public static Range acceptBetweenInclusive(String lowerBound, String upperBound ) {
+            return new Range( new Version( lowerBound ), new Version( upperBound ), true, true );
         }
 
-        public static Filter acceptBetweenExclusive( String lowerBound, String upperBound ) {
-            return new Filter( new Version( lowerBound ), new Version( upperBound ), false, false );
+        public static Range acceptBetweenExclusive(String lowerBound, String upperBound ) {
+            return new Range( new Version( lowerBound ), new Version( upperBound ), false, false );
         }
 
-        public static Filter acceptCustom( String lowerBound, String upperBound, boolean isLowerInclusive, boolean isUpperInclusive ) {
-            return new Filter( new Version( lowerBound ), new Version( upperBound ), isLowerInclusive, isUpperInclusive );
+        public static Range acceptCustom(String lowerBound, String upperBound, boolean isLowerInclusive, boolean isUpperInclusive ) {
+            return new Range( new Version( lowerBound ), new Version( upperBound ), isLowerInclusive, isUpperInclusive );
         }
     }
 }
