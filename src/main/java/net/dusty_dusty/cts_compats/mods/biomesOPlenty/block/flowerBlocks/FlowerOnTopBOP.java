@@ -9,7 +9,6 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.FlowerBlock;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
@@ -21,9 +20,7 @@ public class FlowerOnTopBOP extends AbstractFlowerOnTopBOP {
     private final VoxelShape SHAPE;
 
     public FlowerOnTopBOP(Block originalBlock) {
-        super( originalBlock, ( (FlowerBlock) originalBlock ).getSuspiciousEffect(),
-                ( (FlowerBlock) originalBlock ).getEffectDuration()
-        );
+        super( originalBlock );
         if (originalBlock == BOPBlocks.LAVENDER || originalBlock == BOPBlocks.WHITE_LAVENDER || originalBlock == BOPBlocks.PINK_HIBISCUS
         ) {
             this.SHAPE = LARGE;

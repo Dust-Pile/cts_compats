@@ -24,7 +24,7 @@ public class BOPReference {
     public static Block BRIMSTONE_FUMAROLE = getBlock( "brimstone_fumarole" );
     public static Block BRIMSTONE_CLUSTER = getBlock( "brimstone_cluster" );
     public static Block BRIMSTONE_BUD = getBlock( "brimstone_bud" );
-    public static Block BLACKSTONE_SPINES = getBlock( "blackstone_spikes" );
+    public static Block BLACKSTONE_SPINES = getBlock( "blackstone_spines" );
     public static Block BLACKSTONE_BULB = getBlock( "blackstone_bulb" );
     public static Block TOADSTOOL = getBlock( "toadstool" );
     public static Block ROSE = getBlock( "rose" );

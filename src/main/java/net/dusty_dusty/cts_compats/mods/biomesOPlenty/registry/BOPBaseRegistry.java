@@ -95,8 +95,8 @@ public class BOPBaseRegistry extends AbstractRegistry {
             () -> FlowerOnTopBOPUtil.newFlowerBlock( BOPReference.VIOLET ) );
     public static final RegistryObject<Block> ORANGE_COSMOS_ON_TOP = INSTANCE.registerBlockCutout( "orange_cosmos_on_top",
             () -> FlowerOnTopBOPUtil.newFlowerBlock( BOPReference.ORANGE_COSMOS ) );
-    public static final RegistryObject<Block> WILDFLOWER_ON_TOP = INSTANCE.registerBlockCutout( "wildflower_on_top",
-            () -> FlowerOnTopBOPUtil.newFlowerBlock( BOPReference.WILDFLOWER ) );
+//    public static final RegistryObject<Block> WILDFLOWER_ON_TOP = INSTANCE.registerBlockCutout( "wildflower_on_top",
+//            () -> FlowerOnTopBOPUtil.newFlowerBlock( BOPReference.WILDFLOWER ) );
     public static final RegistryObject<Block> WILTED_LILY_ON_TOP = INSTANCE.registerBlockCutout( "wilted_lily_on_top",
             () -> FlowerOnTopBOPUtil.newFlowerBlock( BOPReference.WILTED_LILY ) );
     public static final RegistryObject<Block> GLOWFLOWER_ON_TOP = INSTANCE.registerBlockCutout( "glowflower_on_top",

@@ -1,7 +1,6 @@
 package net.dusty_dusty.cts_compats.mods.biomesOPlenty.block.flowerBlocks;
 
 import net.dusty_dusty.cts_compats.mods.biomesOPlenty.BOPReference;
-import biomesoplenty.common.block.FlowerBlockBOP;
 import net.countered.terrainslabs.block.interfaces.IBlockCopy;
 import net.dusty_dusty.cts_compats.common.block.interfaces.BlockCopyWrapper;
 import net.minecraft.core.BlockPos;
@@ -18,10 +17,8 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
 public class FlowerOnTopOldBOP extends AbstractFlowerOnTopBOP {
-    public FlowerOnTopOldBOP(Block originalBlock) {
-        super( originalBlock, ( (FlowerBlockBOP) originalBlock ).getSuspiciousEffect(),
-                ( (FlowerBlockBOP) originalBlock ).getEffectDuration()
-        );
+    public FlowerOnTopOldBOP( Block originalBlock ) {
+        super( originalBlock );
     }
 
     public boolean canSurvive(@NotNull BlockState state, @NotNull LevelReader worldIn, BlockPos pos) {

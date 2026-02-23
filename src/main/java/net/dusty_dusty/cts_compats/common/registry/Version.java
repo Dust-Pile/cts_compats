@@ -1,5 +1,6 @@
 package net.dusty_dusty.cts_compats.common.registry;
 
+import net.dusty_dusty.cts_compats.CTSCompats;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
@@ -113,8 +114,8 @@ public class Version implements Comparable<Version> {
             }
             int lowerCompare = version.compareTo( lowerBound );
             int upperCompare = version.compareTo( upperBound );
-            lowerCompare = ( lowerCompare == 0 && !isLowerInclusive ) ? -1 : lowerCompare;
-            upperCompare = ( upperCompare == 0 && !isUpperInclusive ) ? 1 : upperCompare;
+            lowerCompare = ( lowerCompare == 0 && !isLowerInclusive && !lowerBound.matchesAll ) ? -1 : lowerCompare;
+            upperCompare = ( upperCompare == 0 && !isUpperInclusive && !upperBound.matchesAll ) ? 1 : upperCompare;
 
             if ( lowerCompare < 0 ) {
                 return -1;
