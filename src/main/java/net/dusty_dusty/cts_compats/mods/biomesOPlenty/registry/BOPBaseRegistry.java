@@ -8,10 +8,12 @@ import net.dusty_dusty.cts_compats.common.registry.AbstractRegistry;
 import net.dusty_dusty.cts_compats.common.registry.IColorRegistry;
 import net.dusty_dusty.cts_compats.common.registry.IRegistry;
 import net.dusty_dusty.cts_compats.mods.biomesOPlenty.block.*;
-import net.dusty_dusty.cts_compats.mods.biomesOPlenty.block.flowerBlocks.FlowerOnTopBOPUtil;
+import net.dusty_dusty.cts_compats.mods.biomesOPlenty.block.BurningBlossomOnTop;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.registries.RegistryObject;
 
 import java.util.ArrayList;
@@ -32,14 +34,29 @@ public class BOPBaseRegistry extends AbstractRegistry {
         return INSTANCE;
     }
 
+    public static class FlowerShapes {
+        public static final VoxelShape SHORT = Block.box(2.0F, 0.0F, 2.0F, 14.0F, 6.0F, 14.0F);
+        public static final VoxelShape NORMAL = Block.box(5.0F, 0.0F, 5.0F, 11.0F, 10.0F, 11.0F);
+        public static final VoxelShape MEDIUM = Block.box(3.0F, 0.0F, 3.0F, 13.0F, 12.0F, 13.0F);
+        public static final VoxelShape LARGE = Block.box(1.0F, 0.0F, 1.0F, 15.0F, 14.0F, 15.0F);
+    }
+
     public static class PlaceType {
-        public static ArrayList<BlockCheckWrapper> FLESH = new ArrayList<>();
-        public static ArrayList<BlockCheckWrapper> BLACKSTONE = new ArrayList<>();
-        public static ArrayList<BlockCheckWrapper> BRIMSTONE = new ArrayList<>();
+        public static BlockCheckWrapper.Group FLESH = new BlockCheckWrapper.Group();
+        public static BlockCheckWrapper.Group BLACKSTONE = new BlockCheckWrapper.Group();
+        public static BlockCheckWrapper.Group BRIMSTONE = new BlockCheckWrapper.Group();
+
+        public static BlockCheckWrapper.Group BOP_SAND = new BlockCheckWrapper.Group();
         static {
-            FLESH.add( new BlockCheckWrapper( ModTags.Blocks.FLESH_DECORATION_PLACEABLE ) );
-            BLACKSTONE.add( new BlockCheckWrapper( ModTags.Blocks.BLACKSTONE_DECORATION_PLACEABLE ) );
-            BRIMSTONE.add( new BlockCheckWrapper( ModTags.Blocks.BRIMSTONE_DECORATION_PLACEABLE ) );
+            FLESH.add( ModTags.Blocks.FLESH_DECORATION_PLACEABLE );
+            BLACKSTONE.add( ModTags.Blocks.BLACKSTONE_DECORATION_PLACEABLE );
+            BRIMSTONE.add( ModTags.Blocks.BRIMSTONE_DECORATION_PLACEABLE );
+
+            BOP_SAND.add( Blocks.SAND );
+            BOP_SAND.add( Blocks.RED_SAND );
+            BOP_SAND.add( BOPReference.WHITE_SAND );
+            BOP_SAND.add( BOPReference.ORANGE_SAND );
+            BOP_SAND.add( BOPReference.BLACK_SAND );
         }
     }
 
@@ -84,23 +101,23 @@ public class BOPBaseRegistry extends AbstractRegistry {
             () -> new PetalBlockOnTop( BOPReference.WHITE_PETALS ) );
         // Flowers
     public static final RegistryObject<Block> ROSE_ON_TOP = INSTANCE.registerBlockCutout( "rose_on_top",
-            () -> FlowerOnTopBOPUtil.newFlowerBlock( BOPReference.ROSE ) );
+            () -> new FlowerBlockOnTop( BOPReference.ROSE, FlowerShapes.NORMAL ) );
     public static final RegistryObject<Block> PINK_DAFFODIL_ON_TOP = INSTANCE.registerBlockCutout( "pink_daffodil_on_top",
-            () -> FlowerOnTopBOPUtil.newFlowerBlock( BOPReference.PINK_DAFFODIL ) );
+            () -> new FlowerBlockOnTop( BOPReference.PINK_DAFFODIL, FlowerShapes.MEDIUM ) );
     public static final RegistryObject<Block> PINK_HIBISCUS_ON_TOP = INSTANCE.registerBlockCutout( "pink_hibiscus_on_top",
-            () -> FlowerOnTopBOPUtil.newFlowerBlock( BOPReference.PINK_HIBISCUS ) );
+            () -> new FlowerBlockOnTop( BOPReference.PINK_HIBISCUS, FlowerShapes.LARGE ) );
     public static final RegistryObject<Block> LAVENDER_ON_TOP = INSTANCE.registerBlockCutout( "lavender_on_top",
-            () -> FlowerOnTopBOPUtil.newFlowerBlock( BOPReference.LAVENDER ) );
+            () -> new FlowerBlockOnTop( BOPReference.LAVENDER, FlowerShapes.LARGE ) );
     public static final RegistryObject<Block> VIOLET_ON_TOP = INSTANCE.registerBlockCutout( "violet_on_top",
-            () -> FlowerOnTopBOPUtil.newFlowerBlock( BOPReference.VIOLET ) );
+            () -> new FlowerBlockOnTop( BOPReference.VIOLET, FlowerShapes.SHORT ) );
     public static final RegistryObject<Block> ORANGE_COSMOS_ON_TOP = INSTANCE.registerBlockCutout( "orange_cosmos_on_top",
-            () -> FlowerOnTopBOPUtil.newFlowerBlock( BOPReference.ORANGE_COSMOS ) );
+            () -> new FlowerBlockOnTop( BOPReference.ORANGE_COSMOS, FlowerShapes.NORMAL ) );
     public static final RegistryObject<Block> WILTED_LILY_ON_TOP = INSTANCE.registerBlockCutout( "wilted_lily_on_top",
-            () -> FlowerOnTopBOPUtil.newFlowerBlock( BOPReference.WILTED_LILY ) );
+            () -> new FlowerBlockOnTop( BOPReference.WILTED_LILY, FlowerShapes.MEDIUM ) );
     public static final RegistryObject<Block> GLOWFLOWER_ON_TOP = INSTANCE.registerBlockCutout( "glowflower_on_top",
-            () -> FlowerOnTopBOPUtil.newFlowerBlock( BOPReference.GLOWFLOWER ) );
+            () -> new FlowerBlockOnTop( BOPReference.GLOWFLOWER, FlowerShapes.MEDIUM ) );
     public static final RegistryObject<Block> BURNING_BLOSSOM_ON_TOP = INSTANCE.registerBlockCutout( "burning_blossom_on_top",
-            () -> FlowerOnTopBOPUtil.newBurningBlossomOnTop( BOPReference.BURNING_BLOSSOM ) );
+            () -> new BurningBlossomOnTop( BOPReference.BURNING_BLOSSOM ));
         // Tall plants / flowers
     public static final RegistryObject<Block> SEA_OATS_ON_TOP = INSTANCE.registerBlockCutout( "sea_oats_on_top",
             () -> new SeaOatBOP( BOPReference.SEA_OATS ) );

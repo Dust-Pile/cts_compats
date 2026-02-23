@@ -27,7 +27,7 @@ public class FoliageOnTopBOP extends BushBlockOnTop implements IPlantable {
     protected static final VoxelShape NORMAL = Block.box( 2.0F, -8.0F, 2.0F, 14.0F, 5.0F, 14.0F );
     protected static final VoxelShape SHORT = Block.box( 1.0F, -8.0F, 1.0F, 15.0F, -1.0F, 15.0F );
 
-    public FoliageOnTopBOP(Block originalBlock ) {
+    public FoliageOnTopBOP( Block originalBlock ) {
         super(originalBlock, originalBlock == BOPReference.DESERT_GRASS ? SHORT : NORMAL );
     }
 

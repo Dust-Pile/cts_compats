@@ -6,24 +6,39 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
+@SuppressWarnings("OptionalUsedAsFieldOrParameterType")
 public class BlockCheckWrapper {
-    public static final ArrayList<BlockCheckWrapper> SAND_AND_DIRT = new ArrayList<>();
-    public static ArrayList<BlockCheckWrapper> WATER_PLANT_PLACEABLE = new ArrayList<>();
+    public static final Group SAND_AND_DIRT = new Group();
+    public static final Group DIRT_AND_FARMLAND = new Group();
+    public static final Group NETHER_FLOOR = new Group();
+    public static Group WATER_PLANT_PLACEABLE = new Group();
     static {
-        SAND_AND_DIRT.add( new BlockCheckWrapper( BlockTags.SAND ) );
-        SAND_AND_DIRT.add( new BlockCheckWrapper( BlockTags.DIRT ) );
+        SAND_AND_DIRT.add( BlockTags.SAND );
+        SAND_AND_DIRT.add( BlockTags.DIRT );
 
-        WATER_PLANT_PLACEABLE.add( new BlockCheckWrapper( BlockTags.DIRT ) );
-        WATER_PLANT_PLACEABLE.add( new BlockCheckWrapper( BlockTags.SAND ) );
-        WATER_PLANT_PLACEABLE.add( new BlockCheckWrapper( ForgeTags.GRAVEL ) );
-        WATER_PLANT_PLACEABLE.add( new BlockCheckWrapper( ForgeTags.SAND ) );
-        WATER_PLANT_PLACEABLE.add( new BlockCheckWrapper( Blocks.CLAY ) );
-        WATER_PLANT_PLACEABLE.add( new BlockCheckWrapper( BlockTags.BIG_DRIPLEAF_PLACEABLE ) );
+        DIRT_AND_FARMLAND.add( BlockTags.DIRT );
+        DIRT_AND_FARMLAND.add( Blocks.FARMLAND );
+
+        NETHER_FLOOR.add( Blocks.NETHERRACK );
+        NETHER_FLOOR.add( Blocks.SOUL_SAND );
+        NETHER_FLOOR.add( Blocks.SOUL_SOIL );
+        NETHER_FLOOR.add( Blocks.CRIMSON_NYLIUM );
+        NETHER_FLOOR.add( Blocks.WARPED_NYLIUM );
+
+        WATER_PLANT_PLACEABLE.add( BlockTags.DIRT );
+        WATER_PLANT_PLACEABLE.add( BlockTags.SAND );
+        WATER_PLANT_PLACEABLE.add( ForgeTags.GRAVEL );
+        WATER_PLANT_PLACEABLE.add( ForgeTags.SAND );
+        WATER_PLANT_PLACEABLE.add( Blocks.CLAY );
+        WATER_PLANT_PLACEABLE.add( BlockTags.BIG_DRIPLEAF_PLACEABLE );
     }
 
     private final Optional<Block> blockOption;
@@ -33,13 +48,17 @@ public class BlockCheckWrapper {
         this.blockOption = Optional.of( block );
         this.blockTagOption = Optional.empty();
     }
+    public BlockCheckWrapper( RegistryObject<Block> block ) {
+        this.blockOption = Optional.of( block.get() );
+        this.blockTagOption = Optional.empty();
+    }
     public BlockCheckWrapper( TagKey<Block> blockTag ) {
         this.blockTagOption = Optional.of( blockTag );
         this.blockOption = Optional.empty();
     }
 
     @SuppressWarnings("OptionalGetWithoutIsPresent")
-    public boolean check(BlockState state ) {
+    public boolean check( BlockState state ) {
         return blockOption.map(state::is).orElseGet(() -> state.is(blockTagOption.get()));
     }
 
@@ -50,5 +69,63 @@ public class BlockCheckWrapper {
             }
         }
         return false;
+    }
+
+    public static class Group extends ArrayList<BlockCheckWrapper> {
+        public Group() {
+            super();
+        }
+
+        public Group( BlockCheckWrapper... wrappers ) {
+            super( List.of(wrappers) );
+        }
+
+        public Group( Block block ) {
+            this();
+            this.add( block );
+        }
+
+        Group( Object... objects ) {
+            super();
+            for ( Object object : objects ) {
+                if ( object instanceof Block block ) {
+                    this.add( new BlockCheckWrapper( block ) );
+                    continue;
+                } else if ( object instanceof TagKey<?> key && key.isFor( ForgeRegistries.BLOCKS.getRegistryKey() ) ) {
+                    //noinspection unchecked
+                    this.add( new BlockCheckWrapper( ( TagKey<Block> ) key ) );
+                    continue;
+                } else if ( object instanceof RegistryObject<?> regObj && regObj.get() instanceof Block block ) {
+                    this.add( new BlockCheckWrapper( block ) );
+                    continue;
+                }
+                throw new IllegalArgumentException( "Only blocks, block registry objects, and block tags can be used for this." );
+            }
+        }
+
+        public void add( Block block ) {
+            this.add( new BlockCheckWrapper( block ) );
+        }
+        public void add( RegistryObject<Block> blockRegister ) {
+            this.add( new BlockCheckWrapper( blockRegister ) );
+        }
+        public void add( TagKey<Block> key ) {
+            this.add( new BlockCheckWrapper( key ) );
+        }
+
+        public boolean check( BlockState blockState ) {
+            return checkAll( blockState, this );
+        }
+
+        @Override
+        public Group clone() {
+            return (Group) super.clone();
+        }
+
+        public Group cloneAndAppend( Collection<? extends BlockCheckWrapper> appends ) {
+            Group clone = this.clone();
+            clone.addAll( appends );
+            return clone;
+        }
     }
 }

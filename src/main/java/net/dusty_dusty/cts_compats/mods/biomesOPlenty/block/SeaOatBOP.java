@@ -11,13 +11,8 @@ import net.minecraftforge.common.PlantType;
 import java.util.ArrayList;
 
 public class SeaOatBOP extends DoublePlantOnTop {
-    static final ArrayList<BlockCheckWrapper> SAND = new ArrayList<>();
-    static {
-        SAND.add( new BlockCheckWrapper( Blocks.SAND ) );
-    }
-
     public SeaOatBOP( Block originalBlock ) {
-        super( originalBlock, SAND );
+        super( originalBlock, new BlockCheckWrapper.Group( Blocks.SAND ) );
     }
 
     public PlantType getPlantType(BlockGetter world, BlockPos pos) {
