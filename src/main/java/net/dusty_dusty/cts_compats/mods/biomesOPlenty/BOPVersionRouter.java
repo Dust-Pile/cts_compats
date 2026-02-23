@@ -12,10 +12,10 @@ import java.util.function.Supplier;
 
 @SuppressWarnings("Convert2MethodRef")
 public final class BOPVersionRouter extends AbstractVersionRouter {
-    private static final Map<Version.Filter, Supplier<IRegistry>> VERSION_MAP = new HashMap<>();
+    private static final Map<Version.Range, Supplier<IRegistry>> VERSION_MAP = new HashMap<>();
     static {
-        VERSION_MAP.put( Version.Filter.acceptsExactly( "18.0.0.592" ), () -> BOPBaseRegistry.getInstance() );
-        VERSION_MAP.put( Version.Filter.acceptLaterThanInclusive( "19.0.0.96" ), () -> BOPBetaRegistry.getInstance() );
+        VERSION_MAP.put( Version.Range.acceptCustom( "18.0.0.592", "19.0.0.96", true, false ), () -> BOPBaseRegistry.getInstance() );
+        VERSION_MAP.put( Version.Range.acceptLaterThanInclusive( "19.0.0.96" ), () -> BOPBetaRegistry.getInstance() );
     }
 
     private static final BOPVersionRouter INSTANCE = new BOPVersionRouter( BOP_MODID, VERSION_MAP );
@@ -23,7 +23,7 @@ public final class BOPVersionRouter extends AbstractVersionRouter {
         return INSTANCE;
     }
 
-    private BOPVersionRouter( String modid, Map<Version.Filter, Supplier<IRegistry>> versionFilter ) {
+    private BOPVersionRouter( String modid, Map<Version.Range, Supplier<IRegistry>> versionFilter ) {
         super( modid, versionFilter );
     }
 }

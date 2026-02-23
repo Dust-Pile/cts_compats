@@ -7,7 +7,6 @@ import net.dusty_dusty.cts_compats.common.block.CustomSlabBlock;
 import net.dusty_dusty.cts_compats.common.registry.AbstractRegistry;
 import net.dusty_dusty.cts_compats.common.registry.IColorRegistry;
 import net.dusty_dusty.cts_compats.common.registry.IRegistry;
-import net.dusty_dusty.cts_compats.mods.biomesOPlenty.BOPColorRegistry;
 import net.dusty_dusty.cts_compats.mods.biomesOPlenty.block.*;
 import net.dusty_dusty.cts_compats.mods.biomesOPlenty.block.flowerBlocks.FlowerOnTopBOPUtil;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
@@ -23,8 +22,10 @@ import java.util.function.Supplier;
 public class BOPBaseRegistry extends AbstractRegistry {
     protected static final BOPBaseRegistry INSTANCE = new BOPBaseRegistry( IRegistry.BOP_MODID );
     private static final ArrayList<RegistryObject<Block>> cutoutRender = new ArrayList<>();
+    protected Optional<IColorRegistry> colorRegistry;
     protected BOPBaseRegistry( String modId ) {
         super(modId);
+        colorRegistry = Optional.of( new BOPBaseColorRegistry() );
     }
 
     public static BOPBaseRegistry getInstance() {
@@ -44,7 +45,7 @@ public class BOPBaseRegistry extends AbstractRegistry {
 
     @Override
     public Optional<IColorRegistry> getColorRegistry() {
-        return Optional.of( new BOPColorRegistry() );
+        return colorRegistry;
     }
 
     // Overworld Blocks
@@ -94,8 +95,6 @@ public class BOPBaseRegistry extends AbstractRegistry {
             () -> FlowerOnTopBOPUtil.newFlowerBlock( BOPReference.VIOLET ) );
     public static final RegistryObject<Block> ORANGE_COSMOS_ON_TOP = INSTANCE.registerBlockCutout( "orange_cosmos_on_top",
             () -> FlowerOnTopBOPUtil.newFlowerBlock( BOPReference.ORANGE_COSMOS ) );
-//    public static final RegistryObject<Block> WILDFLOWER_ON_TOP = INSTANCE.registerBlockCutout( "wildflower_on_top",
-//            () -> FlowerOnTopBOPUtil.newFlowerBlock( BOPReference.WILDFLOWER ) );
     public static final RegistryObject<Block> WILTED_LILY_ON_TOP = INSTANCE.registerBlockCutout( "wilted_lily_on_top",
             () -> FlowerOnTopBOPUtil.newFlowerBlock( BOPReference.WILTED_LILY ) );
     public static final RegistryObject<Block> GLOWFLOWER_ON_TOP = INSTANCE.registerBlockCutout( "glowflower_on_top",

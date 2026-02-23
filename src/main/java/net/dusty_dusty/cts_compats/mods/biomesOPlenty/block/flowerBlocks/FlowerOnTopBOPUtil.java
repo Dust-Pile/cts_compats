@@ -7,11 +7,11 @@ import net.dusty_dusty.cts_compats.common.registry.Version;
 import net.minecraft.world.level.block.Block;
 
 public final class FlowerOnTopBOPUtil {
-    static final Version.Filter filter = Version.Filter.acceptLaterThanExclusive( "18.0.0.592" );
+    static final Version.Range RANGE = Version.Range.acceptLaterThanExclusive( "18.0.0.592" );
 
     public static FlowerBlockOnTop newFlowerBlock( Block originalBlock ) {
         Version version = RegistryManager.getVersion( IRegistry.BOP_MODID );
-        if ( filter.compareTo( version ) < 0 ) {
+        if ( RANGE.compareTo( version ) < 0 ) {
             return new FlowerOnTopOldBOP( originalBlock );
         } else {
             return new FlowerOnTopBOP( originalBlock );
@@ -20,7 +20,7 @@ public final class FlowerOnTopBOPUtil {
 
     public static FlowerBlockOnTop newBurningBlossomOnTop( Block originalBlock ) {
         Version version = RegistryManager.getVersion( IRegistry.BOP_MODID );
-        if ( filter.compareTo( version ) < 0 ) {
+        if ( RANGE.compareTo( version ) < 0 ) {
             return new BurningBlossomOnTopOld( originalBlock );
         } else {
             return new BurningBlossomOnTop( originalBlock );

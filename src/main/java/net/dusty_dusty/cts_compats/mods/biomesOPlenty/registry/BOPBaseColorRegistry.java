@@ -1,13 +1,12 @@
-package net.dusty_dusty.cts_compats.mods.biomesOPlenty;
+package net.dusty_dusty.cts_compats.mods.biomesOPlenty.registry;
 
 import net.dusty_dusty.cts_compats.common.registry.AbstractColorRegistry;
-import net.dusty_dusty.cts_compats.mods.biomesOPlenty.registry.BOPBaseRegistry;
 import net.minecraft.client.color.block.BlockColors;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 
-public class BOPColorRegistry extends AbstractColorRegistry {
+public class BOPBaseColorRegistry extends AbstractColorRegistry {
     @Override
     public void onColorHandlerEventBlock(RegisterColorHandlersEvent.Block event) {
         event.register(getFoliageColor(), BOPBaseRegistry.BUSH_ON_TOP.get() );
