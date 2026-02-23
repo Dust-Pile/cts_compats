@@ -1,6 +1,6 @@
 package net.dusty_dusty.cts_compats.mods.biomesOPlenty.block.flowerBlocks;
 
-import biomesoplenty.api.block.BOPBlocks;
+import net.dusty_dusty.cts_compats.mods.biomesOPlenty.BOPReference;
 import biomesoplenty.common.block.FlowerBlockBOP;
 import net.countered.terrainslabs.block.interfaces.IBlockCopy;
 import net.dusty_dusty.cts_compats.common.block.interfaces.BlockCopyWrapper;
@@ -34,9 +34,9 @@ public class FlowerOnTopOldBOP extends AbstractFlowerOnTopBOP {
         ground = new BlockCopyWrapper( slab ).getOriginBlock();
         BlockState groundState = ground.defaultBlockState();
 
-        if (block == BOPBlocks.WILDFLOWER.get()) {
-            return ground == Blocks.SAND || ground == Blocks.RED_SAND || ground == BOPBlocks.WHITE_SAND.get()
-                    || ground == BOPBlocks.ORANGE_SAND.get() || ground == BOPBlocks.BLACK_SAND.get()
+        if (block == BOPReference.WILDFLOWER ) {
+            return ground == Blocks.SAND || ground == Blocks.RED_SAND || ground == BOPReference.WHITE_SAND
+                    || ground == BOPReference.ORANGE_SAND || ground == BOPReference.BLACK_SAND
                     || groundState.is(BlockTags.DIRT) || groundState.is(Blocks.FARMLAND);
         } else {
             return ground == Blocks.NETHERRACK || ground == Blocks.SOUL_SAND || ground == Blocks.SOUL_SOIL
@@ -48,11 +48,15 @@ public class FlowerOnTopOldBOP extends AbstractFlowerOnTopBOP {
     @Override
     public @NotNull VoxelShape getShape(BlockState state, @NotNull BlockGetter worldIn, @NotNull BlockPos pos, @NotNull CollisionContext selectionContext) {
         VoxelShape shape = NORMAL;
-        if ( this.getOriginBlock() == BOPBlocks.LAVENDER.get() || this.getOriginBlock() == BOPBlocks.PINK_HIBISCUS.get()) {
+        if ( this.getOriginBlock() == BOPReference.LAVENDER
+                || this.getOriginBlock() == BOPReference.PINK_HIBISCUS
+        ) {
             shape = LARGE;
-        } else if ( this.getOriginBlock() == BOPBlocks.PINK_DAFFODIL.get() || this.getOriginBlock() == BOPBlocks.WILDFLOWER.get() || this.getOriginBlock() == BOPBlocks.GLOWFLOWER.get() || this.getOriginBlock() == BOPBlocks.WILTED_LILY.get()) {
+        } else if ( this.getOriginBlock() == BOPReference.PINK_DAFFODIL || this.getOriginBlock() == BOPReference.WILDFLOWER
+                || this.getOriginBlock() == BOPReference.GLOWFLOWER || this.getOriginBlock() == BOPReference.WILTED_LILY
+        ) {
             shape = MEDIUM;
-        } else if ( this.getOriginBlock() == BOPBlocks.VIOLET.get()) {
+        } else if ( this.getOriginBlock() == BOPReference.VIOLET ) {
             shape = SHORT;
         }
 

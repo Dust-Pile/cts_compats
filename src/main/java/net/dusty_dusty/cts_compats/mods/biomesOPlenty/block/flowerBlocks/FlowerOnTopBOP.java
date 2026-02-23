@@ -3,7 +3,6 @@ package net.dusty_dusty.cts_compats.mods.biomesOPlenty.block.flowerBlocks;
 import biomesoplenty.api.block.BOPBlocks;
 import net.countered.terrainslabs.block.interfaces.IBlockCopy;
 import net.dusty_dusty.cts_compats.common.block.interfaces.BlockCopyWrapper;
-import net.dusty_dusty.cts_compats.common.registry.IRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.BlockGetter;
@@ -25,18 +24,13 @@ public class FlowerOnTopBOP extends AbstractFlowerOnTopBOP {
         super( originalBlock, ( (FlowerBlock) originalBlock ).getSuspiciousEffect(),
                 ( (FlowerBlock) originalBlock ).getEffectDuration()
         );
-        if (originalBlock == IRegistry.getBlock( BOPBlocks.LAVENDER )
-                || originalBlock == IRegistry.getBlock( BOPBlocks.WHITE_LAVENDER )
-                || originalBlock == IRegistry.getBlock( BOPBlocks.PINK_HIBISCUS )
+        if (originalBlock == BOPBlocks.LAVENDER || originalBlock == BOPBlocks.WHITE_LAVENDER || originalBlock == BOPBlocks.PINK_HIBISCUS
         ) {
             this.SHAPE = LARGE;
-        } else if (originalBlock == IRegistry.getBlock( BOPBlocks.PINK_DAFFODIL )
-                || originalBlock == IRegistry.getBlock( BOPBlocks.GLOWFLOWER )
-                || originalBlock == IRegistry.getBlock( BOPBlocks.WILTED_LILY )
+        } else if (originalBlock == BOPBlocks.PINK_DAFFODIL || originalBlock == BOPBlocks.GLOWFLOWER || originalBlock == BOPBlocks.WILTED_LILY
         ) {
             this.SHAPE = MEDIUM;
-        } else if (originalBlock == IRegistry.getBlock( BOPBlocks.VIOLET )
-                || originalBlock == IRegistry.getBlock( BOPBlocks.ENDBLOOM )
+        } else if (originalBlock == BOPBlocks.VIOLET || originalBlock == BOPBlocks.ENDBLOOM
         ) {
             this.SHAPE = SHORT;
         } else {
@@ -61,15 +55,12 @@ public class FlowerOnTopBOP extends AbstractFlowerOnTopBOP {
         ground = new BlockCopyWrapper( slab ).getOriginBlock();
         BlockState groundState = ground.defaultBlockState();
 
-        if ( block == IRegistry.getBlock( BOPBlocks.WILTED_LILY ) ) {
-            return ground == IRegistry.getBlock( BOPBlocks.DRIED_SALT )
-                    || groundState.is(BlockTags.DIRT) || groundState.is(Blocks.FARMLAND );
-        } else if ( block != IRegistry.getBlock( BOPBlocks.ENDBLOOM ) ) {
+        if ( block == BOPBlocks.WILTED_LILY ) {
+            return ground == BOPBlocks.DRIED_SALT || groundState.is(BlockTags.DIRT) || groundState.is(Blocks.FARMLAND );
+        } else if ( block != BOPBlocks.ENDBLOOM ) {
             return groundState.is(BlockTags.DIRT) || groundState.is(Blocks.FARMLAND );
         } else {
-            return ground == IRegistry.getBlock( BOPBlocks.ALGAL_END_STONE )
-                    || ground == IRegistry.getBlock( BOPBlocks.UNMAPPED_END_STONE )
-                    || ground == IRegistry.getBlock( BOPBlocks.NULL_END_STONE )
+            return ground == BOPBlocks.ALGAL_END_STONE || ground == BOPBlocks.UNMAPPED_END_STONE || ground == BOPBlocks.NULL_END_STONE
                     || ground == Blocks.END_STONE || groundState.is(BlockTags.DIRT) || groundState.is(Blocks.FARMLAND );
         }
     }
