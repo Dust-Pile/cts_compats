@@ -55,6 +55,10 @@ public final class ModBlockLootTables extends BlockLootSubProvider {
                 Block block = blockRegister.get();
                 Block originBlock = new BlockCopyWrapper( (IBlockCopy) block ).getOriginBlock();
 
+                if ( modId.equals( IRegistry.VB_MODID ) ) {
+                    modId = "minecraft";
+                }
+
                 ResourceLocation parentLocation = ResourceLocation.fromNamespaceAndPath(
                         modId, "blocks/" + originBlock.getDescriptionId().split( "\\." )[2] );
 
@@ -109,6 +113,9 @@ public final class ModBlockLootTables extends BlockLootSubProvider {
     @Override
     protected @NotNull Iterable<Block> getKnownBlocks() {
         List<Block> blocks = new ArrayList<>();
+        if ( !IS_ENABLED ) {
+            return blocks;
+        }
         for ( Block block : RegistryManager.getAllBlocks() ) {
             blocks.add( ( (IBlockCopyForge) block ).getOriginBlock() );
             blocks.add( block );

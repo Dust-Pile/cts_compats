@@ -6,6 +6,7 @@ import net.dusty_dusty.cts_compats.common.registry.IRegistry;
 import net.dusty_dusty.cts_compats.mods.biomesOPlenty.BOPVersionRouter;
 import net.dusty_dusty.cts_compats.mods.projectVibrantJourneys.PVJRegistry;
 import net.dusty_dusty.cts_compats.mods.vanilla.VanillaRegistry;
+import net.dusty_dusty.cts_compats.mods.vanillaBackport.VanillaBackportRegistry;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.level.block.Block;
@@ -46,6 +47,7 @@ public final class CTSCompats
         // Compats, must use lambda to avoid class loading
         REGISTRY_MANAGER.register( IRegistry.PVJ_MODID, () -> PVJRegistry.getInstance() );
         REGISTRY_MANAGER.register( IRegistry.BOP_MODID, () -> BOPVersionRouter.getInstance() );
+        REGISTRY_MANAGER.register( IRegistry.VB_MODID, () -> VanillaBackportRegistry.getInstance() );
     }
 
     @SuppressWarnings("removal")

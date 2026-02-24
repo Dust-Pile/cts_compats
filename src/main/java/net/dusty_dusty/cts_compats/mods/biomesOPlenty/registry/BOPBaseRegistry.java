@@ -23,7 +23,6 @@ import java.util.function.Supplier;
 @SuppressWarnings("unused")
 public class BOPBaseRegistry extends AbstractRegistry {
     protected static final BOPBaseRegistry INSTANCE = new BOPBaseRegistry( IRegistry.BOP_MODID );
-    private static final ArrayList<RegistryObject<Block>> cutoutRender = new ArrayList<>();
     protected Optional<IColorRegistry> colorRegistry;
     protected BOPBaseRegistry( String modId ) {
         super(modId);
@@ -167,20 +166,10 @@ public class BOPBaseRegistry extends AbstractRegistry {
     public static final RegistryObject<Block> BRIMSTONE_CLUSTER_ON_TOP = INSTANCE.registerBlockCutout( "brimstone_cluster_on_top",
             () -> new BrimstoneClusterOnTop( BOPReference.BRIMSTONE_CLUSTER ) );
 
-
-
+    @Override
     @SuppressWarnings("removal")
-    public static void setRenderTypes() {
+    public void clientSetup() {
         ItemBlockRenderTypes.setRenderLayer( MOSSY_BLACK_SAND_SLAB.get(), RenderType.cutoutMipped() );
-        cutoutRender.forEach( blockRegistryObject ->
-                ItemBlockRenderTypes.setRenderLayer( blockRegistryObject.get(), RenderType.cutout() ));
-    }
-
-    @SuppressWarnings("unchecked")
-    protected <T extends Block> RegistryObject<T> registerBlockCutout(String name, Supplier<T> block ) {
-        RegistryObject<T> output = registerBlock( name, block );
-        cutoutRender.add( (RegistryObject<Block>) output );
-        return output;
     }
 
 }

@@ -2,6 +2,8 @@ package net.dusty_dusty.cts_compats.common.registry;
 
 import net.dusty_dusty.cts_compats.CTSCompats;
 import net.dusty_dusty.cts_compats.common.block.interfaces.IAssignable;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -10,6 +12,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Set;
 import java.util.function.Supplier;
@@ -19,6 +22,7 @@ import static net.dusty_dusty.cts_compats.CTSCompats.MODID;
 public abstract class AbstractRegistry implements IRegistry {
     protected final DeferredRegister<Block> COMPAT_BLOCKS = DeferredRegister.create( ForgeRegistries.BLOCKS, MODID );
     protected final DeferredRegister<Item> COMPAT_ITEMS = DeferredRegister.create( ForgeRegistries.ITEMS, MODID );
+    private static final ArrayList<RegistryObject<Block>> cutoutRender = new ArrayList<>();
     protected final String REGISTRY_ID;
 
     protected AbstractRegistry ( String modId ) {
@@ -56,6 +60,19 @@ public abstract class AbstractRegistry implements IRegistry {
             }
         });
         assignExtras();
+    }
+
+    @SuppressWarnings("removal")
+    public static void setRenderTypes() {
+        cutoutRender.forEach( blockRegistryObject ->
+                ItemBlockRenderTypes.setRenderLayer( blockRegistryObject.get(), RenderType.cutout() ));
+    }
+
+    @SuppressWarnings("unchecked")
+    public <T extends Block> RegistryObject<T> registerBlockCutout(String name, Supplier<T> block ) {
+        RegistryObject<T> output = registerBlock( name, block );
+        cutoutRender.add( (RegistryObject<Block>) output );
+        return output;
     }
 
     protected void assignExtras() {}

@@ -111,6 +111,10 @@ public class BlockCheckWrapper {
             this();
             this.add( block );
         }
+        public Group( TagKey<Block> key ) {
+            this();
+            this.add( key );
+        }
 
         Group( Object... objects ) {
             super();

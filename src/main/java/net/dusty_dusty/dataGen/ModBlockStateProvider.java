@@ -7,6 +7,7 @@ import net.dusty_dusty.cts_compats.common.block.onTopBlocks.DoublePlantOnTop;
 import net.dusty_dusty.cts_compats.common.block.interfaces.IBlockCopyForge;
 import net.dusty_dusty.cts_compats.common.block.interfaces.IOnTopCopy;
 import net.dusty_dusty.cts_compats.common.block.interfaces.ISlabCopy;
+import net.dusty_dusty.cts_compats.common.registry.IRegistry;
 import net.dusty_dusty.dataGen.util.BlockStateCopyUtil;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;

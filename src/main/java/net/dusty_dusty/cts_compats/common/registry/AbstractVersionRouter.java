@@ -37,6 +37,10 @@ public abstract class AbstractVersionRouter implements IRegistry {
         throw new IllegalArgumentException( err );
     }
 
+    public void clientSetup() {
+        REGISTRY.clientSetup();
+    }
+
     public void register( IEventBus modEventBus ) {
         REGISTRY.register( modEventBus );
     }
