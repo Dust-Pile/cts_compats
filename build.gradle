@@ -88,10 +88,13 @@ dependencies {
 
     // Compat Dependencies
     runtimeOnly fg.deobf("curse.maven:terrablender-563928:6290448")
+    runtimeOnly fg.deobf("curse.maven:glitchcore-955399:5787839")
 
     // Compats Mods
     implementation fg.deobf("curse.maven:project-vibrant-journeys-300297:6841170")
-    implementation fg.deobf("curse.maven:biomes-o-plenty-220318:4617259")
+    compileOnly fileTree(dir: 'libs', include: '*.jar')
+    // runtimeOnly fg.deobf("curse.maven:biomes-o-plenty-220318:4617259")
+    runtimeOnly fg.deobf("curse.maven:biomes-o-plenty-220318:6364065")
 
     // Helpers
     runtimeOnly "curse.maven:terralith-513688:5512076"

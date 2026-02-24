@@ -1,9 +1,10 @@
 package net.dusty_dusty.cts_compats.mods.biomesOPlenty.block;
 
-import biomesoplenty.api.block.BOPBlocks;
+import net.dusty_dusty.cts_compats.common.BlockCheckWrapper;
+import net.dusty_dusty.cts_compats.mods.biomesOPlenty.registry.BOPBaseRegistry;
+import net.dusty_dusty.cts_compats.mods.biomesOPlenty.registry.BOPReference;
 import net.countered.terrainslabs.block.interfaces.IBlockCopy;
 import net.dusty_dusty.cts_compats.common.block.interfaces.BlockCopyWrapper;
-import net.dusty_dusty.cts_compats.common.block.interfaces.IBlockCopyForge;
 import net.dusty_dusty.cts_compats.common.block.onTopBlocks.BushBlockOnTop;
 import net.minecraft.core.BlockPos;
 import net.minecraft.stats.Stats;
@@ -23,60 +24,33 @@ import net.minecraftforge.common.IPlantable;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
+import java.util.List;
 
 public class FoliageOnTopBOP extends BushBlockOnTop implements IPlantable {
-    protected static final VoxelShape NORMAL = Block.box(2.0F, -8.0F, 2.0F, 14.0F, 5.0F, 14.0F);
-    protected static final VoxelShape SHORT = Block.box(1.0F, -8.0F, 1.0F, 15.0F, -1.0F, 15.0F);
+    public static final VoxelShape FOLIAGE_SHAPE = Block.box( 2.0F, -8.0F, 2.0F, 14.0F, 5.0F, 14.0F );
+    public static final VoxelShape SHORT_FOLIAGE_SHAPE = Block.box( 1.0F, -8.0F, 1.0F, 15.0F, -1.0F, 15.0F );
+    public static BlockCheckWrapper.Group DEAD_GRASS =
+            BOPBaseRegistry.PlaceType.BOP_SAND.cloneAndAppend( BlockCheckWrapper.DIRT_AND_FARMLAND );
+    static {
+        DEAD_GRASS.add( Blocks.NETHERITE_BLOCK );
+        DEAD_GRASS.add( BOPReference.DRIED_SALT );
+        DEAD_GRASS.add( Blocks.GRAVEL );
+    }
 
-    public FoliageOnTopBOP(Block originalBlock ) {
-        super(originalBlock, originalBlock == BOPBlocks.DESERT_GRASS.get() ? SHORT : NORMAL);
+    public FoliageOnTopBOP( Block originalBlock, VoxelShape shape ) {
+        super( originalBlock, shape );
+    }
+    public FoliageOnTopBOP( Block originalBlock, VoxelShape shape, List<? extends BlockCheckWrapper> placeableTypes ) {
+        super( originalBlock, shape, placeableTypes );
     }
 
     public void playerDestroy(Level worldIn, @NotNull Player player, @NotNull BlockPos pos, @NotNull BlockState state, @Nullable BlockEntity te, @NotNull ItemStack stack) {
         if (!worldIn.isClientSide && stack.getItem() == Items.SHEARS) {
-            player.awardStat(Stats.BLOCK_MINED.get(this));
+            player.awardStat(Stats.BLOCK_MINED.get( this.getOriginBlock() ) );
             player.causeFoodExhaustion(0.005F);
-            popResource(worldIn, pos, new ItemStack(this));
+            popResource(worldIn, pos, new ItemStack( this.getOriginalItem() ) );
         } else {
             super.playerDestroy(worldIn, player, pos, state, te, stack);
         }
-    }
-
-    public boolean canSurvive(BlockState state, LevelReader worldIn, BlockPos pos) {
-        Block ground = worldIn.getBlockState(pos.below()).getBlock();
-        if ( !( ground instanceof SlabBlock && ground instanceof IBlockCopy ) ) {
-            return false;
-        }
-
-        Block block = new BlockCopyWrapper( (IBlockCopy) state.getBlock() ).getOriginBlock();
-        BlockState blockState = block.withPropertiesOf(state);
-        ground = new BlockCopyWrapper( (IBlockCopy) ground ).getOriginBlock();
-
-        if (block == BOPBlocks.SPROUT.get()) {
-            return true;
-        } else if (block == BOPBlocks.DUNE_GRASS.get()) {
-            return ground == Blocks.SAND || ground == Blocks.RED_SAND || ground == BOPBlocks.WHITE_SAND.get()
-                    || ground == BOPBlocks.ORANGE_SAND.get() || ground == BOPBlocks.BLACK_SAND.get();
-        } else if (block != BOPBlocks.DESERT_GRASS.get() && block != BOPBlocks.DEAD_GRASS.get()) {
-            return super.canSurvive( blockState, worldIn, pos);
-        } else {
-            return ground == BOPBlocks.DRIED_SALT.get() || ground == Blocks.GRAVEL || ground == Blocks.SAND
-                    || ground == Blocks.RED_SAND || ground == BOPBlocks.WHITE_SAND.get()
-                    || ground == BOPBlocks.ORANGE_SAND.get() || ground == BOPBlocks.BLACK_SAND.get()
-                    || ground == Blocks.NETHERRACK || blockState.is(BlockTags.DIRT) || blockState.is(Blocks.FARMLAND);
-        }
-    }
-
-    @Override
-    public PlacementRule getPlacementRule() {
-        Block block = ( (IBlockCopyForge) this ).getOriginBlock();
-        if ( block == BOPBlocks.SPROUT.get()
-                || block == BOPBlocks.DUNE_GRASS.get()
-                || block == BOPBlocks.DESERT_GRASS.get()
-                || block == BOPBlocks.DEAD_GRASS.get()
-        ) {
-            return PlacementRule.CUSTOM;
-        }
-        return PlacementRule.DEFAULT;
     }
 }

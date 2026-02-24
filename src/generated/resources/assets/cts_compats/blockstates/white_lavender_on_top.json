@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "biomesoplenty:block/white_lavender"
+      },
+      {
+        "model": "biomesoplenty:block/white_lavender_alt"
+      }
+    ]
+  }
+}

@@ -24,21 +24,21 @@ import java.util.List;
 public class BushBlockOnTop extends BushBlock implements IAssignable, IOnTopCopy {
     private final ArrayList<BlockCheckWrapper> blockTypes = new ArrayList<>();
     final PlacementRule PLACEMENT_RULE;
-    private final VoxelShape shape;
+    private final VoxelShape SHAPE;
     final Block originalBlock;
 
-    public BushBlockOnTop( Block originalBlock, VoxelShape shape ) {
+    public BushBlockOnTop( Block originalBlock, VoxelShape SHAPE) {
         super( PropertiesUtil.copyAndOffsetOnTopBlockProperties( originalBlock ) );
         this.PLACEMENT_RULE = PlacementRule.DEFAULT;
         this.originalBlock = originalBlock;
-        this.shape = shape;
+        this.SHAPE = SHAPE;
     }
-    public BushBlockOnTop( Block originalBlock, VoxelShape shape, List<BlockCheckWrapper> placeableTypes ) {
+    public BushBlockOnTop(Block originalBlock, VoxelShape SHAPE, List<? extends BlockCheckWrapper> placeableTypes ) {
         super( PropertiesUtil.copyAndOffsetOnTopBlockProperties( originalBlock ) );
         this.PLACEMENT_RULE = PlacementRule.CUSTOM;
         this.blockTypes.addAll( placeableTypes );
         this.originalBlock = originalBlock;
-        this.shape = shape;
+        this.SHAPE = SHAPE;
     }
 
     @Override
@@ -67,7 +67,7 @@ public class BushBlockOnTop extends BushBlock implements IAssignable, IOnTopCopy
     @Override
     @SuppressWarnings("deprecation")
     public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter world, @NotNull BlockPos pos, @NotNull CollisionContext context) {
-        return shape;
+        return SHAPE;
     }
 
     @Override

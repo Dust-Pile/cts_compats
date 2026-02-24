@@ -6,14 +6,11 @@ import net.minecraft.world.level.block.Block;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.RegistryObject;
 
-import java.util.Collection;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Supplier;
 
 public abstract class AbstractVersionRouter implements IRegistry {
-    private final Map<String, Supplier<IRegistry>> VERSION_FILTER;
+    private final Map<? extends Comparable<Version>, Supplier<IRegistry>> VERSION_FILTER;
     final IRegistry REGISTRY;
     protected final String REGISTRY_ID;
 
@@ -22,28 +19,22 @@ public abstract class AbstractVersionRouter implements IRegistry {
         return REGISTRY_ID;
     }
 
-    // TODO: Reformat to allow multiple registries
-    protected AbstractVersionRouter( String modId, Map<String, Supplier<IRegistry>> versionFilter ) {
+    protected AbstractVersionRouter( String modId, Map<? extends Comparable<Version>, Supplier<IRegistry>> versionFilter ) {
         VERSION_FILTER = versionFilter;
         REGISTRY = getRegistryFromVersion( modId, RegistryManager.getVersion( modId ) );
         REGISTRY_ID = modId;
     }
 
-    private IRegistry getRegistryFromVersion( String modid, String version ) {
-        Set<String> filters = VERSION_FILTER.keySet();
-        for ( String filter : filters ) {
-            if ( isInVersionFilter( filter, version ) ) {
+    private IRegistry getRegistryFromVersion( String modid, Version version ) {
+        Set<? extends Comparable<Version>> filters = VERSION_FILTER.keySet();
+        for ( Comparable<Version> filter : filters ) {
+            if ( filter.compareTo( version ) == 0 ) {
                 return VERSION_FILTER.get( filter ).get();
             }
         }
-        String err = "No filter matches version " + version + " of mod " + modid + " in registered version router.";
+        String err = "No filter matches version " + version + " of mod " + modid + " in registered version router (no compatibility available for mod version).";
         CTSCompats.LOGGER.error( err );
         throw new IllegalArgumentException( err );
-    }
-
-    // TODO: Add more rules as needed
-    private static boolean isInVersionFilter( String filter, String version ) {
-        return filter.contains("*");
     }
 
     public void register( IEventBus modEventBus ) {

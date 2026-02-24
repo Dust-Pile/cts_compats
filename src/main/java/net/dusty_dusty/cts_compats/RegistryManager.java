@@ -1,8 +1,9 @@
 package net.dusty_dusty.cts_compats;
 
+import net.dusty_dusty.cts_compats.common.registry.Version;
 import net.dusty_dusty.cts_compats.common.registry.IColorRegistry;
 import net.dusty_dusty.cts_compats.common.registry.IRegistry;
-import net.dusty_dusty.cts_compats.mods.biomesOPlenty.BOPRegistry;
+import net.dusty_dusty.cts_compats.mods.biomesOPlenty.registry.BOPBaseRegistry;
 import net.dusty_dusty.cts_compats.mods.vanilla.VanillaRegistry;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.api.distmarker.Dist;
@@ -25,7 +26,7 @@ public final class RegistryManager {
     final IEventBus MOD_EVENT_BUS;
     final ArrayList<IRegistry> REGISTRIES = new ArrayList<>();
 
-    static final Map<String, String> LOADED_VERSIONS = new HashMap<>();
+    static final Map<String, Version> LOADED_VERSIONS = new HashMap<>();
     static final Map<String, IRegistry> LOADED_MODS = new HashMap<>();
     private static RegistryManager INSTANCE;
     public static RegistryManager getInstance() {
@@ -35,7 +36,7 @@ public final class RegistryManager {
     public static IRegistry getRegistry( String modId ) {
         return LOADED_MODS.get( modId );
     }
-    public static String getVersion( String modId ) {
+    public static Version getVersion( String modId ) {
         return LOADED_VERSIONS.get( modId );
     }
 
@@ -85,7 +86,7 @@ public final class RegistryManager {
 
     @SuppressWarnings("Convert2MethodRef") // Method Reference loads class. Unacceptable.
     private void clientSetup(final FMLClientSetupEvent event) {
-        runModCompat( IRegistry.BOP_MODID, () -> BOPRegistry.setRenderTypes() );
+        runModCompat( IRegistry.BOP_MODID, () -> BOPBaseRegistry.setRenderTypes() );
     }
 
     @Mod.EventBusSubscriber( modid = CTSCompats.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
@@ -109,7 +110,7 @@ public final class RegistryManager {
 
     private static boolean runModCompat( String modid, Runnable register ) {
         if ( ModList.get().isLoaded( modid ) ) {
-            LOADED_VERSIONS.put( modid, ModList.get().getModFileById( modid ).versionString() );
+            LOADED_VERSIONS.put( modid, new Version( ModList.get().getModFileById( modid ).versionString() ) );
             LOGGER.info( "Loading Runnable for {} version {}.", modid, LOADED_VERSIONS.get( modid ) );
             register.run();
             return true;

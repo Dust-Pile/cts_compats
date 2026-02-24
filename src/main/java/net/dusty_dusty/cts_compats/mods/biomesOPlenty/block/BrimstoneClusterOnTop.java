@@ -1,14 +1,10 @@
 package net.dusty_dusty.cts_compats.mods.biomesOPlenty.block;
 
-import biomesoplenty.init.ModTags;
 import net.dusty_dusty.cts_compats.common.block.onTopBlocks.DoublePlantOnTop;
-import net.dusty_dusty.cts_compats.mods.biomesOPlenty.BOPRegistry;
+import net.dusty_dusty.cts_compats.mods.biomesOPlenty.registry.BOPBaseRegistry;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.pathfinder.PathComputationType;
@@ -22,7 +18,7 @@ public class BrimstoneClusterOnTop extends DoublePlantOnTop {
     protected static final VoxelShape SHAPE_TOP = Block.box(6.0F, -8.0F, 6.0F, 10.0F, 0.0F, 10.0F);
 
     public BrimstoneClusterOnTop(Block originalBlock) {
-        super( originalBlock, BOPRegistry.PlaceType.BRIMSTONE );
+        super( originalBlock, BOPBaseRegistry.PlaceType.BRIMSTONE );
     }
 
     @Override

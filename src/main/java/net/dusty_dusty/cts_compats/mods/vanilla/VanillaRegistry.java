@@ -1,6 +1,7 @@
 package net.dusty_dusty.cts_compats.mods.vanilla;
 
 import net.dusty_dusty.cts_compats.common.block.*;
+import net.dusty_dusty.cts_compats.common.block.interfaces.IAssignable;
 import net.dusty_dusty.cts_compats.common.block.onTopBlocks.*;
 import net.dusty_dusty.cts_compats.common.registry.AbstractRegistry;
 import net.dusty_dusty.cts_compats.common.registry.IColorRegistry;
@@ -15,7 +16,7 @@ import net.minecraftforge.registries.RegistryObject;
 import java.util.Optional;
 
 @SuppressWarnings({"unused"})
-public class VanillaRegistry extends AbstractRegistry {
+public final class VanillaRegistry extends AbstractRegistry {
     private static final VanillaRegistry INSTANCE = new VanillaRegistry( "minecraft" );
     protected VanillaRegistry(String modId) {
         super(modId);
@@ -93,4 +94,8 @@ public class VanillaRegistry extends AbstractRegistry {
     public static final RegistryObject<Block> LILAC_ON_TOP =
             INSTANCE.registerBlock( "lilac_on_top", () -> new DoubleFlowerOnTop( Blocks.LILAC ) );
 
+    @Override
+    protected void assignExtras() {
+        IAssignable.AssignUtil.putOnTopVegetation( Blocks.MOSS_CARPET, Blocks.AIR );
+    }
 }

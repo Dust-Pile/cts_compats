@@ -1,5 +1,6 @@
 package net.dusty_dusty.cts_compats.common.registry;
 
+import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.RegistryObject;

@@ -1,5 +1,8 @@
 package net.dusty_dusty.cts_compats.mods.biomesOPlenty.block;
 
+import net.dusty_dusty.cts_compats.common.BlockCheckWrapper;
+import net.dusty_dusty.cts_compats.common.block.onTopBlocks.FlowerBlockOnTop;
+import net.dusty_dusty.cts_compats.mods.biomesOPlenty.registry.BOPBaseRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.util.RandomSource;
@@ -10,9 +13,10 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 
-public class BurningBlossomOnTop extends FlowerOnTopBOP {
-    public BurningBlossomOnTop(Block originalBlock) {
-        super(originalBlock);
+public class BurningBlossomOnTop extends FlowerBlockOnTop {
+    public BurningBlossomOnTop( Block originalBlock ) {
+        super( originalBlock, BOPBaseRegistry.FlowerShapes.NORMAL,
+                BlockCheckWrapper.NETHER_FLOOR.cloneAndAppend( BlockCheckWrapper.DIRT_AND_FARMLAND ) );
     }
 
     @SuppressWarnings("deprecation")
@@ -35,10 +39,10 @@ public class BurningBlossomOnTop extends FlowerOnTopBOP {
     public void animateTick(@NotNull BlockState stateIn, @NotNull Level worldIn, @NotNull BlockPos pos, @NotNull RandomSource rand) {
         super.animateTick(stateIn, worldIn, pos, rand);
         if (rand.nextInt(8) == 0) {
-            worldIn.addParticle(ParticleTypes.FLAME,  pos.getX() +  0.5F + ((rand.nextDouble() - rand.nextDouble()) /  4.0F), pos.getY() + 0.75F,  pos.getZ() +  0.5F + ((rand.nextDouble() - rand.nextDouble()) /  4.0F), 0.0F, 0.0F, 0.0F);
+            worldIn.addParticle(ParticleTypes.FLAME,  pos.getX() +  0.5F + ((rand.nextDouble() - rand.nextDouble()) /  4.0F), pos.getY() + 0.25F,  pos.getZ() +  0.5F + ((rand.nextDouble() - rand.nextDouble()) /  4.0F), 0.0F, 0.0F, 0.0F);
         }
         if (rand.nextInt(4) == 0) {
-            worldIn.addParticle(ParticleTypes.SMOKE,  pos.getX() +  0.5F + ((rand.nextDouble() - rand.nextDouble()) /  4.0F), pos.getY() + 0.75F,  pos.getZ() +  0.5F + ((rand.nextDouble() - rand.nextDouble()) /  4.0F), 0.0F, 0.0F, 0.0F);
+            worldIn.addParticle(ParticleTypes.SMOKE,  pos.getX() +  0.5F + ((rand.nextDouble() - rand.nextDouble()) /  4.0F), pos.getY() + 0.25F,  pos.getZ() +  0.5F + ((rand.nextDouble() - rand.nextDouble()) /  4.0F), 0.0F, 0.0F, 0.0F);
         }
     }
 }

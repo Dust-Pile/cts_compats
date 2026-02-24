@@ -1,8 +1,8 @@
 package net.dusty_dusty.cts_compats.mods.biomesOPlenty.block;
 
-import biomesoplenty.init.ModParticles;
 import net.dusty_dusty.cts_compats.common.block.onTopBlocks.BasicOnTopBlock;
-import net.dusty_dusty.cts_compats.mods.biomesOPlenty.BOPRegistry;
+import net.dusty_dusty.cts_compats.mods.biomesOPlenty.registry.BOPReference;
+import net.dusty_dusty.cts_compats.mods.biomesOPlenty.registry.BOPBaseRegistry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -24,7 +24,7 @@ public class PusBubbleOnTop extends BasicOnTopBlock {
     protected static final VoxelShape SHAPE = Block.box(3.0F, -8.0F, 3.0F, 13.0F, 0.0F, 13.0F);
 
     public PusBubbleOnTop(Block originalBlock ) {
-        super( originalBlock, SHAPE, BOPRegistry.PlaceType.FLESH );
+        super( originalBlock, SHAPE, BOPBaseRegistry.PlaceType.FLESH );
     }
 
     @Override
@@ -64,7 +64,9 @@ public class PusBubbleOnTop extends BasicOnTopBlock {
         RandomSource rand = p_55480_.random;
 
         for(int i = 0; i < 10; ++i) {
-            p_55480_.addParticle(ModParticles.PUS.get(), (double)pos.getX() + (double)0.5F + (rand.nextDouble() - rand.nextDouble()) / (double)8.0F, (double)pos.getY() + (double)0.25F, (double)pos.getZ() + (double)0.5F + (rand.nextDouble() - rand.nextDouble()) / (double)8.0F, 0.0F, 0.0F, 0.0F);
+            p_55480_.addParticle( BOPReference.PUS,
+                    pos.getX() + 0.5 + (rand.nextDouble() - rand.nextDouble()) / 8.0, pos.getY() + 0.25,
+                    pos.getZ() + 0.5 + (rand.nextDouble() - rand.nextDouble()) / 8.0, 0.0F, 0.0F, 0.0F);
         }
 
     }
