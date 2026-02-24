@@ -23,6 +23,7 @@ public interface ISlabCopy extends IBlockCopyForge {
 
     enum CopyModelType {
         CUBE("cube"),
+        MULTI_VARIANT("multi_variant"),
         TINTED_OVERLAY("tinted_overlay");
 
         private final String name;

@@ -112,12 +112,7 @@ public final class RegistryManager {
         if ( ModList.get().isLoaded( modid ) ) {
             LOADED_VERSIONS.put( modid, new Version( ModList.get().getModFileById( modid ).versionString() ) );
             LOGGER.info( "Loading Runnable for {} version {}.", modid, LOADED_VERSIONS.get( modid ) );
-            try {
-                register.run();
-            } catch ( IllegalArgumentException e ) {
-                LOGGER.error( "Could not load compatibility for mod {}. {}", modid, e );
-                return false;
-            }
+            register.run();
             return true;
         }
         return false;

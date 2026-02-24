@@ -42,7 +42,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 if ( block instanceof IOnTopCopy onTopCopy ) {
                     simpleBlockCopy( onTopCopy );
                 } else if ( block instanceof ISlabCopy slabCopy && slabCopy instanceof SlabBlock &&
-                        slabCopy.getCopyModelType() != ISlabCopy.CopyModelType.TINTED_OVERLAY )
+                        slabCopy.getCopyModelType() == ISlabCopy.CopyModelType.CUBE )
                 {
                     slabCopyFromCube( slabCopy );
                 } else {

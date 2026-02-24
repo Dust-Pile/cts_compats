@@ -33,7 +33,7 @@ public class BlockCopyWrapper implements IBlockCopyForge {
     }
 
     public static class SlabCopyWrapper extends BlockCopyWrapper implements ISlabCopy {
-        public SlabCopyWrapper(IBlockCopy blockCopy) {
+        public SlabCopyWrapper( IBlockCopy blockCopy ) {
             super(blockCopy);
         }
         public SlabCopyWrapper( String modid, String path ) {
@@ -41,8 +41,8 @@ public class BlockCopyWrapper implements IBlockCopyForge {
         }
     }
 
-    public static class OnTopCopyWrapper extends BlockCopyWrapper implements ISlabCopy {
-        public OnTopCopyWrapper(IBlockCopy blockCopy) {
+    public static class OnTopCopyWrapper extends BlockCopyWrapper implements IOnTopCopy {
+        public OnTopCopyWrapper( IBlockCopy blockCopy ) {
             super(blockCopy);
         }
         public OnTopCopyWrapper( String modid, String path ) {

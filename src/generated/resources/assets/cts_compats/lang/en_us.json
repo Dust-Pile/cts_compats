@@ -1,4 +1,5 @@
 {
+  "block.cts_compats.algal_end_stone_slab": "Algal End Stone Slab",
   "block.cts_compats.allium_on_top": "Allium On Top",
   "block.cts_compats.barley_on_top": "Barley On Top",
   "block.cts_compats.beach_grass_on_top": "Beach Grass On Top",
@@ -73,6 +74,8 @@
   "block.cts_compats.tall_grass_on_top": "Tall Grass On Top",
   "block.cts_compats.tall_lavender_on_top": "Tall Lavender On Top",
   "block.cts_compats.tall_white_lavender_on_top": "Tall White Lavender On Top",
+  "block.cts_compats.thermal_calcite_slab": "Thermal Calcite Slab",
+  "block.cts_compats.thermal_calcite_vent_slab": "Thermal Calcite Vent Slab",
   "block.cts_compats.tiny_cactus_on_top": "Tiny Cactus On Top",
   "block.cts_compats.toadstool_on_top": "Toadstool On Top",
   "block.cts_compats.torch_on_top": "Torch On Top",

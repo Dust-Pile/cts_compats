@@ -1,6 +1,7 @@
 package net.dusty_dusty.cts_compats.common.block.interfaces;
 
 import net.countered.terrainslabs.block.ModSlabsMap;
+import net.countered.terrainslabs.block.interfaces.IBlockCopy;
 import net.countered.terrainslabs.callbacks.RegisterCallbacks;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -18,13 +19,13 @@ public interface IAssignable extends IBlockCopyForge {
             case SLAB:
                 AssignUtil.putTerrainSlab( this.getOriginBlock(), (Block) this );
                 if ( this instanceof IDuelSlab duelSlab ) {
-                    IBlockCopyForge duel = duelSlab.getDuelSlab();
+                    BlockCopyWrapper duel = new BlockCopyWrapper( duelSlab.getDuelSlab() );
 
-                    AssignUtil.putTopSlabReplacement( (Block) this, (Block) duel );
+                    AssignUtil.putTopSlabReplacement( (Block) this, duelSlab.getDuel() );
                     AssignUtil.putBlockBelowReplacement( (Block) this, duel.getOriginBlock() );
 
                     if ( this instanceof Fallable) {
-                        AssignUtil.putInverseSlabReplacement( (Block) duel, (Block) this );
+                        AssignUtil.putInverseSlabReplacement( duelSlab.getDuel(), (Block) this );
                     }
                 }
                 break;

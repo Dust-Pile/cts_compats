@@ -30,7 +30,7 @@ public abstract class AbstractRegistry implements IRegistry {
     }
 
     @SuppressWarnings("unchecked")
-    protected <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block ) {
+    public <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block ) {
         RegistryObject<T> output = this.COMPAT_BLOCKS.register( name, block );
         this.registerBlockItem( name, ( RegistryObject<Block> ) output);
         return output;

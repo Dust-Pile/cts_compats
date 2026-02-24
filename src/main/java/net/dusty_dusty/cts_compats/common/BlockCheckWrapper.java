@@ -130,17 +130,21 @@ public class BlockCheckWrapper {
             }
         }
 
-        public void add( Block block ) {
+        public Group add( Block block ) {
             this.add( new BlockCheckWrapper( block ) );
+            return this;
         }
-        public void add( RegistryObject<Block> blockRegister ) {
+        public Group add( RegistryObject<Block> blockRegister ) {
             this.add( new BlockCheckWrapper( blockRegister ) );
+            return this;
         }
-        public void add( TagKey<Block> key ) {
+        public Group add( TagKey<Block> key ) {
             this.add( new BlockCheckWrapper( key ) );
+            return this;
         }
-        public void add( Function<BlockState, Boolean> func ) {
+        public Group add( Function<BlockState, Boolean> func ) {
             this.add( new BlockCheckWrapper( func ) );
+            return this;
         }
 
         public boolean check( BlockState blockState ) {
