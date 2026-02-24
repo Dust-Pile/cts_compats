@@ -1,12 +1,10 @@
 package net.dusty_dusty.cts_compats;
 
-import net.dusty_dusty.cts_compats.common.registry.AbstractRegistry;
-import net.dusty_dusty.cts_compats.common.registry.Version;
-import net.dusty_dusty.cts_compats.common.registry.IColorRegistry;
-import net.dusty_dusty.cts_compats.common.registry.IRegistry;
+import net.dusty_dusty.cts_compats.common.registry.*;
 import net.dusty_dusty.cts_compats.mods.vanilla.VanillaRegistry;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.ModelEvent;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -105,6 +103,22 @@ public final class RegistryManager {
             INSTANCE.REGISTRIES.forEach( registry -> {
                 Optional<IColorRegistry> colorRegistry = registry.getColorRegistry();
                 colorRegistry.ifPresent(iColorRegistry -> iColorRegistry.onColorHandlerEventItem( event ));
+            } );
+        }
+
+        @SubscribeEvent
+        public static void onModelBake( ModelEvent.ModifyBakingResult event ) {
+            INSTANCE.REGISTRIES.forEach( registry -> {
+                Optional<IEmissiveRegistry> emissiveRegistry = registry.getEmissiveRegistry();
+                emissiveRegistry.ifPresent(iEmissiveRegistry -> iEmissiveRegistry.onModelBake( event ));
+            } );
+        }
+
+        @SubscribeEvent
+        public static void onRegisterAdditionalModels(ModelEvent.RegisterAdditional event) {
+            INSTANCE.REGISTRIES.forEach( registry -> {
+                Optional<IEmissiveRegistry> emissiveRegistry = registry.getEmissiveRegistry();
+                emissiveRegistry.ifPresent(iEmissiveRegistry -> iEmissiveRegistry.onRegisterAdditionalModels( event ));
             } );
         }
     }

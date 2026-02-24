@@ -9,6 +9,7 @@ import net.dusty_dusty.cts_compats.common.block.onTopBlocks.BushBlockOnTop;
 import net.dusty_dusty.cts_compats.common.block.onTopBlocks.PetalBlockOnTop;
 import net.dusty_dusty.cts_compats.common.registry.AbstractRegistry;
 import net.dusty_dusty.cts_compats.common.registry.IColorRegistry;
+import net.dusty_dusty.cts_compats.common.registry.IEmissiveRegistry;
 import net.dusty_dusty.cts_compats.common.registry.IRegistry;
 import net.dusty_dusty.cts_compats.mods.vanillaBackport.block.DryGrassOnTop;
 import net.dusty_dusty.cts_compats.mods.vanillaBackport.block.EyeblossomOnTop;
@@ -69,5 +70,10 @@ public class VanillaBackportRegistry extends AbstractRegistry {
     @Override
     public Optional<IColorRegistry> getColorRegistry() {
         return Optional.of( new VanillaBackportColorRegistry() );
+    }
+
+    @Override
+    public Optional<IEmissiveRegistry> getEmissiveRegistry() {
+        return Optional.of( new VanillaBackportEmissiveRegistry() );
     }
 }

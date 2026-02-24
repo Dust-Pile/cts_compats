@@ -23,4 +23,8 @@ public interface IRegistry {
     Optional<IColorRegistry> getColorRegistry();
 
     default void clientSetup() {};
+
+    default Optional<IEmissiveRegistry> getEmissiveRegistry() {
+        return Optional.empty();
+    }
 }
