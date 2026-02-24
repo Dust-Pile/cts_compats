@@ -60,7 +60,8 @@ minecraft {
 
             // Specify the modid for data generation, where to output the resulting resource, and where to look for existing resources.
             args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/'),
-                    '--existing-mod', 'projectvibrantjourneys', '--existing-mod', 'biomesoplenty', '--existing-mod', 'vanillabackport'
+                    '--existing-mod', 'projectvibrantjourneys', '--existing-mod', 'biomesoplenty', '--existing-mod', 'vanillabackport',
+                    '--existing-mod', 'meadow', '--existing-mod', 'immersive_weathering'
         }
     }
 }
@@ -93,11 +94,16 @@ dependencies {
     implementation fg.deobf("curse.maven:countereds-terrain-slabs-1125437:7659278")
 
     // Compat Dependencies
-    implementation fg.deobf("curse.maven:platform-997634:7609676")
+    runtimeOnly fg.deobf("curse.maven:selene-499980:7664875")
+    runtimeOnly fg.deobf("curse.maven:cloth-config-348521:5729105")
+    implementation fg.deobf("curse.maven:architectury-api-419699:5137938")
+    runtimeOnly fg.deobf("curse.maven:platform-997634:7609676")
     runtimeOnly fg.deobf("curse.maven:terrablender-563928:6290448")
     runtimeOnly fg.deobf("curse.maven:glitchcore-955399:5787839")
 
     // Compats Mods
+    implementation fg.deobf("curse.maven:immersive-weathering-forge-592449:6116941")
+    implementation fg.deobf("curse.maven:lets-do-meadow-821483:6467344")
     implementation fg.deobf("curse.maven:vanillabackport-417430:7597658")
     implementation fg.deobf("curse.maven:project-vibrant-journeys-300297:6841170")
     compileOnly fileTree(dir: 'libs', include: '*.jar')

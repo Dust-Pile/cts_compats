@@ -39,7 +39,7 @@ import java.util.stream.IntStream;
 public final class ModBlockLootTables extends BlockLootSubProvider {
     private static final LootPoolEntryContainer.Builder<?> GRASS_LOOT = LootTableReference.lootTableReference(
             ResourceLocation.fromNamespaceAndPath( "minecraft", "blocks/grass" ) );
-    private static final boolean IS_ENABLED = false;
+    private static final boolean IS_ENABLED = true;
     public ModBlockLootTables() {
         super( Set.of(), FeatureFlags.REGISTRY.allFlags() );
     }
