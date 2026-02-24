@@ -6,7 +6,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 
-public class VanillaColorRegistry extends AbstractColorRegistry {
+class VanillaColorRegistry extends AbstractColorRegistry {
 
     public void onColorHandlerEventBlock( RegisterColorHandlersEvent.Block event ) {
         event.register( getGrassColor(), VanillaRegistry.TALL_GRASS_ON_TOP.get() );

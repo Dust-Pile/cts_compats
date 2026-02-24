@@ -17,7 +17,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
-import java.util.function.Supplier;
 
 @SuppressWarnings("OptionalUsedAsFieldOrParameterType")
 public class BlockCheckWrapper {
@@ -72,7 +71,7 @@ public class BlockCheckWrapper {
         this.functionOption = Optional.empty();
     }
     public BlockCheckWrapper( Function<BlockState, Boolean> func ) {
-        this.blockTagOption = Optional.empty();;
+        this.blockTagOption = Optional.empty();
         this.blockOption = Optional.empty();
         this.functionOption = Optional.of( func );
     }

@@ -14,7 +14,6 @@ import net.minecraftforge.registries.RegistryObject;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Set;
 import java.util.function.Supplier;
 
 import static net.dusty_dusty.cts_compats.CTSCompats.MODID;

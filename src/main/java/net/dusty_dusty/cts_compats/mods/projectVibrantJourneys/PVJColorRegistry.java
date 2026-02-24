@@ -6,7 +6,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 
-public class PVJColorRegistry extends AbstractColorRegistry {
+class PVJColorRegistry extends AbstractColorRegistry {
 
     public void onColorHandlerEventBlock( RegisterColorHandlersEvent.Block event ) {
         event.register(getFoliageColor(), PVJRegistry.FALLEN_LEAVES_ON_TOP.get());

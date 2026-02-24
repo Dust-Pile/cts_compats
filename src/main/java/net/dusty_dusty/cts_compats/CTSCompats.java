@@ -3,7 +3,8 @@ package net.dusty_dusty.cts_compats;
 import com.mojang.logging.LogUtils;
 import net.dusty_dusty.cts_compats.common.block.interfaces.IOnTopCopy;
 import net.dusty_dusty.cts_compats.common.registry.IRegistry;
-import net.dusty_dusty.cts_compats.mods.biomesOPlenty.BOPVersionRouter;
+import net.dusty_dusty.cts_compats.mods.ImmersiveWeathering.WeatheringRegistry;
+import net.dusty_dusty.cts_compats.mods.biomesOPlenty.registry.BOPVersionRouter;
 import net.dusty_dusty.cts_compats.mods.projectVibrantJourneys.PVJRegistry;
 import net.dusty_dusty.cts_compats.mods.vanilla.VanillaRegistry;
 import net.dusty_dusty.cts_compats.mods.vanillaBackport.VanillaBackportRegistry;
@@ -48,6 +49,7 @@ public final class CTSCompats
         REGISTRY_MANAGER.register( IRegistry.PVJ_MODID, () -> PVJRegistry.getInstance() );
         REGISTRY_MANAGER.register( IRegistry.BOP_MODID, () -> BOPVersionRouter.getInstance() );
         REGISTRY_MANAGER.register( IRegistry.VB_MODID, () -> VanillaBackportRegistry.getInstance() );
+        REGISTRY_MANAGER.register( IRegistry.IW_MODID, () -> WeatheringRegistry.getInstance() );
     }
 
     @SuppressWarnings("removal")

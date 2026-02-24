@@ -16,17 +16,13 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.registries.RegistryObject;
 
-import java.util.ArrayList;
 import java.util.Optional;
-import java.util.function.Supplier;
 
 @SuppressWarnings("unused")
 public class BOPBaseRegistry extends AbstractRegistry {
     protected static final BOPBaseRegistry INSTANCE = new BOPBaseRegistry( IRegistry.BOP_MODID );
-    protected Optional<IColorRegistry> colorRegistry;
     protected BOPBaseRegistry( String modId ) {
         super(modId);
-        colorRegistry = Optional.of( new BOPBaseColorRegistry() );
     }
 
     public static BOPBaseRegistry getInstance() {
@@ -61,7 +57,7 @@ public class BOPBaseRegistry extends AbstractRegistry {
 
     @Override
     public Optional<IColorRegistry> getColorRegistry() {
-        return colorRegistry;
+        return Optional.of( new BOPBaseColorRegistry() );
     }
 
     // Overworld Blocks

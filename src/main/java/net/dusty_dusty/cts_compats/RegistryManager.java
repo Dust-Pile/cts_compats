@@ -59,11 +59,9 @@ public final class RegistryManager {
     }
     public static List<Block> getAllBlocks() {
         List<Block> blocks = new ArrayList<>();
-        forEachRegistry( registry -> {
-            registry.getRegistryBlocks().forEach( blockRegister -> {
-                blocks.add( blockRegister.get() );
-            });
-        });
+        forEachRegistry( registry -> registry.getRegistryBlocks().forEach(blockRegister ->
+                blocks.add( blockRegister.get() )
+        ));
         return blocks;
     }
 

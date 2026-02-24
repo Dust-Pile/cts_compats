@@ -11,6 +11,7 @@ public interface IRegistry {
     String PVJ_MODID = "projectvibrantjourneys";
     String BOP_MODID = "biomesoplenty";
     String VB_MODID = "vanillabackport";
+    String IW_MODID = "immersive_weathering";
 
     String getModID();
 
@@ -22,7 +23,7 @@ public interface IRegistry {
 
     Optional<IColorRegistry> getColorRegistry();
 
-    default void clientSetup() {};
+    default void clientSetup() {}
 
     default Optional<IEmissiveRegistry> getEmissiveRegistry() {
         return Optional.empty();

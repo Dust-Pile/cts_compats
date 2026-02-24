@@ -20,7 +20,9 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
+import org.jetbrains.annotations.NotNull;
 
+@SuppressWarnings("deprecation")
 public class EyeblossomOnTop extends FlowerBlockOnTop {
     private final EyeblossomBlock.Type type;
 
@@ -29,7 +31,7 @@ public class EyeblossomOnTop extends FlowerBlockOnTop {
         this.type = type;
     }
 
-    public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
+    public void animateTick(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull RandomSource random) {
         if (this.type.emitSounds() && random.nextInt(700) == 0) {
             BlockState floorState = level.getBlockState(pos.below());
             if (floorState.is( ModBlocks.PALE_MOSS_BLOCK.get())) {
@@ -40,7 +42,7 @@ public class EyeblossomOnTop extends FlowerBlockOnTop {
 
     }
 
-    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+    public void randomTick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
         if ( this.tryChangingState(state, level, pos, random ) ) {
             level.playSound( null, pos, this.type.transform().longSwitchSound(), SoundSource.BLOCKS, 1.0F, 1.0F);
         }
@@ -48,7 +50,7 @@ public class EyeblossomOnTop extends FlowerBlockOnTop {
         super.randomTick(state, level, pos, random);
     }
 
-    public void tick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+    public void tick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
         if ( this.tryChangingState(state, level, pos, random ) ) {
             level.playSound( null, pos, this.getShortSwitchSound(), SoundSource.BLOCKS, 1.0F, 1.0F);
         }
@@ -89,7 +91,7 @@ public class EyeblossomOnTop extends FlowerBlockOnTop {
         }
     }
 
-    public void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
+    public void entityInside(@NotNull BlockState state, Level level, @NotNull BlockPos pos, @NotNull Entity entity) {
         if (!level.isClientSide() && level.getDifficulty() != Difficulty.PEACEFUL && entity instanceof Bee bee) {
             if (!bee.hasEffect(MobEffects.POISON)) {
                 bee.addEffect(new MobEffectInstance(MobEffects.POISON, 25));

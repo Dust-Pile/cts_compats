@@ -6,7 +6,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.client.event.RegisterColorHandlersEvent;
 
-public class BOPBaseColorRegistry extends AbstractColorRegistry {
+class BOPBaseColorRegistry extends AbstractColorRegistry {
     @Override
     public void onColorHandlerEventBlock(RegisterColorHandlersEvent.Block event) {
         event.register(getFoliageColor(), BOPBaseRegistry.BUSH_ON_TOP.get() );

@@ -14,13 +14,10 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-import java.util.Optional;
-
 @SuppressWarnings("unused")
 public final class BOPBetaRegistry {
     public static BOPBaseRegistry INSTANCE = BOPBaseRegistry.getInstance();
     public static BOPBaseRegistry getInstance() {
-        INSTANCE.colorRegistry = Optional.of( new BOPBetaColorRegistry() );
         return INSTANCE;
     }
 

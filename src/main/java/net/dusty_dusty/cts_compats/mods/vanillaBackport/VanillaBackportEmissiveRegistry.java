@@ -10,7 +10,7 @@ import net.minecraftforge.client.event.ModelEvent;
 
 import java.util.Map;
 
-public class VanillaBackportEmissiveRegistry implements IEmissiveRegistry {
+class VanillaBackportEmissiveRegistry implements IEmissiveRegistry {
     private static final String[] EMISSIVE_BLOCKS = new String[]{ "open_eyeblossom_on_top", "firefly_bush_on_top" };
     private static final String EMISSIVE_SUFFIX = "_emissive";
 

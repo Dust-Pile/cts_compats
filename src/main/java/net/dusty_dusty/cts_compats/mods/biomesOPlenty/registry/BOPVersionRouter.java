@@ -1,10 +1,8 @@
-package net.dusty_dusty.cts_compats.mods.biomesOPlenty;
+package net.dusty_dusty.cts_compats.mods.biomesOPlenty.registry;
 
 import net.dusty_dusty.cts_compats.common.registry.AbstractVersionRouter;
 import net.dusty_dusty.cts_compats.common.registry.IRegistry;
 import net.dusty_dusty.cts_compats.common.registry.Version;
-import net.dusty_dusty.cts_compats.mods.biomesOPlenty.registry.BOPBaseRegistry;
-import net.dusty_dusty.cts_compats.mods.biomesOPlenty.registry.BOPBetaRegistry;
 
 import java.util.HashMap;
 import java.util.Map;
