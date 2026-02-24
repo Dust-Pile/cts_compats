@@ -1,0 +1,15 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "meadow:block/delphinium_1"
+      },
+      {
+        "model": "meadow:block/delphinium_2"
+      },
+      {
+        "model": "meadow:block/delphinium_3"
+      }
+    ]
+  }
+}

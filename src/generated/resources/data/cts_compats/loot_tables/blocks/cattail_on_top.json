@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        },
+        {
+          "block": "cts_compats:cattail_on_top",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "half": "lower"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "biomesoplenty:cattail"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "cts_compats:blocks/cattail_on_top"
+}

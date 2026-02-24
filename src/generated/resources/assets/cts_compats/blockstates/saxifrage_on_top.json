@@ -1,0 +1,15 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "meadow:block/saxifrage_1"
+      },
+      {
+        "model": "meadow:block/saxifrage_2"
+      },
+      {
+        "model": "meadow:block/saxifrage_3"
+      }
+    ]
+  }
+}

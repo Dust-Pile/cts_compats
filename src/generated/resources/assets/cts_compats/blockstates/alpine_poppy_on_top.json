@@ -1,0 +1,15 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "meadow:block/alpine_poppy_1"
+      },
+      {
+        "model": "meadow:block/alpine_poppy_2"
+      },
+      {
+        "model": "meadow:block/alpine_poppy_3"
+      }
+    ]
+  }
+}

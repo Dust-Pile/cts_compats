@@ -26,30 +26,30 @@ public class MeadowRegistry extends AbstractRegistry {
 
 
     // Slab
-    public static RegistryObject<Block> LIMESTONE_SLAB = INSTANCE.registerBlock( "limestone_slab",
+    public static RegistryObject<Block> LIMESTONE_SLAB = INSTANCE.registerBlockCutout( "limestone_slab",
             () -> new CustomSlabBlock( ObjectRegistry.LIMESTONE.get() ) );
 
     // On Top Things
-    public static RegistryObject<Block> ALPINE_POPPY_ON_TOP = INSTANCE.registerBlock( "alpine_poppy_on_top",
+    public static RegistryObject<Block> ALPINE_POPPY_ON_TOP = INSTANCE.registerBlockCutout( "alpine_poppy_on_top",
             () -> new FlowerBlockOnTop( ObjectRegistry.ALPINE_POPPY.get() ) );
-    public static RegistryObject<Block> DELPHINIUM_ON_TOP = INSTANCE.registerBlock( "delphinium_on_top",
+    public static RegistryObject<Block> DELPHINIUM_ON_TOP = INSTANCE.registerBlockCutout( "delphinium_on_top",
             () -> new FlowerBlockOnTop( ObjectRegistry.DELPHINIUM.get() ) );
-    public static RegistryObject<Block> SAXIFRAGE_ON_TOP = INSTANCE.registerBlock( "saxifrage_on_top",
+    public static RegistryObject<Block> SAXIFRAGE_ON_TOP = INSTANCE.registerBlockCutout( "saxifrage_on_top",
             () -> new FlowerBlockOnTop( ObjectRegistry.SAXIFRAGE.get() ) );
-    public static RegistryObject<Block> ENZIAN_ON_TOP = INSTANCE.registerBlock( "enzian_on_top",
+    public static RegistryObject<Block> ENZIAN_ON_TOP = INSTANCE.registerBlockCutout( "enzian_on_top",
             () -> new FlowerBlockOnTop( ObjectRegistry.ENZIAN.get() ) );
-    public static RegistryObject<Block> FIRE_LILY_ON_TOP = INSTANCE.registerBlock( "fire_lily_on_top",
+    public static RegistryObject<Block> FIRE_LILY_ON_TOP = INSTANCE.registerBlockCutout( "fire_lily_on_top",
             () -> new FlowerBlockOnTop( ObjectRegistry.FIRE_LILY.get() ) );
-    public static RegistryObject<Block> ERIOPHORUM_ON_TOP = INSTANCE.registerBlock( "eriophorum_on_top",
+    public static RegistryObject<Block> ERIOPHORUM_ON_TOP = INSTANCE.registerBlockCutout( "eriophorum_on_top",
             () -> new FlowerBlockOnTop( ObjectRegistry.ERIOPHORUM.get() ) );
-    public static RegistryObject<Block> TALL_ERIOPHORUM_ON_TOP = INSTANCE.registerBlock( "eriophorum_tall_on_top",
+    public static RegistryObject<Block> TALL_ERIOPHORUM_ON_TOP = INSTANCE.registerBlockCutout( "eriophorum_tall_on_top",
             () -> new DoubleFlowerOnTop( ObjectRegistry.ERIOPHORUM_TALL.get() ) );
-    public static RegistryObject<Block> SMALL_FIR_ON_TOP = INSTANCE.registerBlock( "small_fir_on_top",
+    public static RegistryObject<Block> SMALL_FIR_ON_TOP = INSTANCE.registerBlockCutout( "small_fir_on_top",
             () -> new DoublePlantOnTop( ObjectRegistry.SMALL_FIR.get() ) );
 
 
     @Override
     public Optional<IColorRegistry> getColorRegistry() {
-        return Optional.of( new MeadowColorRegistry() );
+        return Optional.empty();
     }
 }

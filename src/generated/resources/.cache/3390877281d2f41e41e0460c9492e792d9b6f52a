@@ -1,6 +1,6 @@
-// 1.20.1	2026-02-20T13:09:31.6228678	Tags for minecraft:block mod id cts_compats
+// 1.20.1	2026-02-24T12:17:44.3755327	Tags for minecraft:block mod id cts_compats
 6122afe1a057e44baa8b1bc9b43689a458db5e38 data/forge/tags/blocks/needs_wood_tool.json
 bdd09222ef89578462f620cd1fb32dc3a0ab1515 data/minecraft/tags/blocks/mineable/axe.json
 7221091c31c638d9e9c6500b8d931be62522d8cc data/minecraft/tags/blocks/mineable/pickaxe.json
 d0aa560c62238b43058adc17ac13f07caf6b783a data/minecraft/tags/blocks/mineable/shovel.json
-5bcc16f401f8b3240b8826b9363cf19eb586d1dc data/terrainslabs/tags/blocks/tall_decorations.json
+5c1ffc89625ddfd42b68b7bd18cee8d9fef46241 data/terrainslabs/tags/blocks/tall_decorations.json

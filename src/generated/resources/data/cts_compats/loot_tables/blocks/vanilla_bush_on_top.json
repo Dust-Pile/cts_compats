@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:loot_table",
+          "name": "minecraft:blocks/bush"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "cts_compats:blocks/vanilla_bush_on_top"
+}

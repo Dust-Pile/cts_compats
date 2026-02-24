@@ -1,0 +1,28 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        },
+        {
+          "block": "cts_compats:tall_white_lavender_on_top",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "half": "lower"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "biomesoplenty:tall_white_lavender"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "cts_compats:blocks/tall_white_lavender_on_top"
+}

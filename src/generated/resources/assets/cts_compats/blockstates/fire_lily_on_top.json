@@ -1,0 +1,15 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "meadow:block/fire_lily_1"
+      },
+      {
+        "model": "meadow:block/fire_lily_2"
+      },
+      {
+        "model": "meadow:block/fire_lily_3"
+      }
+    ]
+  }
+}
