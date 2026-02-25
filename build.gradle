@@ -96,12 +96,14 @@ dependencies {
     // Compat Dependencies
     runtimeOnly fg.deobf("curse.maven:selene-499980:7664875")
     runtimeOnly fg.deobf("curse.maven:cloth-config-348521:5729105")
-    implementation fg.deobf("curse.maven:architectury-api-419699:5137938")
     runtimeOnly fg.deobf("curse.maven:platform-997634:7609676")
     runtimeOnly fg.deobf("curse.maven:terrablender-563928:6290448")
     runtimeOnly fg.deobf("curse.maven:glitchcore-955399:5787839")
+    implementation fg.deobf("curse.maven:zeta-968868:7335229")
+    implementation fg.deobf("curse.maven:architectury-api-419699:5137938") // needed to read blocks from meadow
 
     // Compats Mods
+    implementation fg.deobf("curse.maven:quark-243121:6427817")
     implementation fg.deobf("curse.maven:immersive-weathering-forge-592449:6116941")
     implementation fg.deobf("curse.maven:lets-do-meadow-821483:6467344")
     implementation fg.deobf("curse.maven:vanillabackport-417430:7597658")

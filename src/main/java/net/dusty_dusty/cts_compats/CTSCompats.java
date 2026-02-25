@@ -6,6 +6,7 @@ import net.dusty_dusty.cts_compats.common.registry.IRegistry;
 import net.dusty_dusty.cts_compats.mods.biomesOPlenty.BOPVersionRouter;
 import net.dusty_dusty.cts_compats.mods.meadow.MeadowRegistry;
 import net.dusty_dusty.cts_compats.mods.projectVibrantJourneys.PVJRegistry;
+import net.dusty_dusty.cts_compats.mods.quark.QuarkRegistry;
 import net.dusty_dusty.cts_compats.mods.vanilla.VanillaRegistry;
 import net.dusty_dusty.cts_compats.mods.vanillaBackport.VanillaBackportRegistry;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
@@ -50,10 +51,11 @@ public final class CTSCompats
         REGISTRY_MANAGER.register( IRegistry.BOP_MODID, () -> BOPVersionRouter.getInstance() );
         REGISTRY_MANAGER.register( IRegistry.VB_MODID, () -> VanillaBackportRegistry.getInstance() );
         REGISTRY_MANAGER.register( IRegistry.MEADOW_MODID, () -> MeadowRegistry.getInstance() );
+        REGISTRY_MANAGER.register( IRegistry.QUARK_MODID, () -> QuarkRegistry.getInstance() );
     }
 
     @SuppressWarnings("removal")
-    private void clientSetup(final FMLClientSetupEvent event) {
+    private void clientSetup( final FMLClientSetupEvent event ) {
         // Have to do it this way if I want to copy vanilla blockstates. Gives better resource pack compatibility.
         for( RegistryObject<Block> blockRegister : VanillaRegistry.getInstance().getRegistryBlocks() ) {
             if ( blockRegister.get() instanceof IOnTopCopy ) {

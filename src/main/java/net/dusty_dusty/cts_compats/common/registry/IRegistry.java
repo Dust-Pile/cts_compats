@@ -15,6 +15,7 @@ public interface IRegistry {
     String VB_MODID = "vanillabackport";
     String MEADOW_MODID = "meadow";
     String IW_MODID = "immersive_weathering";
+    String QUARK_MODID = "quark";
 
     String getModID();
 
@@ -26,7 +27,7 @@ public interface IRegistry {
 
     Optional<IColorRegistry> getColorRegistry();
 
-    default void clientSetup() {};
+    default void clientSetup() {}
 
     default Optional<IEmissiveRegistry> getEmissiveRegistry() {
         return Optional.empty();
