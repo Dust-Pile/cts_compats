@@ -1,14 +1,11 @@
 package net.dusty_dusty.cts_compats.common;
 
-import dev.orderedchaos.projectvibrantjourneys.common.tags.ForgeTags;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraft.world.level.block.state.properties.SlabType;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
@@ -17,7 +14,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
-import java.util.function.Supplier;
 
 @SuppressWarnings("OptionalUsedAsFieldOrParameterType")
 public class BlockCheckWrapper {
@@ -28,6 +24,7 @@ public class BlockCheckWrapper {
     static {
         SAND_AND_DIRT.add( BlockTags.SAND );
         SAND_AND_DIRT.add( BlockTags.DIRT );
+        SAND_AND_DIRT.add( Tags.Blocks.SAND );
 
         DIRT_AND_FARMLAND.add( BlockTags.DIRT );
         DIRT_AND_FARMLAND.add( Blocks.FARMLAND );
@@ -38,19 +35,14 @@ public class BlockCheckWrapper {
         NETHER_FLOOR.add( Blocks.CRIMSON_NYLIUM );
         NETHER_FLOOR.add( Blocks.WARPED_NYLIUM );
 
-        WATER_PLANT_PLACEABLE.add( BlockTags.DIRT );
-        WATER_PLANT_PLACEABLE.add( BlockTags.SAND );
-        WATER_PLANT_PLACEABLE.add( ForgeTags.GRAVEL );
-        WATER_PLANT_PLACEABLE.add( ForgeTags.SAND );
+        WATER_PLANT_PLACEABLE.addAll( SAND_AND_DIRT );
+        WATER_PLANT_PLACEABLE.add( Tags.Blocks.GRAVEL );
         WATER_PLANT_PLACEABLE.add( Blocks.CLAY );
         WATER_PLANT_PLACEABLE.add( BlockTags.BIG_DRIPLEAF_PLACEABLE );
     }
 
     public static BlockCheckWrapper ALWAYS = new BlockCheckWrapper( state -> true );
     public static BlockCheckWrapper NEVER = new BlockCheckWrapper( state -> false );
-    public static BlockCheckWrapper DRY = new BlockCheckWrapper( state ->
-            !state.getValue( BlockStateProperties.WATERLOGGED ) || state.getValue( SlabBlock.TYPE ) != SlabType.BOTTOM
-    );
 
     private final Optional<Block> blockOption;
     private final Optional<TagKey<Block>> blockTagOption;
@@ -169,9 +161,6 @@ public class BlockCheckWrapper {
             Group clone = this.clone();
             clone.add( wrapper );
             return clone;
-        }
-        public Group asDry() {
-            return this.cloneAndAppend( DRY );
         }
     }
 }
